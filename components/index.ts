@@ -4,3 +4,7 @@ export * from "./ui/parallax-scroll";
 export * from "./ui/animated-tooltip";
 export * from "./ui/sticky-scroll-reveal";
 export * from "./ui/tracing-beam";
+export * from "./ui/card-hover-effect";
+export * from "./ui/following-pointer";
+export * from "./ui/3d-card";
+export * from "./ui/google-gemini-effect";

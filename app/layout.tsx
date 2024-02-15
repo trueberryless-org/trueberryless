@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import classNames from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,11 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const bodyClasses = classNames(inter.className);
+
     return (
-        <html lang="en">
-            <body className={inter.className}>{children}</body>
+        <html lang="en" className="scrollbar-hide scroll-smooth">
+            <body className={bodyClasses}>{children}</body>
         </html>
     );
 }
