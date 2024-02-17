@@ -1,10 +1,34 @@
-import { ParallaxScroll } from "@/components";
+import { ParallaxScroll, TypewriterEffectSmooth } from "@/components";
 
 export default function Images() {
-    return <ParallaxScroll images={images} />;
+    const words = [
+        {
+            text: "Look",
+        },
+        {
+            text: "at",
+        },
+        {
+            text: "those",
+        },
+        {
+            text: "pics.",
+            className: "text-blue-500 dark:text-blue-500",
+        },
+    ];
+
+    return (
+        <div>
+            <div className="flex flex-col items-center justify-center h-[10rem]">
+                <TypewriterEffectSmooth words={words} />
+            </div>
+            <ParallaxScroll images={images} />
+        </div>
+    );
 }
 
 const images = [
+    "/felix/0.jpg",
     "/felix/1.jpg",
     "/felix/2.jpg",
     "/felix/3.jpg",
@@ -15,8 +39,4 @@ const images = [
     "/felix/8.jpg",
     "/felix/9.jpg",
     "/felix/10.jpg",
-    "/felix/11.jpg",
-    "/felix/12.jpg",
-    "/felix/13.jpg",
-    "/felix/14.jpg",
 ];

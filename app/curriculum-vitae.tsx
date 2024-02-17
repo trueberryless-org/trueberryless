@@ -2,11 +2,30 @@
 import React from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import { TracingBeam } from "@/components";
+import { TracingBeam, TypewriterEffectSmooth } from "@/components";
 
 export function CurriculumVitae() {
+    const words = [
+        {
+            text: "The",
+        },
+        {
+            text: "journey",
+            className: "text-blue-500 dark:text-blue-500",
+        },
+        {
+            text: "begins",
+        },
+        {
+            text: "here.",
+        },
+    ];
+
     return (
-        <TracingBeam className="">
+        <TracingBeam>
+            <div className="flex flex-col items-center justify-center h-[10rem]">
+                <TypewriterEffectSmooth words={words} />
+            </div>
             <div className="max-w-2xl mx-auto antialiased pt-4 relative">
                 {dummyContent.map((item, index) => (
                     <div key={`content-${index}`} className="mb-10">
@@ -37,72 +56,69 @@ export function CurriculumVitae() {
 
 const dummyContent = [
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "From primary school to college",
         description: (
             <>
                 <p>
-                    Sit duis est minim proident non nisi velit non consectetur. Esse adipisicing
-                    laboris consectetur enim ipsum reprehenderit eu deserunt Lorem ut aliqua anim
-                    do. Duis cupidatat qui irure cupidatat incididunt incididunt enim magna id est
-                    qui sunt fugiat. Laboris do duis pariatur fugiat Lorem aute sit ullamco. Qui
-                    deserunt non reprehenderit dolore nisi velit exercitation Lorem qui do enim
-                    culpa. Aliqua eiusmod in occaecat reprehenderit laborum nostrud fugiat voluptate
-                    do Lorem culpa officia sint labore. Tempor consectetur excepteur ut fugiat
-                    veniam commodo et labore dolore commodo pariatur.
+                    My journey begins in 2005, when I was born on 20 February. I started primary
+                    school in 2011 and eight years later I left secondary school. The first big
+                    decision of my life after grammar school was to go to technical college. And I
+                    completed this educational unit in Krems an der Donau in 2024.
                 </p>
-                <p>
-                    Dolor minim irure ut Lorem proident. Ipsum do pariatur est ad ad veniam in
-                    commodo id reprehenderit adipisicing. Proident duis exercitation ad quis ex
-                    cupidatat cupidatat occaecat adipisicing.
-                </p>
-                <p>
-                    Tempor quis dolor veniam quis dolor. Sit reprehenderit eiusmod reprehenderit
-                    deserunt amet laborum consequat adipisicing officia qui irure id sint
-                    adipisicing. Adipisicing fugiat aliqua nulla nostrud. Amet culpa officia aliquip
-                    deserunt veniam deserunt officia adipisicing aliquip proident officia sunt.
-                </p>
+                <br />
+                <p></p>
             </>
         ),
-        badge: "React",
-        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        badge: "Education",
+        image: "/cv/education.jpg",
     },
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "Internships and their advantages",
         description: (
             <>
                 <p>
-                    Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecat deserunt
-                    cupidatat aute. Enim cillum dolor et nulla sunt exercitation non voluptate qui
-                    aliquip esse tempor. Ullamco ut sunt consectetur sint qui qui do do qui do.
-                    Labore laborum culpa magna reprehenderit ea velit id esse adipisicing deserunt
-                    amet dolore. Ipsum occaecat veniam commodo proident aliqua id ad deserunt dolor
-                    aliquip duis veniam sunt.
+                    I started doing internships during my technical colleague&apos;s summer
+                    holidays. These are extremely helpful for gaining real-life work experience that
+                    can&apos;t be learnt at school. This has also enabled me to find out which
+                    sectors in the information technology field I like and which I don&apos;t like.
+                    Because I prefer to work on the frontend rather than the backend. However, I
+                    also really like the backend, as long as it is not an outdated and poorly
+                    documented programming language.
                 </p>
-                <p>
-                    In dolore veniam excepteur eu est et sunt velit. Ipsum sint esse veniam fugiat
-                    esse qui sint ad sunt reprehenderit do qui proident reprehenderit. Laborum
-                    exercitation aliqua reprehenderit ea sint cillum ut mollit.
-                </p>
+                <br />
+                <p></p>
             </>
         ),
-        badge: "Changelog",
-        image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        badge: "Work experience",
+        image: "/cv/work_experience.webp",
     },
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "Tennis, golf and Rocket League",
         description: (
             <>
                 <p>
-                    Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecat deserunt
-                    cupidatat aute. Enim cillum dolor et nulla sunt exercitation non voluptate qui
-                    aliquip esse tempor. Ullamco ut sunt consectetur sint qui qui do do qui do.
-                    Labore laborum culpa magna reprehenderit ea velit id esse adipisicing deserunt
-                    amet dolore. Ipsum occaecat veniam commodo proident aliqua id ad deserunt dolor
-                    aliquip duis veniam sunt.
+                    My father taught me to play golf at a very early age, as he is also a keen
+                    golfer himself. As a result, I have always been fascinated by beautiful golf
+                    courses, where I have always found my peace and connection with nature.
+                </p>
+                <br />
+                <p>
+                    But golf is not my only hobby. I have had many hobbies over the years. For some
+                    months I was in love with the magic of card tricks and couldn&apos;t stop
+                    practising them and improving my dexterity. However, that too has now stopped. I
+                    also love to play tennis, both big and small, and the more subtle table tennis.
+                </p>
+                <br />
+                <p>
+                    In terms of video and board games, I&apos;ve never been interested in
+                    first-person shooters and the like. I much prefer to play 2D platformers, the
+                    best by far still being Celeste, and racing games such as Trackmania or Rocket
+                    League. Speaking of board games, if you ever want to play a game of chess
+                    against me, I&apos;m up for it.
                 </p>
             </>
         ),
-        badge: "Launch Week",
-        image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=3506&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        badge: "Hobbies",
+        image: "/cv/hobbies.jpg",
     },
 ];

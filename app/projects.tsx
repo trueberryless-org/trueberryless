@@ -1,13 +1,35 @@
-import { CardBody, CardContainer, CardItem, FollowerPointerCard, HoverEffect } from "@/components";
+import {
+    CardBody,
+    CardContainer,
+    CardItem,
+    HoverEffect,
+    TypewriterEffectSmooth,
+} from "@/components";
 import Image from "next/image";
 import React from "react";
 
 export function Projects() {
+    const words = [
+        {
+            text: "My",
+        },
+        {
+            text: "favourite",
+            className: "text-blue-500 dark:text-blue-500",
+        },
+        {
+            text: "personal",
+        },
+        {
+            text: "projects.",
+        },
+    ];
+
     return (
         <div>
-            <h1 className="md:text-4xl text-xl text-center text-white relative z-20 pb-20">
-                Projects
-            </h1>
+            <div className="flex flex-col items-center justify-center h-[10rem]">
+                <TypewriterEffectSmooth words={words} />
+            </div>
             <div className="max-w-5xl mx-auto px-10 lg:flex lg:justify-between lg:items-center">
                 <CardContainer className="inter-var">
                     <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-2xl h-auto rounded-xl p-6 border">

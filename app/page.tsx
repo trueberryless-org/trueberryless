@@ -1,3 +1,4 @@
+import { BackgroundBeams } from "@/components";
 import { CurriculumVitae } from "./curriculum-vitae";
 import { Footer } from "./footer";
 import Header from "./header";
@@ -9,10 +10,13 @@ export default function Home() {
     return (
         <div>
             <Header />
-            {/* <CurriculumVitae /> */}
+            <CurriculumVitae />
+            <div className="h-40"></div>
             <Projects />
+            <div className="h-40"></div>
             <Images />
             <SocialMedia />
+            <div className="h-10"></div>
             <Footer />
         </div>
     );

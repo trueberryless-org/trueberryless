@@ -1,10 +1,13 @@
-import { SparklesCore } from "@/components";
+import { BackgroundBeams, SparklesCore } from "@/components";
 
 export default function Header() {
     return (
-        <div className="h-[100vh] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+        <div className="h-[100vh] w-full bg-black flex flex-col items-center justify-center rounded-md">
+            <h6 className="md:text-md text-sm lg:text-lg text-center text-gray-500 relative z-20">
+                @trueberryless
+            </h6>
             <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
-                trueberryless
+                Felix Schneider
             </h1>
             <div className="w-[40rem] h-40 relative">
                 {/* Gradients */}
@@ -18,7 +21,7 @@ export default function Header() {
                     background="transparent"
                     minSize={0.3}
                     maxSize={1.2}
-                    particleDensity={1200}
+                    particleDensity={600}
                     className="w-full h-full"
                     particleColor="#FFFFFF"
                 />
@@ -26,6 +29,8 @@ export default function Header() {
                 {/* Radial Gradient to prevent sharp edges */}
                 <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
             </div>
+            <div className="absolute w-full h-full bg-gradient-to-b from-transparent via-transparent to-black z-10"></div>
+            <BackgroundBeams />
         </div>
     );
 }
