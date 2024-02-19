@@ -61,9 +61,9 @@ const dummyContent = [
             <>
                 <p>
                     My journey begins in 2005, when I was born on 20 February. I started primary
-                    school in 2011 and eight years later I left secondary school. The first big
-                    decision of my life after grammar school was to go to technical college. And I
-                    completed this educational unit in Krems an der Donau in 2024.
+                    school in 2011 and eight years later I finished secondary school. The first big
+                    decision of my life after grammar school was to go to technical college. And
+                    that&apos;s where I graduated in Krems an der Donau in 2024.
                 </p>
                 <br />
                 <p></p>
@@ -77,13 +77,13 @@ const dummyContent = [
         description: (
             <>
                 <p>
-                    I started doing internships during my technical colleague&apos;s summer
-                    holidays. These are extremely helpful for gaining real-life work experience that
+                    I started doing internships during my technical college&apos;s summer holidays.
+                    These are extremely helpful for gaining real-life work experience that
                     can&apos;t be learnt at school. This has also enabled me to find out which
                     sectors in the information technology field I like and which I don&apos;t like.
                     Because I prefer to work on the frontend rather than the backend. However, I
-                    also really like the backend, as long as it is not an outdated and poorly
-                    documented programming language.
+                    also really enjoy working on any backend, as long as it is not an outdated and
+                    poorly documented programming language.
                 </p>
                 <br />
                 <p></p>
@@ -93,7 +93,7 @@ const dummyContent = [
         image: "/cv/work_experience.webp",
     },
     {
-        title: "Tennis, golf and Rocket League",
+        title: "Tennis, Golf and Rocket League",
         description: (
             <>
                 <p>
@@ -106,15 +106,15 @@ const dummyContent = [
                     But golf is not my only hobby. I have had many hobbies over the years. For some
                     months I was in love with the magic of card tricks and couldn&apos;t stop
                     practising them and improving my dexterity. However, that too has now stopped. I
-                    also love to play tennis, both big and small, and the more subtle table tennis.
+                    also love to play tennis and the more subtle table tennis.
                 </p>
                 <br />
                 <p>
                     In terms of video and board games, I&apos;ve never been interested in
-                    first-person shooters and the like. I much prefer to play 2D platformers, the
+                    third-person shooters and the like. I much prefer to play 2D platformers, the
                     best by far still being Celeste, and racing games such as Trackmania or Rocket
-                    League. Speaking of board games, if you ever want to play a game of chess
-                    against me, I&apos;m up for it.
+                    League. Speaking of board games, if you ever wanna play a game of chess against
+                    me, I&apos;m down for it.
                 </p>
             </>
         ),
