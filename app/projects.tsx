@@ -130,4 +130,22 @@ export const projects = [
             "Find out more about me and my projects. I am a full stack developer with a passion for technology.",
         link: "https://trueberryless.org/",
     },
+    {
+        title: "Button Game",
+        description:
+            "A simple not round based game where you need to press a button as fast as possible. You can also manipulate your opponent's button.",
+        link: "https://button-game.trueberryless.org/",
+    },
+    {
+        title: "Group Chat",
+        description:
+            "Chat with other people all over the world. Either get a random chatter or join the one and only group chat.",
+        link: "https://chat.trueberryless.org/",
+    },
+    {
+        title: "Networkanalysis",
+        description:
+            "A fast web application (Angular) with a robust backend (Kafka + Spring Framework) developed for Siemens AG as my thesis. It analysis the errors which happen in the European utility grid.",
+        link: "https://networkanalysis.trueberryless.org/",
+    },
 ];
