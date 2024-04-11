@@ -1,10 +1,10 @@
-import { BackgroundBeams } from "@/components";
 import { CurriculumVitae } from "./curriculum-vitae";
 import { Footer } from "./footer";
 import Header from "./header";
 import Images from "./images";
 import { Projects } from "./projects";
 import SocialMedia from "./social-media";
+import { Contact } from "./contact";
 
 export default function Home() {
     return (
@@ -16,7 +16,9 @@ export default function Home() {
             <div className="h-40"></div>
             <Images />
             <SocialMedia />
-            <div className="h-10"></div>
+            <div className="h-20"></div>
+            <Contact />
+            <div className="h-20"></div>
             <Footer />
         </div>
     );

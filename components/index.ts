@@ -8,3 +8,4 @@ export * from "./ui/3d-card";
 export * from "./ui/google-gemini-effect";
 export * from "./ui/background-beams";
 export * from "./ui/typewriter-effect";
+export * from "./ui/globe";
