@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { TypewriterEffectSmooth } from "@/components";
 
-const World = dynamic(() => import("@/components").then((m) => m.World), {
+const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
     ssr: false,
 });
 
