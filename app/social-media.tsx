@@ -20,7 +20,7 @@ const links = [
         name: "LinkedIn",
         designation: "felix-schneider",
         image: "/logos/linkedin.png",
-        href: "https://www.linkedin.com/in/felix-schneider-214154261/",
+        href: "https://www.linkedin.com/in/trueberryless/",
     },
     {
         id: 4,
