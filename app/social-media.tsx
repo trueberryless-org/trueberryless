@@ -71,6 +71,13 @@ const links = [
         image: "/logos/stack-overflow.png",
         href: "https://stackoverflow.com/users/22573601/trueberryless",
     },
+    {
+        id: 11,
+        name: "Linktree",
+        designation: "and many more...",
+        image: "/logos/linktree.png",
+        href: "https://linktr.ee/trueberryless",
+    },
 ];
 
 export default function SocialMedia() {

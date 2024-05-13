@@ -433,6 +433,7 @@ export function Contact() {
                                 PLEASE GO AWAY!
                             </span>
                             trueberryless+contact@{/* sdfjsdhfkjypcs */}gmail.com
+                            {/* &#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#114;&#117;&#101;&#98;&#101;&#114;&#114;&#121;&#108;&#101;&#115;&#115;&#43;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109; */}
                         </p>
                     </motion.div>
                     <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />

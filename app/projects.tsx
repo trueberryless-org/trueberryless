@@ -74,20 +74,20 @@ export function Projects() {
                             translateZ="50"
                             className="text-xl font-bold text-neutral-600 dark:text-white"
                         >
-                            Group Chat
+                            Deep Thoughts
                         </CardItem>
                         <CardItem
                             as="p"
                             translateZ="60"
                             className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                         >
-                            Chat with other people all over the world
+                            My personal blog website.
                         </CardItem>
                         <CardItem translateZ="100" className="w-full mt-4">
                             <Image
-                                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                height="1000"
-                                width="1000"
+                                src="/projects/deep-thoughts.png"
+                                height="2000"
+                                width="2000"
                                 className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
                                 alt="thumbnail"
                             />
@@ -99,7 +99,7 @@ export function Projects() {
                                 as="button"
                                 className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
                             >
-                                <a href="https://chat.trueberryless.org/">Try now →</a>
+                                <a href="https://blog.trueberryless.org/">Try now →</a>
                             </CardItem>
                         </div>
                     </CardBody>
