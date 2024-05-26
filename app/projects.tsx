@@ -113,33 +113,32 @@ export function Projects() {
 }
 export const projects = [
     {
-        title: "TrainIT",
-        description:
-            "Track your fitness data with this app. Track your workouts, see your progress, and see your progress compared to your friends.",
-        link: "https://trainit.trueberryless.org/",
-    },
-    {
-        title: "Y",
-        description:
-            "Y should I explain? Y is a platform that allows you to share your thoughts with your friends.",
-        link: "https://y.trueberryless.org/",
-    },
-    {
         title: "About",
         description:
             "Find out more about me and my projects. I am a full stack developer with a passion for technology.",
         link: "https://trueberryless.org/",
     },
     {
+        title: "Truzzles",
+        description: "Collection of some interesting puzzles. More comming soon...",
+        link: "https://truzzles.trueberryless.org/",
+    },
+    {
+        title: "Marketing",
+        description:
+            "How „trueberryless“ represents himself to the audience. Currently in development.",
+        link: "https://marketing.trueberryless.org/",
+    },
+    {
         title: "Button Game",
         description:
-            "A simple not round based game where you need to press a button as fast as possible. You can also manipulate your opponent's button.",
+            "A simple not round based game where you need to press a button as fast as possible. You can also manipulate your opponent's button. Currently not deployed.",
         link: "https://button-game.trueberryless.org/",
     },
     {
         title: "Group Chat",
         description:
-            "Chat with other people all over the world. Either get a random chatter or join the one and only group chat.",
+            "Chat with other people all over the world. Either get a random chatter or join the one and only group chat. Currently not deployed.",
         link: "https://chat.trueberryless.org/",
     },
     {
@@ -147,5 +146,17 @@ export const projects = [
         description:
             "A fast web application (Angular) with a robust backend (Kafka + Spring Framework) developed for Siemens AG as my thesis. It analysis the errors which happen in the European utility grid.",
         link: "https://networkanalysis.trueberryless.org/",
+    },
+    {
+        title: "TrainIT",
+        description:
+            "Track your fitness data with this app. Track your workouts, see your progress, and see your progress compared to your friends. Currently not deployed.",
+        link: "https://trainit.trueberryless.org/",
+    },
+    {
+        title: "Y",
+        description:
+            "Y should I explain? Y is a platform that allows you to share your thoughts with your friends. Currently not deployed.",
+        link: "https://y.trueberryless.org/",
     },
 ];
