@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: trueberryless
+    namespace: trueberryless
+spec:
+    secretName: trueberryless
+    issuerRef:
+        name: acme-issuer
+        kind: ClusterIssuer
+    dnsNames:
+        - "trueberryless.org"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: trueberryless-www
+    namespace: trueberryless
+spec:
+    secretName: trueberryless-www
+    issuerRef:
+        name: acme-issuer
+        kind: ClusterIssuer
+    dnsNames:
+        - "www.trueberryless.org"
