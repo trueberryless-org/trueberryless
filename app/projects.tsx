@@ -74,18 +74,18 @@ export function Projects() {
                             translateZ="50"
                             className="text-xl font-bold text-neutral-600 dark:text-white"
                         >
-                            Deep Thoughts
+                            True Tracker
                         </CardItem>
                         <CardItem
                             as="p"
                             translateZ="60"
                             className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                         >
-                            My personal blog website.
+                            Track your time spent per project!
                         </CardItem>
                         <CardItem translateZ="100" className="w-full mt-4">
                             <Image
-                                src="/projects/deep-thoughts.png"
+                                src="/projects/true-tracker.png"
                                 height="2000"
                                 width="2000"
                                 className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -99,7 +99,7 @@ export function Projects() {
                                 as="button"
                                 className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
                             >
-                                <a href="https://blog.trueberryless.org/">Try now →</a>
+                                <a href="https://true-tracker.trueberryless.org/">Try now →</a>
                             </CardItem>
                         </div>
                     </CardBody>
@@ -119,44 +119,29 @@ export const projects = [
         link: "https://trueberryless.org/",
     },
     {
+        title: "Deep Thoughts",
+        description: "Some cool blog posts about deployment and such technical stuff.",
+        link: "https://blog.trueberryless.org/",
+    },
+    {
+        title: "True Tracker",
+        description: "Track your time spent per project! Clean and simple web app.",
+        link: "https://true-tracker.trueberryless.org/",
+    },
+    {
         title: "Truzzles",
         description: "Collection of some interesting puzzles. More comming soon...",
         link: "https://truzzles.trueberryless.org/",
+    },
+    {
+        title: "Mutanuq",
+        description: "Get information about the knowledge of a technical college.",
+        link: "https://mutanuq.trueberryless.org/",
     },
     {
         title: "Marketing",
         description:
             "How „trueberryless“ represents himself to the audience. Currently in development.",
         link: "https://marketing.trueberryless.org/",
-    },
-    {
-        title: "Button Game",
-        description:
-            "A simple not round based game where you need to press a button as fast as possible. You can also manipulate your opponent's button. Currently not deployed.",
-        link: "https://button-game.trueberryless.org/",
-    },
-    {
-        title: "Group Chat",
-        description:
-            "Chat with other people all over the world. Either get a random chatter or join the one and only group chat. Currently not deployed.",
-        link: "https://chat.trueberryless.org/",
-    },
-    {
-        title: "Networkanalysis",
-        description:
-            "A fast web application (Angular) with a robust backend (Kafka + Spring Framework) developed for Siemens AG as my thesis. It analysis the errors which happen in the European utility grid.",
-        link: "https://networkanalysis.trueberryless.org/",
-    },
-    {
-        title: "TrainIT",
-        description:
-            "Track your fitness data with this app. Track your workouts, see your progress, and see your progress compared to your friends. Currently not deployed.",
-        link: "https://trainit.trueberryless.org/",
-    },
-    {
-        title: "Y",
-        description:
-            "Y should I explain? Y is a platform that allows you to share your thoughts with your friends. Currently not deployed.",
-        link: "https://y.trueberryless.org/",
     },
 ];
