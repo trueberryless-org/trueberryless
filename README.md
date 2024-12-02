@@ -66,6 +66,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 │   ├── namespace.yaml
 │   └── service.yaml
 ├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
 └── src
     ├── .eslintrc.json
     ├── app
@@ -99,7 +101,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     ├── next-env.d.ts
     ├── next.config.mjs
     ├── package.json
-    ├── pnpm-lock.yaml
     ├── postcss.config.js
     ├── public
     │   ├── cv
