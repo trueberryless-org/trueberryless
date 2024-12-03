@@ -11,19 +11,3 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: trueberryless-www
-  namespace: trueberryless
-  annotations:
-    cert-manager.io/issuer: acme-issuer
-spec:
-  selector:
-    app: trueberryless
-  ports:
-    - name: http
-      port: 80
-      targetPort: 3000

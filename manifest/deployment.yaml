@@ -17,7 +17,5 @@ spec:
     spec:
       containers:
         - name: trueberryless
-          image: "trueberryless/trueberryless:0.1.0"
+          image: "trueberryless/trueberryless"
           imagePullPolicy: Always
-          ports:
-            - containerPort: 3000
