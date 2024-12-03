@@ -1,12 +1,12 @@
 {
   "name": "trueberryless-monorepo",
-  "homepage": "https://github.com/trueberryless-org/trueberyless",
+  "homepage": "https://github.com/trueberryless-org/trueberryless",
   "bugs": {
-    "url": "https://github.com/trueberryless-org/trueberyless/issues"
+    "url": "https://github.com/trueberryless-org/trueberryless/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trueberryless-org/trueberyless.git"
+    "url": "https://github.com/trueberryless-org/trueberryless.git"
   },
   "license": "MIT",
   "author": "trueberryless <trueberryless@gmail.com> (https://trueberryless.org)",
