@@ -10,6 +10,6 @@
   },
   "dependencies": {
     "astro": "^5.0.1"
-  }
+  },
   "packageManager": "pnpm@9.6.0"
 }
