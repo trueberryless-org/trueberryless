@@ -81,19 +81,18 @@ const projects = (await getCollection('work'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
+					<h3>Tools</h3>
 					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
+            Here are the programming languages, tools, software, and IDEs I regularly use to bring ideas to life and solve challenges effectively.
 					</p>
 				</header>
 
 				<div class="gallery">
 					<Grid variant="small">
 						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
+							['C#', 'Typescript', 'Astro', 'Angular', 'GraphQL', 'PostgreSQL', 'MongoDB', 'VS Code', 'Docker', 'GitHub', 'k3s'].map((language) => (
+								<li class="programming-language-card">
+									<p>{language}</p>
 								</li>
 							))
 						}
@@ -230,7 +229,7 @@ const projects = (await getCollection('work'))
 
 	/* ====================================================== */
 
-	.mention-card {
+	.programming-language-card {
 		display: flex;
 		height: 7rem;
 		justify-content: center;
@@ -244,7 +243,7 @@ const projects = (await getCollection('work'))
 	}
 
 	@media (min-width: 50em) {
-		.mention-card {
+		.programming-language-card {
 			border-radius: 1.5rem;
 			height: 9.5rem;
 		}
