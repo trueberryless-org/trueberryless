@@ -18,4 +18,6 @@ That’s where things took off. [One awesome Astro maintainer](https://www.rains
 
 But I wasn’t done yet. It bugged me that the credits were always in English, so I decided to make them translate automatically based on the languages supported by Starlight. That’s when the real adventure began. I reached out to the community for help translating the plugin into different languages. The response was incredible! People from around the world offered to pitch in, and what started as a solo project turned into a global collaboration. Along the way, I made new friends and learned so much from everyone involved. Now, the plugin supports around ten languages, and more translations keep coming.
 
-What started as a simple idea turned into something I’m really proud of: **Starlight Cooler Credit** . It’s more than just a plugin—it’s a way to give credit with style, customization, and a touch of global teamwork.If you’re curious, you can check it out at [starlight-cooler-credit.trueberryless.org](https://starlight-cooler-credit.trueberryless.org/) . Give it a try—I think you’ll love it as much as I do!
+What started as a simple idea turned into something I’m really proud of: **Starlight Cooler Credit** . It’s more than just a plugin—it’s a way to give credit with style, customization, and a touch of global teamwork.
+
+If you’re curious, you can check it out at [starlight-cooler-credit.trueberryless.org](https://starlight-cooler-credit.trueberryless.org/) . Give it a try—I think you’ll love it as much as I do!
