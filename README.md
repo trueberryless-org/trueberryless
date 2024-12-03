@@ -41,8 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   ├── config.json
-│   └── strange-gifts-remain.md
+│   └── config.json
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
@@ -71,6 +70,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ├── pnpm-workspace.yaml
 └── src
     ├── .gitignore
+    ├── CHANGELOG.md
     ├── README.md
     ├── astro.config.mjs
     ├── package.json
