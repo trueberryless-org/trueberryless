@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="About | trueberryless" description="About trueberryless">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About"
+				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+			>
+				<img
+					width="1553"
+					height="873"
+					src="/assets/holiday.jpg"
+					alt="Felix Schneider with his dads at a family holiday eating his favorite dessert, crapes."
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Background</h2>
+				<div class="content">
+					<p>
+            Born in Lower Austria in 2005, I’ve always been passionate about technology and problem-solving. I started my educational journey at a higher school in Hollabrunn before transitioning to a technical college specializing in Information Technology. My fascination with automation and optimization has driven me to explore areas like Continuous Integration and Deployment (CI/CD), particularly leveraging GitHub Actions.
+					</p>
+          <br />
+					<p>
+						I also have a deep appreciation for the <a href="https://astro.build/">Astro</a> community, which has been a significant source of inspiration and growth for me as a developer. After completing my studies, I dedicated a year to civil service at the Red Cross, where I honed my interpersonal and crisis-management skills.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Education</h2>
+				<div class="content">
+					<p>I graduated from HTL Krems in 2024 with a focus on Information Technology. During my studies, I completed internships at MBIT Solutions GmbH, gaining hands-on experience in software development and IT project workflows. My education emphasized both theoretical knowledge and practical application, preparing me for the dynamic demands of the tech industry.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Skills</h2>
+				<div class="content">
+					<p>
+            I am skilled in programming languages like C# and TypeScript and have expertise in web development with Astro. My experience spans database systems, including MySQL, PostgreSQL, and Supabase, and DevOps tools such as Git, Docker, and Kubernetes. Additionally, I have proficiency in design tools like Figma, and I am particularly passionate about integrating CI/CD pipelines using GitHub Actions to streamline development workflows.
+          </p>
+          <br />
+					<p>
+            On the soft skills side, I bring flexibility, teamwork, and a proactive approach to problem-solving. I excel in time management, effective communication, and conflict resolution, which allow me to navigate complex team dynamics and deliver results under pressure. These attributes, combined with my technical capabilities, enable me to contribute effectively to collaborative and fast-paced environments.
+          </p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+    object-fit: cover;
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>
