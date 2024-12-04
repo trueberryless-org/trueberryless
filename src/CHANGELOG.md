@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.2
+
+### Patch Changes
+
+- [`c30d451`](https://github.com/trueberryless-org/trueberryless/commit/c30d4516326aba8e3485353acd2211f5387d6b77) - Optimise all images, add favicon and curriculum vitae
+
 ## 0.1.1
 
 ### Patch Changes
