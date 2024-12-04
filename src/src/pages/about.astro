@@ -1,8 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+
+import holiday from '../assets/holiday.jpg';
 ---
 
 <BaseLayout title="About | trueberryless" description="About trueberryless">
@@ -12,10 +16,10 @@ import Hero from '../components/Hero.astro';
 				title="About"
 				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
 			>
-				<img
+				<Image
 					width="1553"
 					height="873"
-					src="/src/assets/holiday.jpg"
+					src={holiday}
 					alt="Felix Schneider with his dads at a family holiday eating his favorite dessert, crapes."
 				/>
 			</Hero>

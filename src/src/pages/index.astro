@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -23,6 +24,8 @@ const projects = (await getCollection('work'))
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
+
+import portrait from '../assets/portrait.jpg';
 ---
 
 <BaseLayout>
@@ -41,11 +44,11 @@ const projects = (await getCollection('work'))
 					</div>
 				</Hero>
 
-				<img
+				<Image
 					alt="Felix Schneider smiling in a formal gray shirt and silver tie, arms crossed against a dark background."
 					width="480"
 					height="620"
-					src="/src/assets/portrait.jpg"
+					src={portrait}
 				/>
 			</header>
 

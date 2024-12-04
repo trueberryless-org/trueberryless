@@ -1,16 +1,23 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 
 interface Props {
 	project: CollectionEntry<'work'>;
 }
 
 const { data, id } = Astro.props.project;
+
+const imagePath = "/src/assets/work/" + data.img;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work/*.{jpeg,jpg,png,gif}');
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/work/*.{jpeg,jpg,png,gif}"`);
 ---
 
 <a class="card" href={`/work/${id}`}>
 	<span class="title">{data.title}</span>
-	<img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" />
+	<Image src={images[imagePath]()} alt={data.img_alt || ''} loading="lazy" decoding="async" />
 </a>
 
 <style>

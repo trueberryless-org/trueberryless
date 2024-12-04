@@ -1,7 +1,7 @@
 ---
 title: Starlight Cooler Credit
 publishDate: 2024-11-12 00:00:00
-img: /src/assets/work/starlight-cooler-credit.png
+img: starlight-cooler-credit.png
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 description: |
   Inspired by the Starlight credit in Astro docs, I made a customizable plugin that links to Starlight, Astro, and the Starlight Blog, with multilingual support.
