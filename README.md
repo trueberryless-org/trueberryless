@@ -41,7 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   └── config.json
+│   ├── config.json
+│   └── young-swans-dream.md
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
@@ -102,6 +103,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   ├── holiday.jpg
     │   │   ├── portrait.jpg
     │   │   └── work
+    │   │       ├── mutanuq.png
     │   │       ├── starlight-cooler-credit.png
     │   │       ├── stock-1.jpg
     │   │       ├── stock-2.jpg
@@ -123,6 +125,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   └── ThemeToggle.astro
     │   ├── content
     │   │   └── work
+    │   │       ├── mutanuq.md
     │   │       └── starlight
     │   │           └── starlight-cooler-credit.md
     │   ├── content.config.ts
