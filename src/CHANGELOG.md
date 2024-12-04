@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.6
+
+### Patch Changes
+
+- [#32](https://github.com/trueberryless-org/trueberryless/pull/32) [`2cf186f`](https://github.com/trueberryless-org/trueberryless/commit/2cf186faa641b3a13bf6bc8e872d613e3fceddbe) Thanks [@trueberryless](https://github.com/trueberryless)! - Try Google prevent translation of my username
+
 ## 0.1.5
 
 ### Patch Changes
