@@ -41,8 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   ├── config.json
-│   └── lemon-lemons-taste.md
+│   └── config.json
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
