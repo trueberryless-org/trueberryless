@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.4
+
+### Patch Changes
+
+- [`002e107`](https://github.com/trueberryless-org/trueberryless/commit/002e1073ab8deef66ff50fa9d9ad250a0a64c591) Thanks [@trueberryless](https://github.com/trueberryless)! - Add Mutanuq to projects
+
 ## 0.1.3
 
 ### Patch Changes
