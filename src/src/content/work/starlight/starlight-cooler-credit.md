@@ -10,7 +10,7 @@ tags:
   - Integration
 ---
 
-It all started when I noticed the credit link to Starlight in the Astro docs. Positioned at the bottom of the Table of Contents, it was simple but stylish, and I loved how it subtly gave credit. When Starlight introduced its own credit option, I activated it in all my projects. It was small, understated, and tucked at the bottom of each page—nice, but easy to miss.
+It all started when I noticed the credit link to [Starlight](https://starlight.astro.build) in the [Astro docs](https://docs.astro.build). Positioned at the bottom of the Table of Contents, it was simple but stylish, and I loved how it subtly gave credit. When Starlight introduced its own credit option, I activated it in all my projects. It was small, understated, and tucked at the bottom of each page—nice, but easy to miss.
 
 That’s when I thought, *What if others want a cooler credit option, like the one from the Astro docs?* So, I set out to create a plugin. Initially, it was just a fun project to link to Starlight and Astro in a more noticeable way. I started with two presets—one for Starlight and one for Astro—and shared my work on the Astro Discord.
 
