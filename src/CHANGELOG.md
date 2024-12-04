@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.5
+
+### Patch Changes
+
+- [#28](https://github.com/trueberryless-org/trueberryless/pull/28) [`00942af`](https://github.com/trueberryless-org/trueberryless/commit/00942af9a498738f79e1d31339a4cb66fe0b31f7) Thanks [@trueberryless](https://github.com/trueberryless)! - Add true-tracker project
+
 ## 0.1.4
 
 ### Patch Changes
