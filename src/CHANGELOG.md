@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.1
+
+### Patch Changes
+
+- [`cf43372`](https://github.com/trueberryless-org/trueberryless/commit/cf433729b2e21b78e44f0aeba6e36751ad52dbab) Thanks [@trueberryless](https://github.com/trueberryless)! - Update image for Starlight Cooler Credit
+
 ## 0.1.0
 
 ### Minor Changes
