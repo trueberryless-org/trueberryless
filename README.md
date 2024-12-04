@@ -41,7 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   └── config.json
+│   ├── config.json
+│   └── lemon-lemons-taste.md
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
@@ -107,7 +108,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │       ├── stock-1.jpg
     │   │       ├── stock-2.jpg
     │   │       ├── stock-3.jpg
-    │   │       └── stock-4.jpg
+    │   │       ├── stock-4.jpg
+    │   │       └── true-tracker.png
     │   ├── components
     │   │   ├── CallToAction.astro
     │   │   ├── ContactCTA.astro
@@ -125,8 +127,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   ├── content
     │   │   └── work
     │   │       ├── mutanuq.md
-    │   │       └── starlight
-    │   │           └── starlight-cooler-credit.md
+    │   │       ├── starlight
+    │   │       │   └── starlight-cooler-credit.md
+    │   │       └── true-tracker.md
     │   ├── content.config.ts
     │   ├── layouts
     │   │   └── BaseLayout.astro
