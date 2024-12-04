@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.3
+
+### Patch Changes
+
+- [`6d1c4ac`](https://github.com/trueberryless-org/trueberryless/commit/6d1c4ac1b5502d5f8df83fe5858f5fba89fefd03) Thanks [@trueberryless](https://github.com/trueberryless)! - Fix image links and use real Astro optimised Images with Image component
+
 ## 0.1.2
 
 ### Patch Changes
