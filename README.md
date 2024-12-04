@@ -75,6 +75,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     ├── astro.config.mjs
     ├── package.json
     ├── public
+    │   └── curriculum-vitae.pdf
+    ├── src
     │   ├── assets
     │   │   ├── backgrounds
     │   │   │   ├── bg-footer-dark-1440w.jpg
@@ -98,12 +100,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   │   └── noise.png
     │   │   ├── holiday.jpg
     │   │   ├── portrait.jpg
-    │   │   ├── stock-1.jpg
-    │   │   ├── stock-2.jpg
-    │   │   ├── stock-3.jpg
-    │   │   └── stock-4.jpg
-    │   └── favicon.svg
-    ├── src
+    │   │   ├── trueberryless.png
+    │   │   └── work
+    │   │       ├── starlight-cooler-credit.png
+    │   │       ├── stock-1.jpg
+    │   │       ├── stock-2.jpg
+    │   │       ├── stock-3.jpg
+    │   │       └── stock-4.jpg
     │   ├── components
     │   │   ├── CallToAction.astro
     │   │   ├── ContactCTA.astro
