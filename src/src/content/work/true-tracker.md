@@ -7,8 +7,8 @@ description: |
   A private time-tracking app storing all data in your browser—no accounts, no servers, just simple tracking.
 tags:
   - Time Tracking
-  - Privacy-Focused
   - Next.js
+  - Privacy-Focused
 ---
 
 The summer of 2024 marked the start of an exciting new chapter for me as a developer. Up until that point, I’d worked primarily with Angular, a framework I appreciated for its structured and opinionated approach. But I’d always been curious about React—it felt lighter, more flexible, and just… different. When I came across Next.js, a framework built around React that offered features like server-side rendering and a focus on performance, I knew it was time to dive into something new.
