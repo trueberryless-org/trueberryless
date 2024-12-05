@@ -25,12 +25,9 @@ The frontend was designed as a user-friendly dashboard with three key sections:
 
 1. Anomalies Table – A searchable, paginated, and filterable table for quick navigation of anomalies.
 
-
 2. Graph View – A dynamic visualization of anomaly data, making it easier to pinpoint the source of an issue within the vast, complex grid.
 
-
 3. Overall Dashboard – Key metrics and insights for quick, actionable overviews.
-
 
 Clemens and I divided our responsibilities evenly. Clemens handled the backend systems, including Kafka, PostgreSQL, and the GraphQL API, ensuring a reliable and efficient data pipeline. I took on the role of project leader, coordinating communication with Siemens while developing the frontend and ensuring the seamless integration of the various components. This collaboration allowed us to play to our strengths and maintain a balanced workload.
 
