@@ -41,7 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   └── config.json
+│   ├── config.json
+│   └── rotten-brooms-tease.md
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
@@ -79,6 +80,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   └── trueberryless.png
     ├── src
     │   ├── assets
+    │   │   ├── about
+    │   │   │   ├── about-1.jpg
+    │   │   │   └── about-2.jpg
     │   │   ├── backgrounds
     │   │   │   ├── bg-footer-dark-1440w.jpg
     │   │   │   ├── bg-footer-dark-800w.jpg
@@ -99,7 +103,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   │   ├── bg-subtle-2-light-1440w.jpg
     │   │   │   ├── bg-subtle-2-light-800w.jpg
     │   │   │   └── noise.png
-    │   │   ├── holiday.jpg
     │   │   ├── portrait.jpg
     │   │   └── work
     │   │       ├── mutanuq.png
