@@ -4,7 +4,7 @@ publishDate: 2024-05-13 00:00:00
 img: thesis.png
 img_alt: The microservice architecture of our prototype.
 description: |
-  A microservice solution with Siemens AG to analyze power grid anomalies, featuring a Kafka pipeline, PostgreSQL, GraphQL API, and an Angular dashboard for visualization.
+  A microservice solution with Siemens AG to analyze power grid anomalies, featuring a Kafka pipeline, PostgreSQL, GraphQL API, and an Angular dashboard for visualisation.
 tags:
   - Siemens AG
   - Data Pipeline
@@ -25,7 +25,7 @@ The frontend was designed as a user-friendly dashboard with three key sections:
 
 1. Anomalies Table – A searchable, paginated, and filterable table for quick navigation of anomalies.
 
-2. Graph View – A dynamic visualization of anomaly data, making it easier to pinpoint the source of an issue within the vast, complex grid.
+2. Graph View – A dynamic visualisation of anomaly data, making it easier to pinpoint the source of an issue within the vast, complex grid.
 
 3. Overall Dashboard – Key metrics and insights for quick, actionable overviews.
 
