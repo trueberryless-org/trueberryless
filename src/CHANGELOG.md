@@ -1,5 +1,17 @@
 # trueberryless
 
+## 0.1.10
+
+### Patch Changes
+
+- [#53](https://github.com/trueberryless-org/trueberryless/pull/53) [`1c905f2`](https://github.com/trueberryless-org/trueberryless/commit/1c905f25e7e19356fb3145ad957c2d25be17413f) Thanks [@trueberryless](https://github.com/trueberryless) and [@clemensschlipfinger](https://github.com/clemensschlipfinger)! - Add diploma thesis project
+
+- [#51](https://github.com/trueberryless-org/trueberryless/pull/51) [`5faa36b`](https://github.com/trueberryless-org/trueberryless/commit/5faa36b2a3b41e2c2689223bfa70c56c8c446deb) Thanks [@trueberryless](https://github.com/trueberryless)! - Fix typos in Skills
+
+- [#48](https://github.com/trueberryless-org/trueberryless/pull/48) [`9763c00`](https://github.com/trueberryless-org/trueberryless/commit/9763c0072a23f887f58e0cce53e8188f334229d9) Thanks [@trueberryless](https://github.com/trueberryless)! - Fix Mutanuq description
+
+- [#52](https://github.com/trueberryless-org/trueberryless/pull/52) [`a8671b1`](https://github.com/trueberryless-org/trueberryless/commit/a8671b101a4074109c4a1e7f3ae3365704da01fe) Thanks [@trueberryless](https://github.com/trueberryless)! - Change country to Austria in Footer.astro
+
 ## 0.1.9
 
 ### Patch Changes
