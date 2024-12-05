@@ -23,6 +23,6 @@ After two weeks of nonstop coding, debugging, and running into what felt like ev
 
 The project also wasn’t without its jokes. A friend, after seeing the app’s branding, quipped, “So… the ‘true’ in True Tracker? That’s a bit much, even for the image. It’s *too much true!*” They weren’t wrong, but I embraced it. After all, if you’re going to brand something, you might as well commit.
 
-True Tracker became my first-ever Next.js project—a simple but unique app for tracking time with no strings attached. It’s live now at [https://true-tracker.trueverryless.org](https://true-tracker.trueverryless.org/).
+True Tracker became my first-ever Next.js project—a simple but unique app for tracking time with no strings attached. It’s live now at [https://true-tracker.trueberryless.org](https://true-tracker.trueberryless.org/).
 
 The journey taught me more than just how to use Next.js. It taught me about pushing past challenges, transitioning between frameworks, and embracing the quirks that make each project unique. True Tracker isn’t just an app; it’s a milestone—a little piece of proof that even small ideas can have a big impact.
