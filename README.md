@@ -41,9 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   ├── config.json
-│   ├── rotten-brooms-tease.md
-│   └── small-worms-shave.md
+│   └── config.json
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
