@@ -1,5 +1,13 @@
 # trueberryless
 
+## 0.1.8
+
+### Patch Changes
+
+- [#39](https://github.com/trueberryless-org/trueberryless/pull/39) [`4ddefe4`](https://github.com/trueberryless-org/trueberryless/commit/4ddefe4f532c015106e3b09867d99101e21318b6) Thanks [@trueberryless](https://github.com/trueberryless)! - Adapt About image
+
+- [#42](https://github.com/trueberryless-org/trueberryless/pull/42) [`b19bf0c`](https://github.com/trueberryless-org/trueberryless/commit/b19bf0ce8e8c613dc39ebb862b031981521dd6ba) Thanks [@trueberryless](https://github.com/trueberryless)! - Fix tags overflowing
+
 ## 0.1.7
 
 ### Patch Changes
