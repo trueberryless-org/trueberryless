@@ -41,6 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
+│   ├── angry-chicken-approve.md
 │   └── config.json
 ├── .dockerignore
 ├── .github
