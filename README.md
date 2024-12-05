@@ -76,6 +76,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     ├── package.json
     ├── public
     │   ├── curriculum-vitae.pdf
+    │   ├── thesis.pdf
     │   └── trueberryless.png
     ├── src
     │   ├── assets
@@ -110,6 +111,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │       ├── stock-2.jpg
     │   │       ├── stock-3.jpg
     │   │       ├── stock-4.jpg
+    │   │       ├── thesis.jpg
     │   │       └── true-tracker.png
     │   ├── components
     │   │   ├── CallToAction.astro
@@ -130,6 +132,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │       ├── mutanuq.md
     │   │       ├── starlight
     │   │       │   └── starlight-cooler-credit.md
+    │   │       ├── thesis.md
     │   │       └── true-tracker.md
     │   ├── content.config.ts
     │   ├── layouts
