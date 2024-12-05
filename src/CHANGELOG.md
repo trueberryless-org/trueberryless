@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.9
+
+### Patch Changes
+
+- [#45](https://github.com/trueberryless-org/trueberryless/pull/45) [`597736d`](https://github.com/trueberryless-org/trueberryless/commit/597736d915bca89c2dc291f2e54d77bd71fa05ba) Thanks [@trueberryless](https://github.com/trueberryless)! - Enable experimental Image cropping features from Astro 5.x
+
 ## 0.1.8
 
 ### Patch Changes
