@@ -1,3 +1,16 @@
+---
+title: Diploma Thesis
+publishDate: 2024-05-13 00:00:00
+img: thesis.png
+img_alt: The microservice architecture of our prototype.
+description: |
+  A microservice solution with Siemens AG to analyze power grid anomalies, featuring a Kafka pipeline, PostgreSQL, GraphQL API, and an Angular dashboard for visualization.
+tags:
+  - Siemens AG
+  - Data Pipeline
+  - Visualisation 
+---
+
 During my fifth year at HTL Krems (2023/24), every student was required to complete a diploma thesis—a substantial project split into two main parts: theoretical and practical. Working in pairs, we had to produce a theoretical paper of around 100 pages, where we introduced, analyzed, and explained our chosen topic.
 
 The theoretical part was organized into three sections. The first involved gathering and summarizing existing knowledge from credible sources like books and previous theses. The second focused on the insights and findings derived from our prototype—a software solution we developed for the practical component. Finally, the third section combined these two, offering a critical comparison and reflection on what we learned through the project as a whole.
