@@ -4,7 +4,7 @@ publishDate: 2023-11-13 00:00:00
 img: mutanuq.png
 img_alt: The landing page of the Mutanuq website.
 description: |
-  A fast, Markdown-powered website that organizes school content, simplifying learning and supporting educational growth.
+  A fast, Markdown-powered website that organises school content, simplifies learning and supports educational growth.
 tags:
   - Education
   - Markdown
