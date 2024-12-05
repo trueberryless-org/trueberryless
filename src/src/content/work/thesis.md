@@ -1,7 +1,7 @@
 ---
 title: Diploma Thesis
 publishDate: 2024-05-13 00:00:00
-img: thesis.png
+img: thesis.jpg
 img_alt: The SOA of our prototype.
 description: |
   A SOA solution with Siemens AG to analyze power grid anomalies, featuring a Kafka pipeline, PostgreSQL, GraphQL API, and an Angular dashboard for visualisation.
