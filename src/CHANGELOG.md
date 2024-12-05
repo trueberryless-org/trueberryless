@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#53](https://github.com/trueberryless-org/trueberryless/pull/53) [`1c905f2`](https://github.com/trueberryless-org/trueberryless/commit/1c905f25e7e19356fb3145ad957c2d25be17413f) Thanks [@trueberryless](https://github.com/trueberryless)! - Add diploma thesis project
+- [#53](https://github.com/trueberryless-org/trueberryless/pull/53) [`1c905f2`](https://github.com/trueberryless-org/trueberryless/commit/1c905f25e7e19356fb3145ad957c2d25be17413f) Thanks [@trueberryless](https://github.com/trueberryless) and [@clemensschlipfinger](https://github.com/clemensschlipfinger)! - Add diploma thesis project
 
 - [#51](https://github.com/trueberryless-org/trueberryless/pull/51) [`5faa36b`](https://github.com/trueberryless-org/trueberryless/commit/5faa36b2a3b41e2c2689223bfa70c56c8c446deb) Thanks [@trueberryless](https://github.com/trueberryless)! - Fix typos in Skills
 
