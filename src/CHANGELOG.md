@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.7
+
+### Patch Changes
+
+- [#36](https://github.com/trueberryless-org/trueberryless/pull/36) [`5993e08`](https://github.com/trueberryless-org/trueberryless/commit/5993e084bac0bc6bef3fc3194b615411039d0623) Thanks [@trueberryless](https://github.com/trueberryless)! - Fix link to True Tracker website
+
 ## 0.1.6
 
 ### Patch Changes
