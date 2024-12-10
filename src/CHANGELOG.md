@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.1.11
+
+### Patch Changes
+
+- [#54](https://github.com/trueberryless-org/trueberryless/pull/54) [`f59497c`](https://github.com/trueberryless-org/trueberryless/commit/f59497c429e94ba7cb33166f44abad6f4082af92) Thanks [@trueberryless](https://github.com/trueberryless)! - Move icon before parenthesis
+
 ## 0.1.10
 
 ### Patch Changes
