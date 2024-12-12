@@ -1,4 +1,13 @@
-## The tale of trueberryless
+---
+title: The tale of trueberryless 
+description:
+img: username.jpg
+img_alt: Dark image with text trueberryless.
+tags:
+  - Story time
+  - Username
+  - Creativity
+---
 
 It all started back in 2022 during my internship. I was a productivity machine, completing every task at hand way faster than anyone expected. This left me with an abundance of free time, which, let me tell you, is both a blessing and a curse. At first, I tried to kill time by looking busy—clicking around aimlessly, rearranging files, the usual tricks—but eventually, boredom hit me like a truck.
 
