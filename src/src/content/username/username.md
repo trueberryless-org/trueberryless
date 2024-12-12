@@ -1,6 +1,6 @@
 ---
 title: The tale of trueberryless 
-description:
+description: From code to creativity — discover the story behind the username and more.
 img: username.jpg
 img_alt: Dark image with text trueberryless.
 tags:
