@@ -3,12 +3,12 @@ import { getEntry } from 'astro:content';
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-import ContactCTA from '../../components/ContactCTA.astro';
-import Hero from '../../components/Hero.astro';
-import Icon from '../../components/Icon.astro';
-import Pill from '../../components/Pill.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
 import { render } from 'astro:content';
 
 const entry = await getEntry('username', 'username');
@@ -16,7 +16,7 @@ const { Content } = await render(entry);
 
 const imagePath = "/src/assets/username/" + entry.data.img;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/username/*.{jpeg,jpg,png,gif}');
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/username/*.{jpeg,jpg,png,gif,webp}');
 if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/username/*.{jpeg,jpg,png,gif}"`);
 ---
 
