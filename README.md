@@ -104,6 +104,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   │   ├── bg-subtle-2-light-800w.jpg
     │   │   │   └── noise.png
     │   │   ├── portrait.jpg
+    │   │   ├── username
+    │   │   │   └── username.webp
     │   │   └── work
     │   │       ├── mutanuq.png
     │   │       ├── starlight-cooler-credit.png
@@ -128,6 +130,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   ├── Skills.astro
     │   │   └── ThemeToggle.astro
     │   ├── content
+    │   │   ├── username
+    │   │   │   └── username.md
     │   │   └── work
     │   │       ├── mutanuq.md
     │   │       ├── starlight
@@ -141,6 +145,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   ├── 404.astro
     │   │   ├── about.astro
     │   │   ├── index.astro
+    │   │   ├── username.astro
     │   │   ├── work
     │   │   │   └── [...slug].astro
     │   │   └── work.astro
