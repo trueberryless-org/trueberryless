@@ -1,5 +1,17 @@
 # trueberryless
 
+## 0.2.0
+
+### Minor Changes
+
+- [#57](https://github.com/trueberryless-org/trueberryless/pull/57) [`d472197`](https://github.com/trueberryless-org/trueberryless/commit/d47219788c96684c55a5611b8845a763d4ecd1ef) Thanks [@trueberryless](https://github.com/trueberryless)! - Add story of username
+
+### Patch Changes
+
+- [#58](https://github.com/trueberryless-org/trueberryless/pull/58) [`05f1fc7`](https://github.com/trueberryless-org/trueberryless/commit/05f1fc7c790095c44dd784683da643278edb1caa) Thanks [@trueberryless](https://github.com/trueberryless)! - update Astro
+
+- [#54](https://github.com/trueberryless-org/trueberryless/pull/54) [`f59497c`](https://github.com/trueberryless-org/trueberryless/commit/f59497c429e94ba7cb33166f44abad6f4082af92) Thanks [@trueberryless](https://github.com/trueberryless)! - Move icon before parenthesis
+
 ## 0.1.10
 
 ### Patch Changes
