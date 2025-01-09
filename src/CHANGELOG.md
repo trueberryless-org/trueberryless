@@ -1,5 +1,13 @@
 # trueberryless
 
+## 0.2.1
+
+### Patch Changes
+
+- [#63](https://github.com/trueberryless-org/trueberryless/pull/63) [`e30f847`](https://github.com/trueberryless-org/trueberryless/commit/e30f847f815bc22397fcff069f44aa2fdcf3d93f) Thanks [@trueberryless](https://github.com/trueberryless)! - Update Curriculum Vitae to vJAN2025
+
+- [#66](https://github.com/trueberryless-org/trueberryless/pull/66) [`0d9b73f`](https://github.com/trueberryless-org/trueberryless/commit/0d9b73f80c2f5f13e52a7e927f43057c86c1d0d9) Thanks [@trueberryless](https://github.com/trueberryless)! - Add link to video course thesis
+
 ## 0.2.0
 
 ### Minor Changes
