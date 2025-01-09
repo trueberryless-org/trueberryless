@@ -33,5 +33,5 @@ Clemens and I divided our responsibilities evenly. Clemens handled the backend s
 
 Our final product not only met Siemens' requirements but also demonstrated the power of a well-designed service-oriented architecture (SOA) in solving complex, real-world problems. It was immensely rewarding to see our software functioning reliably and providing actionable insights to tackle power grid anomalies.
 
-For more details about our work, feel free to explore our thesis [here](/thesis.pdf) 📜 (only available in German).
+For more details about our work, feel free to explore our thesis [here](/thesis.pdf) 📜 or read our video course [here](https://videos.trueberryless.org/videos/thesis/) 🎥 (both only available in German).
 
