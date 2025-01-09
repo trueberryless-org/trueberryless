@@ -41,7 +41,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   └── config.json
+│   ├── config.json
+│   └── soft-cheetahs-walk.md
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
@@ -137,7 +138,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │       ├── starlight
     │   │       │   └── starlight-cooler-credit.md
     │   │       ├── thesis.md
-    │   │       └── true-tracker.md
+    │           └── true-tracker.md
     │   ├── content.config.ts
     │   ├── layouts
     │   │   └── BaseLayout.astro
