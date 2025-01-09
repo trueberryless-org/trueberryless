@@ -41,7 +41,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 .
 ├── .changeset
 │   ├── README.md
-│   └── config.json
+│   ├── config.json
+│   ├── soft-cheetahs-walk.md
+│   └── swift-camels-attend.md
 ├── .dockerignore
 ├── .github
 │   ├── labeler.yaml
