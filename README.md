@@ -76,6 +76,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     ├── package.json
     ├── public
     │   ├── curriculum-vitae.pdf
+    │   ├── resume.pdf
     │   ├── thesis.pdf
     │   └── trueberryless.png
     ├── src
