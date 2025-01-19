@@ -8,6 +8,7 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Work', href: '/work/' },
 	{ label: 'About', href: '/about/' },
+	{ label: 'Resume', href: '/resume.pdf' },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -129,7 +130,7 @@ const isCurrentPage = (href: string) => {
 				setExpanded(e.matches);
 				btn.hidden = e.matches;
 			};
-			const mediaQueries = window.matchMedia('(min-width: 50em)');
+			const mediaQueries = window.matchMedia('(min-width: 60em)');
 			handleViewports(mediaQueries);
 			mediaQueries.addEventListener('change', handleViewports);
 		}
@@ -261,7 +262,7 @@ const isCurrentPage = (href: string) => {
 		height: calc(var(--icon-size) + 2 * var(--icon-padding));
 	}
 
-	@media (min-width: 50em) {
+	@media (min-width: 60em) {
 		nav {
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;
@@ -336,7 +337,7 @@ const isCurrentPage = (href: string) => {
 		}
 	}
 
-	@media (min-width: 60em) {
+	@media (min-width: 70em) {
 		.socials {
 			display: flex;
 			justify-content: flex-end;
