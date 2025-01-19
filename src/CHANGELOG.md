@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.2.2
+
+### Patch Changes
+
+- [#68](https://github.com/trueberryless-org/trueberryless/pull/68) [`247c88e`](https://github.com/trueberryless-org/trueberryless/commit/247c88e4f9eb6142648121f30fe2735cf595440c) Thanks [@trueberryless](https://github.com/trueberryless)! - Add resume (classic version of designed curriculum vitae).
+
 ## 0.2.1
 
 ### Patch Changes
