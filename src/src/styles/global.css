@@ -268,3 +268,13 @@ h5 {
     gap: 12rem;
   }
 }
+
+/* custom */
+p > code {
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: var(--accent-subtle-overlay);
+  font-family: "JetBrains Mono Variable", monospace;
+  direction: ltr;
+  font-size: 13px;
+}
