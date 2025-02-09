@@ -1,5 +1,15 @@
 # trueberryless
 
+## 0.2.4
+
+### Patch Changes
+
+- [`fa0bfbf`](https://github.com/trueberryless-org/trueberryless/commit/fa0bfbf240d0d66571761b5035d1e26b3791bb13) Thanks [@trueberryless](https://github.com/trueberryless)! - Add Jetbrains Mono Variable Font from Fontsource
+
+- [`fa0bfbf`](https://github.com/trueberryless-org/trueberryless/commit/fa0bfbf240d0d66571761b5035d1e26b3791bb13) Thanks [@trueberryless](https://github.com/trueberryless)! - Add Expressive Code
+
+- [`fa0bfbf`](https://github.com/trueberryless-org/trueberryless/commit/fa0bfbf240d0d66571761b5035d1e26b3791bb13) Thanks [@trueberryless](https://github.com/trueberryless)! - Enhance some parts of my recent work post (GH Profile README)
+
 ## 0.2.3
 
 ### Patch Changes
