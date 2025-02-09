@@ -108,6 +108,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   ├── username
     │   │   │   └── username.webp
     │   │   └── work
+    │   │       ├── github-profile-readme.svg
     │   │       ├── mutanuq.png
     │   │       ├── starlight-cooler-credit.png
     │   │       ├── stock-1.jpg
@@ -134,6 +135,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     │   │   ├── username
     │   │   │   └── username.md
     │   │   └── work
+    │   │       ├── github-profile-readme.md
     │   │       ├── mutanuq.md
     │   │       ├── starlight
     │   │       │   └── starlight-cooler-credit.md
