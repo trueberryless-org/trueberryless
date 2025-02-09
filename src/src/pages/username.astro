@@ -16,8 +16,8 @@ const { Content } = await render(entry);
 
 const imagePath = "/src/assets/username/" + entry.data.img;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/username/*.{jpeg,jpg,png,gif,webp}');
-if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/username/*.{jpeg,jpg,png,gif}"`);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/username/*.{jpeg,jpg,png,gif,svg,webp}');
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/username/*.{jpeg,jpg,png,gif,svg,webp}"`);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
