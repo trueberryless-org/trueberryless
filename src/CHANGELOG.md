@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.2.3
+
+### Patch Changes
+
+- [#71](https://github.com/trueberryless-org/trueberryless/pull/71) [`6e3a6bc`](https://github.com/trueberryless-org/trueberryless/commit/6e3a6bc27ece7814733c7395dddfbcdd10a2b9b0) Thanks [@trueberryless](https://github.com/trueberryless)! - Add GitHub Profile README work entry
+
 ## 0.2.2
 
 ### Patch Changes
