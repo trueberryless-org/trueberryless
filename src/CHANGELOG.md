@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.2.5
+
+### Patch Changes
+
+- [#75](https://github.com/trueberryless-org/trueberryless/pull/75) [`f89dd8f`](https://github.com/trueberryless-org/trueberryless/commit/f89dd8fb15788aa6c5b5bed114f70247605b44ca) Thanks [@trueberryless](https://github.com/trueberryless)! - Add Mastodon verification by including head tags
+
 ## 0.2.4
 
 ### Patch Changes
