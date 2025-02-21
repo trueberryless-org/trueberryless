@@ -7,7 +7,7 @@ description: |
   This is the story of creating a true art masterpiece.
 tags:
   - Puzzle
-  - Birthday
-  - 20 Years
+  - Many 20s
+  - Celebration
 ---
 
