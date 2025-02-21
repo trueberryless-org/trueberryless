@@ -11,8 +11,8 @@ const { data, id } = Astro.props.project;
 
 const imagePath = "/src/assets/work/" + data.img;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work/*.{jpeg,jpg,png,gif,svg,webp}');
-if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/work/*.{jpeg,jpg,png,gif,svg,webp}"`);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/work/**/*.{jpeg,jpg,png,gif,svg,webp}');
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/work/**/*.{jpeg,jpg,png,gif,svg,webp}"`);
 ---
 
 <a class="card" href={`/work/${id}`}>
