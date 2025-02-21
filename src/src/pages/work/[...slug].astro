@@ -53,7 +53,7 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
 			</header>
 			<main class="wrapper">
 				<div class="stack gap-10 content">
-					{entry.data.img && <Image src={images[imagePath]()} alt={entry.data.img_alt || ''} />}
+					{entry.data.img && <div data-lightbox="true"><Image src={images[imagePath]()} alt={entry.data.img_alt || ''} /></div>}
 					<div class="content">
 						<Content />
 					</div>
