@@ -11,3 +11,6 @@ tags:
   - Celebration
 ---
 
+You only turn 20 once. In a way, it's a once-in-a-lifetime experience that you'll never have again. Of course I understand when people say: “Yes, but you can say that about any birthday.” But what not everyone can say about their 20th birthday is that it was on February 20th, 2025! 
+
+##### Stats for Nerds
