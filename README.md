@@ -51,7 +51,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 │       ├── format.yaml
 │       ├── generate-readme-tree.yaml
 │       ├── labeler.yaml
-│       ├── release.yaml
 │       └── welcome-bot.yaml
 ├── .gitignore
 ├── .prettierignore
