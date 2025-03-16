@@ -31,8 +31,10 @@ const isCurrentPage = (href: string) => {
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
-			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
-			<span translate="no">trueberryless</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 92" width="18" height="69">
+        <title>Felix Schneider @ trueberryless.org</title>
+        <path class="animated-path" stroke="black" stroke-width="2" d="M3.46 49.2c-6.54-3.97 10.67-26.22 17.08-38.48 3.42-6.52-4.72-11.99-9.85-6.41C1.74 14 22.26 77.98 13.3 87.69c-5.13 5.58-13.27.11-9.85-6.41 6.41-12.26 23.62-34.51 17.08-38.49C17.6 41 6.4 51 3.46 49.21Z"/>
+      </svg>
 		</a>
 		<menu-button>
 			<template>
@@ -349,4 +351,45 @@ const isCurrentPage = (href: string) => {
 			color: SelectedItem;
 		}
 	}
+  
+  @media (prefers-reduced-motion) {
+    .animated-path {
+      animation: none !important;
+      stroke-dasharray: unset !important;
+    }
+  }
+  @media print {
+    .animated-path {
+      animation: none !important;
+      stroke-dasharray: unset !important;
+    }
+  }
+  @keyframes grow {
+    0% {
+      stroke-dashoffset: 1px;
+      stroke-dasharray: 0 350px;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    40% {
+      stroke-dasharray: 350px 0;
+    }
+    75% {
+      stroke-dasharray: 350px 0;
+    }
+    95%,
+    to {
+      stroke-dasharray: 0 350px;
+    }
+  }
+  .animated-path {
+    stroke-dashoffset: 1px;
+    stroke-dasharray: 350px 0;
+    animation: grow 16s ease forwards infinite;
+    transform-origin: center;
+    stroke: var(--gray-50);
+    animation-delay: 0s;
+  }
 </style>
