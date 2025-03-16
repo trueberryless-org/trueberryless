@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
         - name: trueberryless
-          image: "trueberryless/trueberryless:0.2.5"
+          image: "trueberryless/trueberryless:0.2.6"
           imagePullPolicy: Always
