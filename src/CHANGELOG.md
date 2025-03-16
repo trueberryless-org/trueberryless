@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.2.6
+
+### Patch Changes
+
+- [`d0f8b5a`](https://github.com/trueberryless-org/trueberryless/commit/d0f8b5a8c3b2f732ea6f9a0d3f681621e7b84383) Thanks [@trueberryless](https://github.com/trueberryless)! - Add signature
+
 ## 0.2.5
 
 ### Patch Changes
