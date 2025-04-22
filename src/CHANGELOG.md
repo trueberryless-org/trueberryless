@@ -1,5 +1,17 @@
 # trueberryless
 
+## 0.2.6
+
+### Patch Changes
+
+- [`d0f8b5a`](https://github.com/trueberryless-org/trueberryless/commit/d0f8b5a8c3b2f732ea6f9a0d3f681621e7b84383) Thanks [@trueberryless](https://github.com/trueberryless)! - Add signature
+
+## 0.2.5
+
+### Patch Changes
+
+- [#75](https://github.com/trueberryless-org/trueberryless/pull/75) [`f89dd8f`](https://github.com/trueberryless-org/trueberryless/commit/f89dd8fb15788aa6c5b5bed114f70247605b44ca) Thanks [@trueberryless](https://github.com/trueberryless)! - Add Mastodon verification by including head tags
+
 ## 0.2.4
 
 ### Patch Changes
