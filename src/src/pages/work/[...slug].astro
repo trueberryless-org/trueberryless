@@ -60,7 +60,12 @@ if (!images[imagePath])
         <div class="stack gap-10 content">
           {
             entry.data.img && (
-              <div data-lightbox="true"><Image src={images[imagePath]()} alt={entry.data.img_alt || ""} /></div>
+              <div data-lightbox="true">
+                <Image
+                  src={images[imagePath]()}
+                  alt={entry.data.img_alt || ""}
+                />
+              </div>
             )
           }
           <div class="content">
