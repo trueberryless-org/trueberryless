@@ -11,6 +11,81 @@ tags:
   - Celebration
 ---
 
-You only turn 20 once. In a way, it's a once-in-a-lifetime experience that you'll never have again. Of course I understand when people say: “Yes, but you can say that about any birthday.” But what not everyone can say about their 20th birthday is that it was on February 20th, 2025! 
+##### I Turned 20 – And Turned It Into a Puzzle
+
+This year, I turned 20 – and instead of simply lighting candles and inflating balloons, I wanted to celebrate in a more creative and personal way. The idea? Hide the number 20 in as many surprising, clever, and hidden forms as possible throughout a decorated living room – then capture it all in a single photo. Whether through mathematical puzzles or visual Easter eggs, the room transformed into a joyful riddle full of playful detail.
+
+The final result wasn’t just a festive setting, but a carefully designed puzzle layered with meaning, humor, and subtle nods to things I love. Some clues are easy to spot, others are deeply hidden or require some creative interpretation – but now that the challenge has been out in the wild, it’s time for the official reveal.
+
+Altogether, the number 20 (or variations of it) appears **73 times** throughout the image. That includes 14 instances of the literal number “20” hidden in clever forms like barcodes, QR codes, and hex values, as well as six times where objects appear in exact quantities of twenty. There are also 32 appearances of “20” printed on birthday balloons scattered across the room – although about half of them are not visible from the camera’s perspective – and five additional references that creatively reflect my birthday through numbers like 2025 or 2005.
+
+Roughly 40 of these clues are clearly visible and solvable from the photo alone. The rest require some lateral thinking or imagination to uncover – especially those hiding just beyond the 2D frame of the image.
+
+##### How the “20” Was Hidden
+
+Many of the 20s are woven directly into the decor. There’s a bright 20 km/h road sign, giant rainbow foil balloons forming the digits 2 and 0, and a huge “Happy 20th Birthday” banner stretched across the window. A birthday “cake” made out of 20 toilet paper rolls sits prominently near the center, surrounded by decorative items like clocks, fruit, Ferrero Rocher chocolates, party candles, and game pieces – all grouped intentionally into quantities of 20.
+
+Then come the mathematical twists: two QR codes subtly lead to the number 20. There’s a Morse code strip, a binary code (10100), and a color represented in hexadecimal that converts to 20 in base<sub>10</sub>. A barcode hides the number visually, while a hand of playing cards (Ace, Jack, Queen, King) cleverly adds up to 20. A domino pair, too, sums to the magic number. Even a slice of cake on the couch – precisely 20% of the whole – continues the theme.
+
+Some of the trickiest clues are tucked into logic puzzles. For example, the apples and pears on the wooden wall shelf resemble 1s and 0s, and if decoded correctly, they spell out “Fe” – a subtle nod to my name, Felix. Dice on the table are turned so that you can deduce the hidden top sides, which, when summed up, result in 20.[^1] And the most challenging: a bundle of Mikado sticks, whose total visible point value is 110 – which, when interpreted in base<sub>4</sub>, equals exactly 20 in decimal. A true puzzle within the puzzle!
+
+[^1]: The tops of the dice should add up to 20, but for some reason they only add up to 12 in the final picture. 😂
+
+A few clues also fall under the “pop culture knowledge” category. There’s a mention of Rihanna, who, like me, was born on February 20. A small tribute to Hans Zimmer and Christopher Nolan nods to their 2005 collaboration on Batman Begins – the same year I was born.
+
+##### A Snapshot of My Musical Taste
+
+While not directly part of the 20-themed puzzle, there’s a musical layer hidden in the image that reflects something deeply personal: my love for music. In the top left corner, eight square album covers are arranged neatly, each featuring a Spotify Code linking to one of my all-time favorite tracks. Slightly offset to the right, the ninth cover represents a playlist that brings all these songs together – a small curated soundtrack of my world.
+
+Each song on that list has earned its place not just for how it sounds, but for the stories, memories, and emotions it carries. And most importantly, for the incredible artists who created them.
+
+It starts with _Molossus_ from Batman Begins, a powerful, rising track that introduced me to the epic blend of film and music through the work of Hans Zimmer and Christopher Nolan – one of my favorite director-composer duos. The film was released in 2005, the year I was born, and while The Dark Knight is my personal favorite, Molossus will always feel iconic.
+
+Next is _9-bit Expedition_ from the Fastfall soundtrack, composed by Lifeformed. Their calm, chiptune-inspired style hits a sweet spot that I keep coming back to. I admire their work so much that I’ve used their tracks in custom Celeste levels I’ve built – not just because they fit, but because their music means something to me.
+
+And then there’s _Resurrections_ from Celeste – a game I’ve easily spent 200–300 hours playing. The real magic behind its atmosphere is Lena Raine, whose music has a way of reaching into your emotions and pulling out something raw and beautiful. Her compositions are more than just background – they are the experience. I genuinely consider her one of the most inspiring composers I’ve ever listened to, and her work on Celeste is a masterpiece I’ll never stop admiring.
+
+Also in the mix is _22:12 - Until the End of Time_ by Danger, from the Haven soundtrack. I haven’t even played the game – the music alone pulled me in. It’s cinematic, emotional, and completely immersive. Danger absolutely nailed it, crafting a world through sound that I could get lost in for hours.
+
+_Annihilate_ from Across the Spider-Verse is another standout. I love both movies in the series, and this track perfectly captures the energy, style, and emotion of Miles’ story. It’s a sonic explosion that never gets old.
+
+From a totally different genre comes _ROTTWEiLER_ by TJ_beastboy, a German rapper who, to me, is on a completely different level. He blends chill vibes and upbeat intensity in a way that feels fresh and real. His music always has something unique to say, and I honestly think he’s one of the best artists out there right now.
+
+Another track I couldn’t leave out is _747_ from Tenet – another mind-bending Nolan film, scored by Ludwig Göransson. The energy, pacing, and structure of this piece hit so hard. It's easily one of my favorite movie soundtracks of all time, and Göransson continues to prove he’s a genius when it comes to cinematic music.
+
+Last but far from least: _MORE_ by K/DA – my most-played song ever. It’s high-energy, polished, confident, and just straight-up fun. K-pop in general is way too underrated, and this track is proof that genre boundaries don’t matter when a song just works on every level.
+
+These songs – and the brilliant minds behind them – aren’t just background music. They’re part of my creative world, my emotional landscape, and the soundtrack to everything I love doing.
 
 ##### Stats for Nerds
+ 
+For those who enjoy data and structure, here’s a little summary of all 20s in the image:
+
+| Category                                | Count  |
+|-----------------------------------------|--------|
+| Total hidden instances                  | 73x    |
+| Clearly visible and solvable            | ~40x   |
+| Written "20"                            | 14x    |
+| Groups of 20 identical items            | 6x     |
+| Birthday balloons printed with "20"     | 32x    |
+| Creative variations (e.g., 2025, 2005)  | 5x     |
+
+###### Puzzle Solutions
+
+| Code Type                         | Representation                                           |
+|-----------------------------------|----------------------------------------------------------|
+| QR Codes                          | 20.02.2005                                               |
+| Bar Code                          | 20. February                                             |
+| Binary Code                       | Today is February 20th, 2025                             |
+| Base<sub>64</sub> Code            | My birthday is February 20th, 2005                       |
+| Hex Code (Color Codes)            | twenty                                                   |
+| Morse Code                        | 20. FEBRUARY 2005                                        |
+| Playing Cards                     | King (4) + Queen (3) + Jack (2) + Ace (11) = 20          |
+| Domino                            | (0\|2) + (3\|3) + (4\|0) + (2\|1) + (1\|0) + (2\|2) = 20 |
+| Apples (0) and Pears (1)          | Binary Code: Fe                                          |
+| Mikado Sticks Value               | 110 (base<sub>4</sub>) = 20 (base<sub>10</sub>)          |
+| Dice top sides                    | 3 + 2 + 1 + 1 + 5 = 12                                   |
+
+It was a joy to turn this celebration into a personal challenge and to see friends and family try to solve the riddle. Whether you spotted five 20s or all seventy-three – thank you for playing along! 🎉
+
+Let’s see what kind of puzzle 21 will bring... 😉
