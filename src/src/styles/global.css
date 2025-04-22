@@ -191,6 +191,10 @@ h5 {
   font-size: var(--text-xl);
 }
 
+h6 {
+  font-size: var(--text-lg);
+}
+
 /* Utilities */
 
 .sr-only {
@@ -277,4 +281,53 @@ p > code {
   font-family: "JetBrains Mono Variable", monospace;
   direction: ltr;
   font-size: 13px;
+}
+
+table {
+  width: 100%;
+  max-width: 640px;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--gray-900);
+  color: var(--gray-100);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+  transition: var(--theme-transition);
+}
+
+thead {
+  background: var(--accent-light);
+  color: var(--accent-text-over);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+}
+
+th,
+td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-700);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: var(--gray-800);
+}
+
+section.footnotes {
+  border-top: 1px solid var(--gray-700);
+  margin-top: 2rem !important;
+  padding-top: 1rem;
+}
+
+section.footnotes ol {
+  padding-left: 1.5rem;
 }
