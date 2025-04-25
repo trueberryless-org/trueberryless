@@ -335,3 +335,11 @@ section.footnotes {
 section.footnotes ol {
   padding-left: 1.5rem;
 }
+
+section.footnotes::before {
+  content: "Footnotes";
+  display: block;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 0.7rem;
+}

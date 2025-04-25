@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.2.5",
     "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@julian_cataldo/astro-lightbox": "^0.10.11",
     "astro": "^5.0.5",
