@@ -1,5 +1,13 @@
 # trueberryless
 
+## 0.3.0
+
+### Minor Changes
+
+- [#86](https://github.com/trueberryless-org/trueberryless/pull/86) [`c52fff7`](https://github.com/trueberryless-org/trueberryless/commit/c52fff7ba38ce162d149aa4d04453bb37d10f99b) Thanks [@trueberryless](https://github.com/trueberryless)! - Add 20th birthday story
+
+- [#86](https://github.com/trueberryless-org/trueberryless/pull/86) [`c52fff7`](https://github.com/trueberryless-org/trueberryless/commit/c52fff7ba38ce162d149aa4d04453bb37d10f99b) Thanks [@trueberryless](https://github.com/trueberryless)! - Add Image Zoom Capabilities to all images and change some styling so that it is consistent when zoomed
+
 ## 0.2.7
 
 ### Patch Changes
