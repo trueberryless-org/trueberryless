@@ -1,6 +1,5 @@
 ---
-import "../styles/global.css";
-import Lightbox from "@julian_cataldo/astro-lightbox/Lightbox.astro";
+import '../styles/global.css';
 
 interface Props {
   title?: string | undefined;
@@ -28,9 +27,6 @@ const {
   rel="stylesheet"
 />
 <link rel="me" href="https://mastodon.social/@trueberryless" />
-
-<Lightbox />
-
 <script is:inline>
   // This code is inlined in the head to make dark mode instant & blocking.
   const getThemePreference = () => {
