@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.3.1
+
+### Patch Changes
+
+- [`7d293da`](https://github.com/trueberryless-org/trueberryless/commit/7d293da18a152b78b9858293222b0ce0e4488028) Thanks [@trueberryless](https://github.com/trueberryless)! - Enhance explaination of dice miscalculation
+
 ## 0.3.0
 
 ### Minor Changes
