@@ -60,7 +60,11 @@ if (!images[imagePath])
         <div class="stack gap-10 content">
           {
             entry.data.img && (
-              <Image src={images[imagePath]()} alt={entry.data.img_alt || ""} data-zoomable />
+              <Image
+                src={images[imagePath]()}
+                alt={entry.data.img_alt || ""}
+                data-zoomable
+              />
             )
           }
           <div class="content">
@@ -121,7 +125,8 @@ if (!images[imagePath])
     margin: 1.5rem 0;
   }
 
-  .content :global(img) {
+  :global(img),
+  img {
     border-radius: 1.5rem;
     box-shadow: var(--shadow-sm);
     background: var(--gradient-subtle);
