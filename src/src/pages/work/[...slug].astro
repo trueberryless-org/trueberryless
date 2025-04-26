@@ -60,7 +60,7 @@ if (!images[imagePath])
         <div class="stack gap-10 content">
           {
             entry.data.img && (
-              <Image src={images[imagePath]()} alt={entry.data.img_alt || ""} />
+              <Image src={images[imagePath]()} alt={entry.data.img_alt || ""} data-zoomable />
             )
           }
           <div class="content">
