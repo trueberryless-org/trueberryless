@@ -42,11 +42,10 @@ import portrait from "../assets/portrait.jpg";
         </Hero>
 
         <Image
-          alt="Felix Schneider smiling in a formal gray shirt and silver tie, arms crossed against a dark background."
-          width="480"
-          height="620"
-          priority={true}
           src={portrait}
+          alt="Felix Schneider smiling in a formal gray shirt and silver tie, arms crossed against a dark background."
+          priority={true}
+          data-zoomable
         />
       </header>
 
@@ -135,10 +134,8 @@ import portrait from "../assets/portrait.jpg";
     display: none;
   }
 
-  .hero img {
-    aspect-ratio: 3 / 4;
+  img {
     object-fit: cover;
-    object-position: top;
     border-radius: 1.5rem;
     box-shadow: var(--shadow-md);
   }
@@ -157,9 +154,8 @@ import portrait from "../assets/portrait.jpg";
       gap: 0.5rem;
     }
 
-    .hero img {
-      border-radius: 4.5rem;
-      object-fit: cover;
+    img {
+      /* border-radius: 4.5rem; */
     }
   }
 

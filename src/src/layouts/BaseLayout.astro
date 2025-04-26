@@ -120,5 +120,13 @@ const { title, description } = Astro.props;
         }
       }
     </style>
+    <script>
+      import mediumZoom from "medium-zoom";
+      mediumZoom("[data-zoomable]", {
+        margin: 24,
+        background: "var(--gray-900)",
+        scrollOffset: 0,
+      });
+    </script>
   </body>
 </html>

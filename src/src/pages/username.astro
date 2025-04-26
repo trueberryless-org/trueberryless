@@ -10,8 +10,12 @@ import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
 import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-const entry = await getEntry("username", "username");
+const entry: CollectionEntry<"username"> = await getEntry(
+  "username",
+  "username"
+)!;
 const { Content } = await render(entry);
 
 const imagePath = "/src/assets/username/" + entry.data.img;
@@ -47,7 +51,11 @@ if (!images[imagePath])
         <div class="stack gap-10 content">
           {
             entry.data.img && (
-              <Image src={images[imagePath]()} alt={entry.data.img_alt || ""} />
+              <Image
+                src={images[imagePath]()}
+                alt={entry.data.img_alt || ""}
+                data-zoomable
+              />
             )
           }
           <div class="content">
@@ -108,7 +116,8 @@ if (!images[imagePath])
     margin: 1.5rem 0;
   }
 
-  .content :global(img) {
+  .content :global(img),
+  img {
     border-radius: 1.5rem;
     box-shadow: var(--shadow-sm);
     background: var(--gradient-subtle);
