@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.3.2
+
+### Patch Changes
+
+- [`adbfc8d`](https://github.com/trueberryless-org/trueberryless/commit/adbfc8d55439724505a20016e10974fb38176356) Thanks [@trueberryless](https://github.com/trueberryless)! - Simplify social links and change resume hrefs to https://resume.trueberryless.org
+
 ## 0.3.1
 
 ### Patch Changes
