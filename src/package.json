@@ -16,5 +16,5 @@
     "medium-zoom": "^1.1.0",
     "sharp": "^0.33.5"
   },
-  "packageManager": "pnpm@9.6.0"
+  "packageManager": "pnpm@10.10.0"
 }
