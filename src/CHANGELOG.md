@@ -1,5 +1,11 @@
 # trueberryless
 
+## 0.4.0
+
+### Minor Changes
+
+- Migrate to Netlify
+
 ## 0.3.2
 
 ### Patch Changes
