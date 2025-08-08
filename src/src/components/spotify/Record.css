@@ -60,8 +60,8 @@ html.theme-dark .record {
 }
 
 .record__img {
-  height: 50%;
-  width: 50%;
+  height: 80%;
+  width: 80%;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -73,8 +73,8 @@ html.theme-dark .record {
   bottom: 0;
   left: 0;
   margin: auto;
-  height: 16px;
-  width: 16px;
+  height: 6px;
+  width: 6px;
   background-color: #323232;
   border-radius: 50%;
 }
@@ -90,8 +90,8 @@ html.theme-dark .record__center__black {
   bottom: 0;
   left: 0;
   margin: auto;
-  height: 6px;
-  width: 6px;
+  height: 4px;
+  width: 4px;
   background-color: #fff;
   border-radius: 50%;
 }
