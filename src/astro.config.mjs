@@ -1,5 +1,6 @@
 // @ts-check
 import mdx from "@astrojs/mdx";
+import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
@@ -10,4 +11,5 @@ export default defineConfig({
     responsiveImages: true,
   },
   integrations: [expressiveCode(), mdx(), react()],
+  adapter: netlify(),
 });

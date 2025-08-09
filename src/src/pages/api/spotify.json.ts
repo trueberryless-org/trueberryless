@@ -3,6 +3,8 @@ import type { APIRoute } from "astro";
 import { getNowPlaying } from "../../lib/spotify";
 import type { SpotifyPlayerResponse } from "../../lib/types";
 
+export const prerender = false;
+
 export const GET: APIRoute = async () => {
   const response = await getNowPlaying();
 
