@@ -6,7 +6,7 @@
   transform-origin: center;
   stroke: #b3b3b3;
   transition: stroke 1s ease-in-out;
-  animation: sound 0.4s linear infinite alternate;
+  animation: sound 1.7s linear infinite alternate;
 }
 
 .sw line.sw__full {

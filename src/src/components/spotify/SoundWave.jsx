@@ -8,7 +8,7 @@ const SoundWave = ({ progress, isPlaying }) => {
   useEffect(() => {
     const timings = [];
     for (let i = 0; i < 50; i++) {
-      timings.push(Math.floor(Math.random() * 500) + 300 + "ms");
+      timings.push(Math.floor(Math.random() * 800) + 700 + "ms");
     }
     setAnimationsTimings(timings);
   }, []);
