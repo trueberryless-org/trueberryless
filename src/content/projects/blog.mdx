@@ -1,0 +1,65 @@
+---
+title: Blog
+description: Regularly dropping some technical and thought-provoking posts because it is fun to write
+cover:
+  alt: Blog cover image
+  image: '@public/projects/felix-schneider.png'
+---
+
+## Project Overview
+
+Writing has always been a passion by me. So sooner or later I was destined to create my own blog and since around INSERT YEAR it is available on https://blog.trueberryless.org. Give those posts a try, I promise you will likely enjoy reading some of them. Also, I try to make them visually appealing 😏
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" />
+
+## Technical Challenges
+
+While the basic blog setup was extremely easy thanks to the [Starlight Blog](https://starlight-blog-docs.vercel.app) plugin for [Starlight](https://starlight.astro.build), there were some challenges along the way, especially with customizing the visuals and implementing quality-of-life features like the badges to GitHub profiles - if you want them too, I wrote a dedicated blog about how to create them 😉: https://blog.trueberryless.org/blog/rehype-github-badge-links/
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="Smart home assistant interface showing voice command visualization"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="User interacting with the smart home system via voice commands"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="Haptic feedback device component of the smart home system"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="Dashboard showing analytics of voice command usage patterns"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Testimonial
+
+<BlockQuote author="Maria Rodriguez, Beta Tester">
+  This system has given me back my independence at home. The voice controls are so natural, and the haptic feedback
+  helps me confirm every action without needing to see anything.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-1.png" />
+
+The project continues to evolve with regular content updates and technical features as well. One of the latest additions were the automated AI translations into German and French.
