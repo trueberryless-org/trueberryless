@@ -1,0 +1,216 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import Hero from '@components/Hero.astro'
+import Feature from '@components/Feature.astro'
+import Counter from '@components/Counter.astro'
+import ContentMedia from '@components/ContentMedia.astro'
+import ExternalLink from '@components/ExternalLink.astro'
+import { Accordion, AccordionItem, Avatar, AvatarGroup } from 'accessible-astro-components'
+
+import argo from '@assets/img/logos/argo.png'
+import argoDark from '@assets/img/logos/argo_dark.png'
+import astro from '@assets/img/logos/astro.png'
+import astroDark from '@assets/img/logos/astro_dark.png'
+import docker from '@assets/img/logos/docker.png'
+import dockerDark from '@assets/img/logos/docker_dark.png'
+import github from '@assets/img/logos/github.png'
+import githubDark from '@assets/img/logos/github_dark.png'
+import graphql from '@assets/img/logos/graphql.png'
+import graphqlDark from '@assets/img/logos/graphql_dark.png'
+import k3s from '@assets/img/logos/k3s.png'
+import k3sDark from '@assets/img/logos/k3s_dark.png'
+import mongodb from '@assets/img/logos/mongodb.png'
+import mongodbDark from '@assets/img/logos/mongodb_dark.png'
+import netlify from '@assets/img/logos/netlify.png'
+import netlifyDark from '@assets/img/logos/netlify_dark.png'
+import postgresql from '@assets/img/logos/postgresql.png'
+import postgresqlDark from '@assets/img/logos/postgresql_dark.png'
+import rider from '@assets/img/logos/rider.png'
+import riderDark from '@assets/img/logos/rider_dark.png'
+import sharp from '@assets/img/logos/sharp.png'
+import sharpDark from '@assets/img/logos/sharp_dark.png'
+import typescript from '@assets/img/logos/typescript.png'
+import typescriptDark from '@assets/img/logos/typescript_dark.png'
+---
+
+<DefaultLayout title="Home">
+  <Hero />
+  <section class="my-64">
+    <div class="container">
+      <h2 class="mb-16 text-6xl">Features</h2>
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <Feature icon="lucide:square-terminal" title="Full Stack">
+          Proficient in designing, building, and maintaining dynamic web applications with a strong foundation in both
+          frontend and backend technologies.
+        </Feature>
+        <Feature icon="lucide:medal" title="Academic Excellence">
+          Graduated with distinction from technical college, achieving top grades in all subjects and earning special
+          honors.
+        </Feature>
+        <Feature icon="lucide:puzzle" title="Strategy-Minded">
+          Skilled in developing innovative solutions and applying strategic approaches to problem-solving in complex
+          scenarios.
+        </Feature>
+      </div>
+    </div>
+  </section>
+  <ContentMedia imgSrc="/starlight-cover.png">
+    <h2>OSS Contributor</h2>
+    <p class="text-2xl">
+      Regular contributions to my favourite open-source project: <ExternalLink href="https://starlight.astro.build"
+        >Starlight</ExternalLink
+      > — a documentation framework built on top of <ExternalLink href="https://astro.build">Astro</ExternalLink>
+    </p>
+  </ContentMedia>
+  <ContentMedia imgSrc="/diploma-thesis-cover.png" reverseImg={true}>
+    <h2>Diploma Thesis</h2>
+    <p class="text-2xl">
+      A SOA solution with Siemens AG to analyze power grid anomalies, featuring a Kafka pipeline, PostgreSQL, GraphQL
+      API, and an Angular dashboard for visualisation. Check out the full story and technical details <a
+        href="/portfolio/diploma-thesis">here</a
+      >. Only available in German.
+    </p>
+  </ContentMedia>
+  <!-- <section class="my-64">
+    <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">
+      <div class="flex flex-col items-start gap-4">
+        <h2 class="text-6xl">FAQ</h2>
+        <p class="text-2xl">
+          This section demonstrates how to effectively use the Accordion component to organize and display frequently
+          asked questions in an accessible and user-friendly way.
+        </p>
+        <a class="button" href="/faq">Contact support team</a>
+      </div>
+      <div class="space-content">
+        <Accordion>
+          <AccordionItem name="exclusive" title="What is WCAG and why is it important?" open>
+            <p>
+              WCAG (Web Content Accessibility Guidelines) is a set of internationally recognized standards for web
+              accessibility. Following WCAG ensures your website is usable by people with various disabilities,
+              including visual, auditory, physical, and cognitive impairments. It's important not just for
+              accessibility, but also for legal compliance, SEO, and reaching a wider audience.
+            </p>
+          </AccordionItem>
+          <AccordionItem name="exclusive" title="What's the difference between ARIA labels and alt text?">
+            <p>
+              Alt text is specifically for describing images to screen reader users, while ARIA labels (aria-label,
+              aria-labelledby) can describe any element on a page. Alt text is HTML's native way to provide alternative
+              text for images, while ARIA labels are part of the ARIA specification that helps make dynamic content and
+              advanced UI controls more accessible.
+            </p>
+          </AccordionItem>
+          <AccordionItem name="exclusive" title="Why is keyboard navigation important?">
+            <p>
+              Keyboard navigation is essential for users who can't use a mouse, including people with motor
+              disabilities, visual impairments, or those who simply prefer keyboard controls. A website should be fully
+              operable using only a keyboard, with visible focus indicators and logical tab order. This includes being
+              able to access all interactive elements and navigate through content efficiently.
+            </p>
+          </AccordionItem>
+          <AccordionItem name="exclusive" title="What is a sufficient color contrast ratio?">
+            <p>
+              According to WCAG 2.2 AA standards, text should have a minimum contrast ratio of 4.5:1 against its
+              background for regular text, and 3:1 for large text (18pt or 14pt bold). For non-text elements like icons
+              or buttons, a minimum ratio of 3:1 is required. This ensures content is readable for users with visual
+              impairments or color blindness.
+            </p>
+          </AccordionItem>
+          <AccordionItem name="exclusive" title="How do I make custom components accessible?">
+            <p>
+              To make custom components accessible, focus on these key aspects: use semantic HTML where possible,
+              implement proper keyboard support, add appropriate ARIA attributes, manage focus when needed, and ensure
+              adequate color contrast. Always test with screen readers and keyboard navigation. Consider using
+              established design patterns from the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/"
+                >ARIA Authoring Practices Guide</a
+              >.
+            </p>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </div>
+  </section> -->
+  <section class="my-64">
+    <div class="space-content container">
+      <h2 class="text-6xl">Tools</h2>
+      <p class="text-2xl">Here you can take a look at some tools I use on a regular basis:</p>
+      <AvatarGroup display="grid" gridItemsSize="300px" gridGap="2rem" class="languages-light-mode">
+        <Avatar img={sharp.src} initials="C#" title="C#" subtitle="Main Programming Language" shape="square" />
+        <Avatar img={astro.src} initials="SL" title="Astro" subtitle="Main Frontend Language" shape="square" />
+        <Avatar img={mongodb.src} initials="DB" title="MongoDB" subtitle="Favourite Database" shape="square" />
+        <Avatar img={graphql.src} initials="QL" title="GraphQL" subtitle="Favourite Query Language" shape="square" />
+        <Avatar img={typescript.src} initials="TS" title="Typescript" subtitle="Secondary Language" shape="square" />
+        <Avatar img={argo.src} initials="CD" title="ArgoCD" subtitle="Favourite Deployment Tool" shape="square" />
+        <Avatar img={netlify.src} initials="CD" title="Netlify" subtitle="Main Deployment Tool" shape="square" />
+        <Avatar img={postgresql.src} initials="DB" title="PostgreSQL" subtitle="Main Database" shape="square" />
+        <Avatar img={docker.src} initials="DC" title="Docker" subtitle="Favourite Virtualisation Type" shape="square" />
+        <Avatar img={github.src} initials="GH" title="GitHub" subtitle="Favourite Platform" shape="square" />
+        <Avatar img={rider.src} initials="JB" title="Rider" subtitle="Main C# Editor" shape="square" />
+        <Avatar img={k3s.src} initials="CD" title="k3s" subtitle="Favourite Deployment Tool" shape="square" />
+      </AvatarGroup>
+      <AvatarGroup display="grid" gridItemsSize="300px" gridGap="2rem" class="languages-dark-mode">
+        <Avatar img={sharpDark.src} initials="C#" title="C#" subtitle="Main Programming Language" shape="square" />
+        <Avatar img={astroDark.src} initials="SL" title="Astro" subtitle="Main Frontend Language" shape="square" />
+        <Avatar img={mongodbDark.src} initials="DB" title="MongoDB" subtitle="Favourite Database" shape="square" />
+        <Avatar
+          img={graphqlDark.src}
+          initials="QL"
+          title="GraphQL"
+          subtitle="Favourite Query Language"
+          shape="square"
+        />
+        <Avatar
+          img={typescriptDark.src}
+          initials="TS"
+          title="Typescript"
+          subtitle="Secondary Language"
+          shape="square"
+        />
+        <Avatar img={argoDark.src} initials="CD" title="ArgoCD" subtitle="Favourite Deployment Tool" shape="square" />
+        <Avatar img={netlifyDark.src} initials="CD" title="Netlify" subtitle="Main Deployment Tool" shape="square" />
+        <Avatar img={postgresqlDark.src} initials="DB" title="PostgreSQL" subtitle="Main Database" shape="square" />
+        <Avatar
+          img={dockerDark.src}
+          initials="DC"
+          title="Docker"
+          subtitle="Favourite Virtualisation Type"
+          shape="square"
+        />
+        <Avatar img={githubDark.src} initials="GH" title="GitHub" subtitle="Favourite Platform" shape="square" />
+        <Avatar img={riderDark.src} initials="JB" title="Rider" subtitle="Main C# Editor" shape="square" />
+        <Avatar img={k3sDark.src} initials="CD" title="k3s" subtitle="Favourite Deployment Tool" shape="square" />
+      </AvatarGroup>
+    </div>
+  </section>
+  <section class="mt-64 mb-32">
+    <div class="container">
+      <h2 class="mb-16 text-6xl">Impact in numbers</h2>
+      <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
+        <Counter count="130+" title="Stars" sub="On GitHub" />
+        <Counter count="3.6k" title="Commits" sub="Jan-Jul 2025" />
+        <Counter count="800+" title="PRs" sub="Merged" />
+        <Counter count="6+" title="Years" sub="Experience" />
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style>
+  .avatar {
+    gap: 2rem;
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-s);
+  }
+
+  .languages-dark-mode {
+    display: none;
+  }
+
+  :global(.darkmode) .languages-light-mode {
+    display: none;
+  }
+
+  :global(.darkmode) .languages-dark-mode {
+    display: grid;
+  }
+</style>

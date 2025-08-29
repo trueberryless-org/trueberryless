@@ -1,0 +1,55 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
+import SocialShares from '@components/SocialShares.astro'
+import { getCollection, render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+
+  const projectsWithoutLinks = projects.filter((project) => !project.data.link)
+  return projectsWithoutLinks.map((project, index) => {
+    return {
+      params: { project: project.id },
+      props: { project: project },
+    }
+  })
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+---
+
+<DefaultLayout title={project.data.title} description={project.data.description} url={project.data.title}>
+  <PageHeader
+    title={project.data.title}
+    subtitle={project.data.description}
+    bgType="bordered"
+    featuredImage={project.data.cover.image}
+    featuredImageAlt={project.data.cover.alt}
+  />
+  <section class="my-12">
+    <div class="narrow space-content container">
+      <Content />
+    </div>
+  </section>
+  <section class="my-12">
+    <div class="narrow space-content container">
+      <h2>Share this project</h2>
+      <p>Like this project? Share it with your network!</p>
+      <SocialShares />
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss" is:global>
+  .narrow {
+    margin-inline: auto;
+    max-width: 65ch;
+  }
+</style>
