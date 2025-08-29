@@ -49,7 +49,7 @@ export default [
     languageOptions: {
       parser: astroParser,
       parserOptions: {
-        parser: '@typescript-eslint/parser',
+        parser: tsParser,
         extraFileExtensions: ['.astro'],
       },
     },
