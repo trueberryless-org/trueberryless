@@ -12,7 +12,7 @@
     "@astrojs/mdx": "^4.2.5",
     "@astrojs/netlify": "^6.5.9",
     "@astrojs/react": "^4.3.0",
-    "@fontsource-variable/jetbrains-mono": "^5.1.2",
+    "@fontsource-variable/jetbrains-mono": "^5.2.6",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "astro": "^5.0.5",
