@@ -20,7 +20,7 @@
     "medium-zoom": "^1.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "sharp": "^0.33.5",
+    "sharp": "^0.34.3",
     "typescript": "^5.9.2"
   },
   "packageManager": "pnpm@10.10.0"
