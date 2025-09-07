@@ -7,14 +7,9 @@ import type { CollectionEntry } from 'astro:content'
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects')
-
-  const projectsWithoutLinks = projects.filter((project) => !project.data.link)
-  return projectsWithoutLinks.map((project, index) => {
-    return {
-      params: { project: project.id },
-      props: { project: project },
-    }
-  })
+  return projects
+    .filter((p) => !p.data.link)
+    .map((p) => ({ params: { project: p.id }, props: { project: p } }))
 }
 
 interface Props {
@@ -25,7 +20,7 @@ const { project } = Astro.props
 const { Content } = await render(project)
 ---
 
-<DefaultLayout title={project.data.title} description={project.data.description} url={project.data.title}>
+<DefaultLayout title={project.data.title} description={project.data.description} url={Astro.url.pathname}>
   <PageHeader
     title={project.data.title}
     subtitle={project.data.description}

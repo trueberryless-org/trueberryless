@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
-    "accessible-astro-components": "^4.1.2"
+    "accessible-astro-components": "^4.1.2",
+    "medium-zoom": "^1.1.0"
   }
 }

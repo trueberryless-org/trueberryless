@@ -3,7 +3,7 @@ title: Mutanuq
 description: Sharing and persisting knowledge for my classmates and my future self
 cover:
   alt: Mutanuq cover image
-  image: '@public/projects/felix-schneider.png'
+  image: '@public/projects/mutanuq.png'
 ---
 
 ## Project Overview
@@ -14,7 +14,9 @@ import BlockQuote from '@components/BlockQuote.astro'
 import BreakoutImage from '@components/BreakoutImage.astro'
 import { Image } from 'astro:assets'
 
-<BreakoutImage src="/projects/project-image-1.png" />
+import _1 from "@assets/img/portfolio/mutanuq/1.png"
+
+<BreakoutImage src={_1} />
 
 ## Technical Challenges
 
@@ -22,44 +24,46 @@ The website is built with [Starlight](https://starlight.astro.build) and inspire
 
 ## Project Gallery
 
+import _6 from "@assets/img/portfolio/mutanuq/6.png"
+import _3 from "@assets/img/portfolio/mutanuq/3.png"
+import _4 from "@assets/img/portfolio/mutanuq/4.png"
+import _5 from "@assets/img/portfolio/mutanuq/5.png"
+
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
-    src="/projects/project-image-1.png"
+    src={_6}
     alt="Smart home assistant interface showing voice command visualization"
-    width={1200}
-    height={600}
-    class="h-[250px] w-full rounded-lg object-cover"
+    class="rounded-lg object-cover"
+    data-zoomable
   />
   <Image
-    src="/projects/project-image-2.png"
+    src={_3}
     alt="User interacting with the smart home system via voice commands"
-    width={1200}
-    height={600}
-    class="h-[250px] w-full rounded-lg object-cover"
+    class="rounded-lg object-cover"
+    data-zoomable
   />
   <Image
-    src="/projects/project-image-3.png"
+    src={_4}
     alt="Haptic feedback device component of the smart home system"
-    width={1200}
-    height={600}
-    class="h-[250px] w-full rounded-lg object-cover"
+    class="rounded-lg object-cover"
+    data-zoomable
   />
   <Image
-    src="/projects/project-image-4.png"
+    src={_5}
     alt="Dashboard showing analytics of voice command usage patterns"
-    width={1200}
-    height={600}
-    class="h-[250px] w-full rounded-lg object-cover"
+    class="rounded-lg object-cover"
+    data-zoomable
   />
 </div>
 
 ## Testimonial
 
-<BlockQuote author="Maria Rodriguez, Beta Tester">
-  This system has given me back my independence at home. The voice controls are so natural, and the haptic feedback
-  helps me confirm every action without needing to see anything.
+<BlockQuote author="Anonymous Classmates from Felix">
+  The website is fantastic. Even if I did not learn a lot for the exam, just reading through the content before the test, secures an average mark.
 </BlockQuote>
 
-<BreakoutImage src="/projects/project-image-1.png" />
+import _2 from "@assets/img/portfolio/mutanuq/2.png"
+
+<BreakoutImage src={_2} />
 
 The project has been mostly inactive since I finished my degree. However, I regularly find myself looking up the knowledge I once knew by heart.

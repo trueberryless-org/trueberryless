@@ -6,13 +6,24 @@ cover:
   image: '@public/projects/diploma-thesis.png'
 ---
 
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
 During my fifth year at HTL Krems (2023/24), every student was required to complete a diploma thesis—a substantial project split into two main parts: theoretical and practical. Working in pairs, we had to produce a theoretical paper of around 100 pages, where we introduced, analysed, and explained our chosen topic.
 
 The theoretical part was organized into three sections. The first involved gathering and summarizing existing knowledge from credible sources like books and previous theses. The second focused on the insights and findings derived from our prototype—a software solution we developed for the practical component. Finally, the third section combined these two, offering a critical comparison and reflection on what we learned through the project as a whole.
 
+import initial_situation_english_postspark from "@assets/img/portfolio/diploma-thesis/initial_situation_english_postspark.png"
+
+<BreakoutImage src={initial_situation_english_postspark} />
+
 The practical aspect required us to design and implement a solution, either software or hardware-based, to tackle a real-world problem. My teammate, Clemens Schlipfinger, and I decided to focus exclusively on software to ensure reliability. Hardware can introduce unpredictable issues, but software—especially when deployed in robust Docker containers—offered a consistent environment that worked seamlessly everywhere.
 
 What made our project particularly exciting was our partnership with Siemens AG, a renowned multinational company specializing in energy, automation, and digitalization. This collaboration was rare among our peers and added a professional dimension to our work. Siemens tasked us with developing a service-oriented software solution for analysing anomalies in Europe's power grid.
+
+import architecture_postspark from "@assets/img/portfolio/diploma-thesis/architecture_postspark.png"
+
+<BreakoutImage src={architecture_postspark} />
 
 The system we built comprised several components, each designed to handle a specific function. At the core was a Kafka application responsible for ingesting data—power grid anomaly reports we termed Findings. These reports detailed failures and irregularities across Europe's intricate power network, comprising millions of interconnected components like transistors, switches, and generators. Kafka transmitted the most recent anomalies to a PostgreSQL database, which was then made accessible via a GraphQL API. This API provided comprehensive features like pagination, filtering, and querying to ensure seamless integration with our Angular-based frontend.
 
@@ -29,3 +40,37 @@ Clemens and I divided our responsibilities evenly. Clemens handled the backend s
 Our final product not only met Siemens' requirements but also demonstrated the power of a well-designed service-oriented architecture (SOA) in solving complex, real-world problems. It was immensely rewarding to see our software functioning reliably and providing actionable insights to tackle power grid anomalies.
 
 For more details about our work, feel free to explore our thesis [here](https://trueberryless.org/thesis.pdf) 📜 or read our video course [here](https://videos.trueberryless.org/videos/thesis/) 🎥 (both only available in German).
+
+## Project Gallery
+
+import complex_data_in_graph_postspark from "@assets/img/portfolio/diploma-thesis/complex_data_in_graph_postspark.png"
+import graph_of_powergrid_postspark from "@assets/img/portfolio/diploma-thesis/graph_of_powergrid_postspark.png"
+import graph_theory_postspark from "@assets/img/portfolio/diploma-thesis/graph_theory_postspark.png"
+import mockup_postspark from "@assets/img/portfolio/diploma-thesis/mockup_postspark.png"
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src={complex_data_in_graph_postspark}
+    alt="Page view of complex data visualized in a graph"
+    class="rounded-lg object-cover"
+    data-zoomable
+  />
+  <Image
+    src={graph_of_powergrid_postspark}
+    alt="Page view of a graph of th powergrid"
+    class="rounded-lg object-cover"
+    data-zoomable
+  />
+  <Image
+    src={graph_theory_postspark}
+    alt="Page view of graph theory"
+    class="rounded-lg object-cover"
+    data-zoomable
+  />
+  <Image
+    src={mockup_postspark}
+    alt="Page view of the mockup of the project"
+    class="rounded-lg object-cover"
+    data-zoomable
+  />
+</div>

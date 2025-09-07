@@ -21,6 +21,5 @@ const { src, alt = '' } = Astro.props
 ---
 
 <div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
-  <Image src={src} alt={alt} width={1400} height={700} class="h-auto w-full rounded-lg object-cover" loading="lazy" />
-  <div class="absolute inset-0 rounded-lg shadow-inner"></div>
+  <Image src={src} alt={alt} width={1400} height={700} class="h-auto w-full rounded-lg object-cover" loading="lazy" data-zoomable />
 </div>
