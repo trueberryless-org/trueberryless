@@ -44,6 +44,9 @@ importers:
       astro-expressive-code:
         specifier: ^0.40.1
         version: 0.40.1(astro@5.0.5(jiti@2.5.1)(rollup@4.46.2)(sass-embedded@1.85.0)(typescript@5.9.2)(yaml@2.8.1))
+      astro-webrings:
+        specifier: ^0.1.1
+        version: 0.1.1(astro@5.0.5(jiti@2.5.1)(rollup@4.46.2)(sass-embedded@1.85.0)(typescript@5.9.2)(yaml@2.8.1))
       medium-zoom:
         specifier: ^1.1.0
         version: 1.1.0
@@ -1900,6 +1903,11 @@ packages:
     resolution: {integrity: sha512-dQ47XhgtxuRTiKQrZOJKdebMuxvvTBR89U439EHzLP6KR45IILFlGDihGQp3//1aUjj4nwpbINSzms1heJ7vmQ==}
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
+
+  astro-webrings@0.1.1:
+    resolution: {integrity: sha512-NAVmpGGlAGeZGJqu2iA975A1BZCVdNjTfIrVL9b0tK0nRFgyzdccDF+D3kwT03CK0QwrnUdHHUSSON94G8p8HQ==}
+    peerDependencies:
+      astro: ^5
 
   astro@5.0.5:
     resolution: {integrity: sha512-xfptdmurDsQcj/Anc7mU+eKlcyV7ppJIlmaSwhX3ZWwK5N/0rGKVmUqnuILgR6MB0XVJiIfublNzDGoyj4Q6BQ==}
@@ -6484,6 +6492,10 @@ snapshots:
     dependencies:
       astro: 5.0.5(jiti@2.5.1)(rollup@4.46.2)(sass-embedded@1.85.0)(typescript@5.9.2)(yaml@2.8.1)
       rehype-expressive-code: 0.40.1
+
+  astro-webrings@0.1.1(astro@5.0.5(jiti@2.5.1)(rollup@4.46.2)(sass-embedded@1.85.0)(typescript@5.9.2)(yaml@2.8.1)):
+    dependencies:
+      astro: 5.0.5(jiti@2.5.1)(rollup@4.46.2)(sass-embedded@1.85.0)(typescript@5.9.2)(yaml@2.8.1)
 
   astro@5.0.5(jiti@2.5.1)(rollup@4.46.2)(sass-embedded@1.85.0)(typescript@5.9.2)(yaml@2.8.1):
     dependencies:
