@@ -25,6 +25,8 @@ const projects = (await getCollection("work"))
   .slice(0, 4);
 
 import portrait from "../assets/portrait.jpg";
+
+import WebringBadge from "astro-webrings/badge";
 ---
 
 <BaseLayout>
@@ -143,6 +145,19 @@ import portrait from "../assets/portrait.jpg";
         </header>
 
         <Spotify client:idle />
+      </section>
+
+      <section style="margin: auto">
+        <WebringBadge
+          site={"trueberryless.org"}
+          ring="friends-of-houston"
+          animated
+        />
+        <WebringBadge
+          site={"trueberryless.org"}
+          ring="built-with-astro"
+          animated
+        />
       </section>
     </main>
 
