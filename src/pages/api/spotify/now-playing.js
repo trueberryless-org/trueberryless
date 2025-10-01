@@ -1,8 +1,10 @@
 // src/pages/api/spotify/now-playing.js
 
-const CLIENT_ID = import.meta.env.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
-const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
+export const prerender = false;
+
+const CLIENT_ID = import.meta.env.CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.CLIENT_SECRET;
+const REFRESH_TOKEN = import.meta.env.REFRESH_TOKEN;
 
 const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
 const NOW_PLAYING_ENDPOINT =
