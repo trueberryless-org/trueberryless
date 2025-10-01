@@ -1,0 +1,81 @@
+---
+import profilePicture from "../assets/profile-picture.png";
+---
+
+<section class="intro">
+  <div class="content">
+    <img src={profilePicture.src} alt="trueberryless" class="pfp" />
+    <div class="text">
+      <h1>Hello, I'm Felix Schneider</h1>
+      <p class="subtitle">also known as trueberryless everywhere online</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    padding: 8rem 2rem 6rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .pfp {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--ctp-lavender);
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .pfp:hover {
+    transform: scale(1.05);
+    border-color: var(--ctp-pink);
+  }
+
+  .text {
+    flex: 1;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--ctp-subtext0);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    .intro {
+      padding: 4rem 2rem 3rem;
+    }
+
+    .content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .pfp {
+      width: 100px;
+      height: 100px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

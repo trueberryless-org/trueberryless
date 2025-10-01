@@ -1,0 +1,162 @@
+---
+const projects = [
+  {
+    name: "Check out my blog",
+    url: "https://blog.trueberryless.org",
+    color: "var(--ctp-sapphire)",
+  },
+  {
+    name: "My Starlight projects",
+    url: "https://github.com/search?q=trueberryless-org/starlight-+in:name&type=repositories",
+    color: "var(--ctp-green)",
+  },
+  {
+    name: "Diploma Thesis",
+    url: "/thesis.pdf",
+    color: "var(--ctp-peach)",
+  },
+];
+---
+
+<section class="project">
+  <div class="content">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      {
+        projects.map((project) => (
+          <a
+            href={project.url}
+            class="project-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={`--project-color: ${project.color}`}
+          >
+            <span class="project-icon">◈</span>
+            <span class="project-name">{project.name}</span>
+            <svg class="project-arrow" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M7 17L17 7M17 7H7M17 7V17"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .project {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background-color: var(--ctp-surface0);
+    border: 2px solid var(--project-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ctp-text);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--project-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+
+  .project-link:hover::before {
+    transform: scaleX(1);
+  }
+
+  .project-icon {
+    font-size: 1.5rem;
+    color: var(--project-color);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .project-name {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+
+  .project-arrow {
+    width: 24px;
+    height: 24px;
+    color: var(--project-color);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .project-link:hover {
+    transform: translateX(8px);
+  }
+
+  .project-link:hover .project-icon,
+  .project-link:hover .project-arrow {
+    color: var(--ctp-base);
+  }
+
+  .project-link:hover .project-name {
+    color: var(--ctp-base);
+  }
+
+  @media (max-width: 600px) {
+    .project {
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-link {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .project-name {
+      font-size: 1.1rem;
+    }
+  }
+</style>

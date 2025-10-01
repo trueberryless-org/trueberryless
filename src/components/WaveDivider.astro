@@ -1,0 +1,145 @@
+---
+interface Props {
+  color: string;
+  speed?: number; // Duration in seconds, default 60
+  size?: number; // Circle size multiplier, default 1
+  direction?: "left" | "right"; // Animation direction, default 'left'
+}
+
+const { color, speed = 60, size = 1, direction = "left" } = Astro.props;
+
+const colorMap: any = {
+  rosewater: "var(--ctp-rosewater)",
+  flamingo: "var(--ctp-flamingo)",
+  pink: "var(--ctp-pink)",
+  mauve: "var(--ctp-mauve)",
+  red: "var(--ctp-red)",
+  maroon: "var(--ctp-maroon)",
+  peach: "var(--ctp-peach)",
+  yellow: "var(--ctp-yellow)",
+  green: "var(--ctp-green)",
+  teal: "var(--ctp-teal)",
+  sky: "var(--ctp-sky)",
+  sapphire: "var(--ctp-sapphire)",
+  blue: "var(--ctp-blue)",
+  lavender: "var(--ctp-lavender)",
+};
+
+const waveColor = colorMap[color];
+
+// Generate smooth wave pattern
+const generateWavePath = () => {
+  let path = "M 0,20";
+  const circleWidth = 10 * size;
+  const amplitude = 12 * size;
+  const circles = 120;
+
+  for (let i = 0; i < circles; i++) {
+    const x = i * circleWidth;
+    const direction = i % 2 === 0 ? -1 : 1;
+    const y = 20 + amplitude * direction;
+    path += ` Q ${x + circleWidth / 2},${y} ${x + circleWidth},20`;
+  }
+
+  return path;
+};
+
+const wavePath = generateWavePath();
+const uniqueId = `wave-${color}-${Math.random().toString(36).substr(2, 9)}`;
+const animationClass =
+  direction === "left" ? "wave-slide-left" : "wave-slide-right";
+---
+
+<div class="wave-container">
+  <div class="wave-wrapper" style={`--wave-speed: ${speed}s`}>
+    <svg
+      class="wave"
+      class:list={[animationClass]}
+      viewBox="0 0 600 40"
+      preserveAspectRatio="none"
+    >
+      <path
+        class="wave-path"
+        d={wavePath}
+        stroke={waveColor}
+        stroke-width="3"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .wave-container {
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wave-wrapper {
+    max-width: 600px;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+  }
+
+  .wave {
+    width: 300%;
+    height: 100%;
+    position: absolute;
+    left: -100%;
+  }
+
+  .wave-path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .wave-slide-left {
+    animation: wave-slide-left var(--wave-speed) linear infinite;
+  }
+
+  .wave-slide-right {
+    animation: wave-slide-right var(--wave-speed) linear infinite;
+  }
+
+  @keyframes wave-slide-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.33%);
+    }
+  }
+
+  @keyframes wave-slide-right {
+    0% {
+      transform: translateX(-33.33%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .wave-container {
+      padding: 2rem 1rem;
+    }
+  }
+</style>
