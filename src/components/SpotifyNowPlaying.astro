@@ -1,0 +1,42 @@
+---
+import SpotifyPlayer from "./SpotifyPlayer";
+---
+
+<section class="spotify">
+  <div class="content">
+    <div class="spotify-container">
+      <SpotifyPlayer client:only="react" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .spotify {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .spotify-container {
+    background-color: var(--ctp-surface0);
+    border: 2px solid var(--ctp-green);
+    border-radius: 12px;
+    padding: 2rem;
+    min-height: 200px;
+  }
+
+  @media (max-width: 600px) {
+    .spotify {
+      padding: 4rem 2rem;
+    }
+
+    .spotify-container {
+      padding: 1.5rem;
+    }
+  }
+</style>
