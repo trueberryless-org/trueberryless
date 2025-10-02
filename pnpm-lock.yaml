@@ -13,32 +13,32 @@ importers:
         version: 6.5.11(@types/node@24.6.0)(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1))(jiti@2.6.1)(rollup@4.52.3)(yaml@2.8.1)
       '@astrojs/react':
         specifier: ^4.4.0
-        version: 4.4.0(@types/node@24.6.0)(@types/react-dom@19.1.9(@types/react@19.1.16))(@types/react@19.1.16)(jiti@2.6.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(yaml@2.8.1)
+        version: 4.4.0(@types/node@24.6.0)(@types/react-dom@19.2.0(@types/react@19.2.0))(@types/react@19.2.0)(jiti@2.6.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(yaml@2.8.1)
       '@types/react':
-        specifier: ^19.1.16
-        version: 19.1.16
+        specifier: ^19.2.0
+        version: 19.2.0
       '@types/react-dom':
-        specifier: ^19.1.9
-        version: 19.1.9(@types/react@19.1.16)
+        specifier: ^19.2.0
+        version: 19.2.0(@types/react@19.2.0)
       astro:
         specifier: ^5.14.1
         version: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)
       astro-webrings:
-        specifier: ^0.1.1
-        version: 0.1.1(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1))
+        specifier: ^0.1.2
+        version: 0.1.2(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1))
       react:
-        specifier: ^19.1.1
-        version: 19.1.1
+        specifier: ^19.2.0
+        version: 19.2.0
       react-dom:
-        specifier: ^19.1.1
-        version: 19.1.1(react@19.1.1)
+        specifier: ^19.2.0
+        version: 19.2.0(react@19.2.0)
     devDependencies:
       '@trivago/prettier-plugin-sort-imports':
         specifier: 5.2.2
-        version: 5.2.2(@vue/compiler-sfc@3.5.22)(prettier@3.5.3)
+        version: 5.2.2(@vue/compiler-sfc@3.5.22)(prettier@3.6.2)
       prettier:
-        specifier: 3.5.3
-        version: 3.5.3
+        specifier: 3.6.2
+        version: 3.6.2
       prettier-plugin-astro:
         specifier: 0.14.1
         version: 0.14.1
@@ -919,13 +919,13 @@ packages:
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
-  '@types/react-dom@19.1.9':
-    resolution: {integrity: sha512-qXRuZaOsAdXKFyOhRBg6Lqqc0yay13vN7KrIg4L7N4aaHN68ma9OK3NE1BoDFgFOTfM7zg+3/8+2n8rLUH3OKQ==}
+  '@types/react-dom@19.2.0':
+    resolution: {integrity: sha512-brtBs0MnE9SMx7px208g39lRmC5uHZs96caOJfTjFcYSLHNamvaSMfJNagChVNkup2SdtOxKX1FDBkRSJe1ZAg==}
     peerDependencies:
-      '@types/react': ^19.0.0
+      '@types/react': ^19.2.0
 
-  '@types/react@19.1.16':
-    resolution: {integrity: sha512-WBM/nDbEZmDUORKnh5i1bTnAz6vTohUf9b8esSMu+b24+srbaxa04UbJgWx78CVfNXA20sNu0odEIluZDFdCog==}
+  '@types/react@19.2.0':
+    resolution: {integrity: sha512-1LOH8xovvsKsCBq1wnT4ntDUdCJKmnEakhsuoUSy6ExlHCkGP2hqnatagYTgFk6oeL0VU31u7SNjunPN+GchtA==}
 
   '@types/retry@0.12.2':
     resolution: {integrity: sha512-XISRgDJ2Tc5q4TRqvgJtzsRkFYNJzZrhTdtMoGVBttwzzQJkPnS3WWTFc7kuDRoPtPakl+T+OfdEUjYJj7Jbow==}
@@ -1098,8 +1098,8 @@ packages:
     resolution: {integrity: sha512-WHw67kLXYbZuHTmcdbIrVArCq5wxo6NEuj3hiYAWr8mwJeC+C2mMCIBIWCiDoCye/OF/xelc+teJ1ERoWmnEIA==}
     engines: {node: '>=18'}
 
-  astro-webrings@0.1.1:
-    resolution: {integrity: sha512-NAVmpGGlAGeZGJqu2iA975A1BZCVdNjTfIrVL9b0tK0nRFgyzdccDF+D3kwT03CK0QwrnUdHHUSSON94G8p8HQ==}
+  astro-webrings@0.1.2:
+    resolution: {integrity: sha512-WWaTnvLRJ9HGPqCnN2QHsFYTXq3tDIUF29v+ufAcix9YyPvWecsOfxSqru1rsC8HSlRN3Un3HNdab4Xt+BO0Ng==}
     peerDependencies:
       astro: ^5
 
@@ -2543,8 +2543,8 @@ packages:
     resolution: {integrity: sha512-RiBETaaP9veVstE4vUwSIcdATj6dKmXljouXc/DDNwBSPTp8FRkLGDSGFClKsAFeeg+13SB0Z1JZvbD76bigJw==}
     engines: {node: ^14.15.0 || >=16.0.0}
 
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2581,17 +2581,17 @@ packages:
   radix3@1.1.2:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}
 
-  react-dom@19.1.1:
-    resolution: {integrity: sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==}
+  react-dom@19.2.0:
+    resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
     peerDependencies:
-      react: ^19.1.1
+      react: ^19.2.0
 
   react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
-  react@19.1.1:
-    resolution: {integrity: sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==}
+  react@19.2.0:
+    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
     engines: {node: '>=0.10.0'}
 
   read-package-up@11.0.0:
@@ -2729,8 +2729,8 @@ packages:
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
-  scheduler@0.26.0:
-    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
+  scheduler@0.27.0:
+    resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -3359,13 +3359,13 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@4.4.0(@types/node@24.6.0)(@types/react-dom@19.1.9(@types/react@19.1.16))(@types/react@19.1.16)(jiti@2.6.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(yaml@2.8.1)':
+  '@astrojs/react@4.4.0(@types/node@24.6.0)(@types/react-dom@19.2.0(@types/react@19.2.0))(@types/react@19.2.0)(jiti@2.6.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(yaml@2.8.1)':
     dependencies:
-      '@types/react': 19.1.16
-      '@types/react-dom': 19.1.9(@types/react@19.1.16)
+      '@types/react': 19.2.0
+      '@types/react-dom': 19.2.0(@types/react@19.2.0)
       '@vitejs/plugin-react': 4.7.0(vite@6.3.6(@types/node@24.6.0)(jiti@2.6.1)(yaml@2.8.1))
-      react: 19.1.1
-      react-dom: 19.1.1(react@19.1.1)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
       ultrahtml: 1.6.0
       vite: 6.3.6(@types/node@24.6.0)(jiti@2.6.1)(yaml@2.8.1)
     transitivePeerDependencies:
@@ -4256,7 +4256,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.22)(prettier@3.5.3)':
+  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.22)(prettier@3.6.2)':
     dependencies:
       '@babel/generator': 7.28.3
       '@babel/parser': 7.28.4
@@ -4264,7 +4264,7 @@ snapshots:
       '@babel/types': 7.28.4
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
-      prettier: 3.5.3
+      prettier: 3.6.2
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.22
     transitivePeerDependencies:
@@ -4321,11 +4321,11 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
-  '@types/react-dom@19.1.9(@types/react@19.1.16)':
+  '@types/react-dom@19.2.0(@types/react@19.2.0)':
     dependencies:
-      '@types/react': 19.1.16
+      '@types/react': 19.2.0
 
-  '@types/react@19.1.16':
+  '@types/react@19.2.0':
     dependencies:
       csstype: 3.1.3
 
@@ -4565,7 +4565,7 @@ snapshots:
 
   ast-module-types@6.0.1: {}
 
-  astro-webrings@0.1.1(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)):
+  astro-webrings@0.1.2(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)):
     dependencies:
       astro: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)
 
@@ -6286,10 +6286,10 @@ snapshots:
   prettier-plugin-astro@0.14.1:
     dependencies:
       '@astrojs/compiler': 2.13.0
-      prettier: 3.5.3
+      prettier: 3.6.2
       sass-formatter: 0.7.9
 
-  prettier@3.5.3: {}
+  prettier@3.6.2: {}
 
   prismjs@1.30.0: {}
 
@@ -6317,14 +6317,14 @@ snapshots:
 
   radix3@1.1.2: {}
 
-  react-dom@19.1.1(react@19.1.1):
+  react-dom@19.2.0(react@19.2.0):
     dependencies:
-      react: 19.1.1
-      scheduler: 0.26.0
+      react: 19.2.0
+      scheduler: 0.27.0
 
   react-refresh@0.17.0: {}
 
-  react@19.1.1: {}
+  react@19.2.0: {}
 
   read-package-up@11.0.0:
     dependencies:
@@ -6539,7 +6539,7 @@ snapshots:
 
   sax@1.4.1: {}
 
-  scheduler@0.26.0: {}
+  scheduler@0.27.0: {}
 
   semver@6.3.1: {}
 
