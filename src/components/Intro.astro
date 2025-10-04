@@ -1,10 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import profilePicture from "../assets/profile-picture.png";
 ---
 
 <section class="intro">
   <div class="content">
-    <img src={profilePicture.src} alt="trueberryless" class="pfp" />
+    <Image src={profilePicture} alt="trueberryless" class="pfp" />
     <div class="text">
       <h1>Hello, I'm Felix Schneider</h1>
       <p class="subtitle">also known as trueberryless everywhere online</p>
