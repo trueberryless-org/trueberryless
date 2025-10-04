@@ -5,7 +5,7 @@ const webrings = [
     color: "var(--ctp-red)",
     links: {
       previous:
-        "https://astro-webrings.lou.gg/prev?site=trueberryless.org&ring=built-with-astro",
+        "https://astro-webrings.lou.gg/previous?site=trueberryless.org&ring=built-with-astro",
       next: "https://astro-webrings.lou.gg/next?site=trueberryless.org&ring=built-with-astro",
     },
   },
@@ -22,7 +22,7 @@ const webrings = [
     color: "var(--ctp-yellow)",
     links: {
       previous:
-        "https://astro-webrings.lou.gg/prev?site=trueberryless.org&ring=friends-of-houston",
+        "https://astro-webrings.lou.gg/previous?site=trueberryless.org&ring=friends-of-houston",
       next: "https://astro-webrings.lou.gg/next?site=trueberryless.org&ring=friends-of-houston",
     },
   },
@@ -36,38 +36,43 @@ const webrings = [
       {
         webrings.map((ring) => (
           <li class="ring-item" style={`--ring-color: ${ring.color}`}>
-            <div class="ring-wrapper">
+            <span class="ring-icon">◈</span>
+            <span class="ring-name">{ring.name}</span>
+            <div class="ring-buttons">
               <a
                 href={ring.links.previous}
-                class="ring-hover-area ring-hover-left"
+                class="ring-link"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={`Previous site in ${ring.name}`}
-              />
+              >
+                <svg class="ring-arrow" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M17 17L7 7M7 7H17M7 7V17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
               <a
                 href={ring.links.next}
-                class="ring-hover-area ring-hover-right"
+                class="ring-link"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={`Next site in ${ring.name}`}
-              />
-              <div class="ring-box">
+              >
                 <svg class="ring-arrow" viewBox="0 0 24 24" fill="none">
                   <path
-                    d="M19 12H5M5 12L12 19M5 12L12 5"
+                    d="M7 17L17 7M17 7H7M17 7V17"
                     stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
                 </svg>
-                <span class="ring-name">{ring.name}</span>
-                <svg class="ring-arrow" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12H19M19 12L12 5M19 12L12 19"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+              </a>
             </div>
           </li>
         ))
@@ -101,29 +106,8 @@ const webrings = [
     margin: 0;
   }
   .ring-item {
-    position: relative;
-  }
-  .ring-wrapper {
-    position: relative;
-  }
-  .ring-hover-area {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50%;
-    z-index: 2;
-    cursor: pointer;
-  }
-  .ring-hover-left {
-    left: 0;
-  }
-  .ring-hover-right {
-    right: 0;
-  }
-  .ring-box {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
     padding: 1.5rem 2rem;
     background-color: var(--ctp-surface0);
@@ -131,11 +115,38 @@ const webrings = [
     border-radius: 12px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
   }
-  .ring-box::before {
+  .ring-icon {
+    font-size: 1.5rem;
+    color: var(--ring-color);
+    transition: all 0.3s ease;
+  }
+  .ring-name {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ctp-text);
+  }
+  .ring-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .ring-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--ctp-surface0);
+    border: 2px solid var(--ring-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--ctp-text);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .ring-link::before {
     content: "";
     position: absolute;
     inset: -1px;
@@ -145,48 +156,24 @@ const webrings = [
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 0;
   }
-  .ring-hover-left:hover ~ .ring-box {
-    transform: translateX(-8px);
-  }
-  .ring-hover-right:hover ~ .ring-box {
-    transform: translateX(8px);
-  }
-  .ring-hover-left:hover ~ .ring-box::before {
+  .ring-link:hover::before {
     transform: scaleX(1);
-    transform-origin: left;
-  }
-  .ring-hover-right:hover ~ .ring-box::before {
-    transform: scaleX(1);
-    transform-origin: right;
-  }
-  .ring-wrapper:has(.ring-hover-left:hover) .ring-box::before {
-    transform-origin: left;
-  }
-  .ring-wrapper:has(.ring-hover-right:hover) .ring-box::before {
-    transform-origin: right;
-  }
-  .ring-name {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--ctp-text);
-    text-align: center;
-    flex: 1;
-    transition: color 0.3s ease;
-    z-index: 1;
   }
   .ring-arrow {
     width: 24px;
     height: 24px;
     color: var(--ring-color);
-    transition: color 0.3s ease;
-    flex-shrink: 0;
+    transition: all 0.3s ease;
     z-index: 1;
   }
-  .ring-hover-left:hover ~ .ring-box .ring-arrow,
-  .ring-hover-left:hover ~ .ring-box .ring-name,
-  .ring-hover-right:hover ~ .ring-box .ring-arrow,
-  .ring-hover-right:hover ~ .ring-box .ring-name {
+  .ring-link:hover {
+    transform: translateX(8px);
+  }
+  .ring-link:hover .ring-arrow {
     color: var(--ctp-base);
+  }
+  .ring-link:first-child:hover {
+    transform: translateX(-8px);
   }
   @media (max-width: 600px) {
     .webring {
@@ -196,11 +183,22 @@ const webrings = [
       font-size: 1.5rem;
       margin-bottom: 2rem;
     }
-    .ring-box {
+    .ring-item {
       padding: 1.25rem 1.5rem;
+      flex-wrap: wrap;
     }
     .ring-name {
       font-size: 1.1rem;
+    }
+    .ring-buttons {
+      flex: 1 1 100%;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .ring-link {
+      flex: 1;
+      max-width: 120px;
     }
   }
 </style>
