@@ -1,9 +1,10 @@
 ---
 interface Props {
   title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +14,19 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content={title} />
+    <meta name="twitter:title" content={title} />
+    <meta name="description" content={description} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:description" content={description} />
+    <meta property="og:image" content={new URL("og-image.png", Astro.site)} />
+    <meta name="twitter:image" content={new URL("og-image.png", Astro.site)} />
+
     <meta name="darkreader-lock" />
+    <meta name="fediverse:creator" content="@trueberryless@mastodon.social" />
+    <script src="https://rybbit-be.lou.gg/api/script.js" data-site-id="2" defer
+    ></script>
     <title>{title}</title>
   </head>
   <body>
