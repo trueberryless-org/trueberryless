@@ -1,0 +1,653 @@
+---
+export const prerender = false;
+
+interface LanyardData {
+  data: {
+    discord_user: {
+      username: string;
+      global_name: string;
+      avatar: string;
+      id: string;
+      discriminator: string;
+    };
+    discord_status: string;
+    activities: Activity[];
+    listening_to_spotify: boolean;
+    spotify?: SpotifyData;
+  };
+  success: boolean;
+}
+
+interface Activity {
+  id: string;
+  name: string;
+  type: number;
+  state?: string;
+  details?: string;
+  emoji?: { name: string };
+  timestamps?: { start: number; end: number };
+  assets?: {
+    large_image?: string;
+    large_text?: string;
+    small_image?: string;
+    small_text?: string;
+  };
+}
+
+interface SpotifyData {
+  track_id: string;
+  song: string;
+  artist: string;
+  album: string;
+  album_art_url: string;
+  timestamps: { start: number; end: number };
+}
+
+let lanyardData: LanyardData | null = null;
+
+try {
+  const response = await fetch(`${Astro.url.origin}/api/discord-activity.json`);
+  if (response.ok) {
+    lanyardData = await response.json();
+  }
+} catch (error) {
+  console.error("Error fetching Lanyard data:", error);
+}
+
+const statusColors = {
+  online: "var(--ctp-green)",
+  idle: "var(--ctp-yellow)",
+  dnd: "var(--ctp-red)",
+  offline: "var(--ctp-overlay0)",
+};
+
+const statusLabels = {
+  online: "Online",
+  idle: "Idle",
+  dnd: "Do Not Disturb",
+  offline: "Offline",
+};
+---
+
+<section class="lanyard">
+  <div class="content">
+    <div class="lanyard-container">
+      <div id="lanyard-content">
+        {
+          !lanyardData ? (
+            <div class="loading">
+              <div class="spinner" />
+              <p>Loading Discord activity...</p>
+            </div>
+          ) : (
+            <>
+              <div class="user-header">
+                <div class="avatar-container">
+                  <img
+                    src={`https://cdn.discordapp.com/avatars/${lanyardData.data.discord_user.id}/${lanyardData.data.discord_user.avatar}.png?size=128`}
+                    alt={
+                      lanyardData.data.discord_user.global_name ||
+                      lanyardData.data.discord_user.username
+                    }
+                    class="avatar"
+                  />
+                  <div
+                    class="status-indicator"
+                    style={`background-color: ${statusColors[lanyardData.data.discord_status as keyof typeof statusColors]}`}
+                  />
+                </div>
+                <div class="user-info">
+                  <h3 class="user-name">
+                    {lanyardData.data.discord_user.global_name ||
+                      lanyardData.data.discord_user.username}
+                  </h3>
+                  <p class="status-text">
+                    {
+                      statusLabels[
+                        lanyardData.data
+                          .discord_status as keyof typeof statusLabels
+                      ]
+                    }
+                  </p>
+                </div>
+              </div>
+
+              {lanyardData.data.activities.find((a) => a.type === 4) && (
+                <div class="custom-status">
+                  {lanyardData.data.activities.find((a) => a.type === 4)
+                    ?.emoji && (
+                    <span class="emoji">
+                      {
+                        lanyardData.data.activities.find((a) => a.type === 4)
+                          ?.emoji?.name
+                      }
+                    </span>
+                  )}
+                  <span class="status-message">
+                    {
+                      lanyardData.data.activities.find((a) => a.type === 4)
+                        ?.state
+                    }
+                  </span>
+                </div>
+              )}
+
+              {lanyardData.data.listening_to_spotify &&
+                lanyardData.data.spotify && (
+                  <div class="activity-card spotify-card">
+                    <div class="activity-header">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="var(--ctp-green)"
+                      >
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                      </svg>
+                      <span class="activity-label">Listening to Spotify</span>
+                    </div>
+                    <div class="spotify-content">
+                      <img
+                        src={lanyardData.data.spotify.album_art_url}
+                        alt={lanyardData.data.spotify.album}
+                        class="album-art"
+                      />
+                      <div class="track-info">
+                        <div class="track-title">
+                          {lanyardData.data.spotify.song}
+                        </div>
+                        <div class="track-artist">
+                          {lanyardData.data.spotify.artist}
+                        </div>
+                        <div class="track-album">
+                          {lanyardData.data.spotify.album}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        data-start={lanyardData.data.spotify.timestamps.start}
+                        data-end={lanyardData.data.spotify.timestamps.end}
+                      />
+                    </div>
+                    <a
+                      href={`https://open.spotify.com/track/${lanyardData.data.spotify.track_id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="spotify-link"
+                    >
+                      Open in Spotify
+                    </a>
+                  </div>
+                )}
+
+              {lanyardData.data.activities
+                .filter((a) => a.type === 0)
+                .map((activity) => {
+                  const largeImage = activity.assets?.large_image
+                    ? activity.assets.large_image.startsWith("mp:external")
+                      ? `https://media.discordapp.net/${activity.assets.large_image.slice(3)}`
+                      : `https://cdn.discordapp.com/app-assets/${activity.id.split(":")[0]}/${activity.assets.large_image}.png`
+                    : null;
+
+                  return (
+                    <div class="activity-card game-card">
+                      <div class="activity-header">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="var(--ctp-mauve)"
+                        >
+                          <path d="M17.622 3.57c-.026-.006 2.277.211 3.895 3.376 1.497 2.93.955 5.628.955 5.628-.63 3.659-4.29 6.409-4.29 6.409-3.036 2.498-6.288 2.255-7.735 2.255-1.446 0-4.698.243-7.735-2.255 0 0-3.66-2.75-4.29-6.41 0 0-.541-2.697.956-5.627C.995 3.78 3.298 3.563 3.272 3.57c0 0 1.116-.182 2.09 1.556 0 0 .769 1.394 1.166 2.053.397.658 1.553 2.284 1.553 2.284s2.955-1.335 3.87-1.335c.915 0 3.87 1.335 3.87 1.335s1.156-1.626 1.553-2.284c.397-.659 1.166-2.053 1.166-2.053.974-1.738 2.09-1.556 2.09-1.556z" />
+                        </svg>
+                        <span class="activity-label">
+                          Playing {activity.name}
+                        </span>
+                      </div>
+                      <div class="game-content">
+                        {largeImage && (
+                          <img
+                            src={largeImage}
+                            alt={activity.name}
+                            class="game-image"
+                          />
+                        )}
+                        <div class="game-info">
+                          {activity.details && (
+                            <div class="game-details">{activity.details}</div>
+                          )}
+                          {activity.state && (
+                            <div class="game-state">{activity.state}</div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+              {!lanyardData.data.listening_to_spotify &&
+                lanyardData.data.activities.filter((a) => a.type === 0)
+                  .length === 0 &&
+                !lanyardData.data.activities.find((a) => a.type === 4) && (
+                  <div class="no-activity">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
+                        stroke="var(--ctp-green)"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <p>No activity right now</p>
+                  </div>
+                )}
+            </>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function updateProgressBar() {
+    const progressBar = document.querySelector(".progress-fill") as HTMLElement;
+    if (!progressBar) return;
+
+    const start = parseInt(progressBar.dataset.start || "0");
+    const end = parseInt(progressBar.dataset.end || "0");
+
+    if (start && end) {
+      const progress = ((Date.now() - start) / (end - start)) * 100;
+      const progressClamped = Math.min(Math.max(progress, 0), 100);
+      progressBar.style.width = `${progressClamped}%`;
+    }
+  }
+
+  // Update progress bar every second
+  setInterval(updateProgressBar, 1000);
+  updateProgressBar();
+</script>
+
+<style>
+  .lanyard {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .lanyard-container {
+    background-color: var(--ctp-surface0);
+    border: 2px solid var(--ctp-green);
+    border-radius: 12px;
+    padding: 2rem;
+    min-height: 200px;
+  }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--ctp-subtext0);
+    padding: 2rem;
+  }
+
+  .loading p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--ctp-surface2);
+    border-top-color: var(--ctp-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .user-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--ctp-surface2);
+  }
+
+  .avatar-container {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid var(--ctp-green);
+    display: block;
+  }
+
+  .status-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid var(--ctp-surface0);
+  }
+
+  .user-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .user-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    margin: 0 0 0.25rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .status-text {
+    font-size: 0.9rem;
+    color: var(--ctp-subtext0);
+    margin: 0;
+  }
+
+  .custom-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--ctp-surface1);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--ctp-surface2);
+  }
+
+  .emoji {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .status-message {
+    color: var(--ctp-text);
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .activity-card {
+    background-color: var(--ctp-surface1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--ctp-surface2);
+  }
+
+  .activity-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .activity-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    font-size: 0.9rem;
+  }
+
+  .activity-header svg {
+    flex-shrink: 0;
+  }
+
+  .activity-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .spotify-content {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .album-art {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    border: 2px solid var(--ctp-green);
+    flex-shrink: 0;
+    display: block;
+    object-fit: cover;
+  }
+
+  .track-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .track-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .track-artist {
+    font-size: 0.95rem;
+    color: var(--ctp-subtext0);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .track-album {
+    font-size: 0.85rem;
+    color: var(--ctp-subtext1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: var(--ctp-surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background-color: var(--ctp-green);
+    transition: width 1s linear;
+    border-radius: 2px;
+  }
+
+  .spotify-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--ctp-green);
+    color: var(--ctp-base);
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .spotify-link:hover {
+    transform: scale(1.02);
+    background-color: var(--ctp-teal);
+  }
+
+  .game-content {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .game-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    border: 2px solid var(--ctp-mauve);
+    flex-shrink: 0;
+    display: block;
+    object-fit: cover;
+  }
+
+  .game-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+
+  .game-details {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .game-state {
+    font-size: 0.9rem;
+    color: var(--ctp-subtext0);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .no-activity {
+    text-align: center;
+    color: var(--ctp-subtext0);
+    padding: 2rem;
+  }
+
+  .no-activity svg {
+    margin: 0 auto 1rem;
+    display: block;
+  }
+
+  .no-activity p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .lanyard {
+      padding: 4rem 2rem;
+    }
+
+    .lanyard-container {
+      padding: 1.5rem;
+    }
+
+    .activity-card {
+      padding: 1rem;
+    }
+
+    .user-header {
+      gap: 0.75rem;
+    }
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+    }
+
+    .status-indicator {
+      width: 16px;
+      height: 16px;
+    }
+
+    .user-name {
+      font-size: 1.1rem;
+    }
+
+    .spotify-content {
+      gap: 0.75rem;
+    }
+
+    .album-art {
+      width: 64px;
+      height: 64px;
+    }
+
+    .track-title {
+      font-size: 1rem;
+    }
+
+    .track-artist {
+      font-size: 0.9rem;
+    }
+
+    .track-album {
+      font-size: 0.8rem;
+    }
+
+    .game-content {
+      gap: 0.75rem;
+    }
+
+    .game-image {
+      width: 64px;
+      height: 64px;
+    }
+
+    .game-details {
+      font-size: 0.95rem;
+    }
+
+    .game-state {
+      font-size: 0.85rem;
+    }
+
+    .spotify-link {
+      padding: 0.65rem 1.25rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>
