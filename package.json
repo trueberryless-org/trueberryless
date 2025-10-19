@@ -24,7 +24,8 @@
     "astro": "^5.14.1",
     "astro-webrings": "^0.1.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "svgo": "^4.0.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "5.2.2",

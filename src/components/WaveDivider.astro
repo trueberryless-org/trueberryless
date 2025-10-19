@@ -1,4 +1,6 @@
 ---
+import { optimize } from "svgo";
+
 interface Props {
   color: string;
   speed?: number; // Duration in seconds, default 60
@@ -27,25 +29,36 @@ const colorMap: any = {
 
 const waveColor = colorMap[color];
 
-// Generate smooth wave pattern
+// Generate smooth wave pattern - create exactly 3 repeating units for seamless loop
 const generateWavePath = () => {
   let path = "M 0,20";
   const circleWidth = 10 * size;
   const amplitude = 12 * size;
-  const circles = 120;
+  const circlesPerUnit = 40; // One complete wave unit
+  const totalCircles = circlesPerUnit * 3; // 3 identical units for seamless animation
 
-  for (let i = 0; i < circles; i++) {
+  for (let i = 0; i < totalCircles; i++) {
     const x = i * circleWidth;
     const direction = i % 2 === 0 ? -1 : 1;
     const y = 20 + amplitude * direction;
     path += ` Q ${x + circleWidth / 2},${y} ${x + circleWidth},20`;
   }
-
   return path;
 };
 
 const wavePath = generateWavePath();
-const uniqueId = `wave-${color}-${Math.random().toString(36).substr(2, 9)}`;
+
+// SVGO needs complete SVG string
+const svgString = `<svg viewBox="0 0 1200 40" xmlns="http://www.w3.org/2000/svg">
+  <path d="${wavePath}" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+const result = optimize(svgString);
+
+// Extract the optimized path from the SVG
+const pathMatch = result.data.match(/d="([^"]*)"/);
+const optimizedWavePath = pathMatch ? pathMatch[1] : wavePath;
+
 const animationClass =
   direction === "left" ? "wave-slide-left" : "wave-slide-right";
 ---
@@ -55,12 +68,12 @@ const animationClass =
     <svg
       class="wave"
       class:list={[animationClass]}
-      viewBox="0 0 600 40"
+      viewBox="0 0 1200 40"
       preserveAspectRatio="none"
     >
       <path
         class="wave-path"
-        d={wavePath}
+        d={optimizedWavePath}
         stroke={waveColor}
         stroke-width="3"
         fill="none"
@@ -104,7 +117,6 @@ const animationClass =
     width: 300%;
     height: 100%;
     position: absolute;
-    left: -100%;
   }
 
   .wave-path {
@@ -112,10 +124,12 @@ const animationClass =
   }
 
   .wave-slide-left {
+    left: -100%;
     animation: wave-slide-left var(--wave-speed) linear infinite;
   }
 
   .wave-slide-right {
+    left: -66.67%;
     animation: wave-slide-right var(--wave-speed) linear infinite;
   }
 
@@ -130,10 +144,10 @@ const animationClass =
 
   @keyframes wave-slide-right {
     0% {
-      transform: translateX(-33.33%);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(33.33%);
     }
   }
 
