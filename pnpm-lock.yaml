@@ -14,9 +14,6 @@ importers:
       astro:
         specifier: ^5.14.1
         version: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)
-      astro-webrings:
-        specifier: ^0.1.1
-        version: 0.1.1(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1))
     devDependencies:
       '@trivago/prettier-plugin-sort-imports':
         specifier: 5.2.2
@@ -995,11 +992,6 @@ packages:
   ast-module-types@6.0.1:
     resolution: {integrity: sha512-WHw67kLXYbZuHTmcdbIrVArCq5wxo6NEuj3hiYAWr8mwJeC+C2mMCIBIWCiDoCye/OF/xelc+teJ1ERoWmnEIA==}
     engines: {node: '>=18'}
-
-  astro-webrings@0.1.1:
-    resolution: {integrity: sha512-NAVmpGGlAGeZGJqu2iA975A1BZCVdNjTfIrVL9b0tK0nRFgyzdccDF+D3kwT03CK0QwrnUdHHUSSON94G8p8HQ==}
-    peerDependencies:
-      astro: ^5
 
   astro@5.14.1:
     resolution: {integrity: sha512-gPa8NY7/lP8j8g81iy8UwANF3+aukKRWS68IlthZQNgykpg80ne6lbHOp6FErYycxQ1TUhgEfkXVDQZAoJx8Bg==}
@@ -4261,10 +4253,6 @@ snapshots:
   array-iterate@2.0.1: {}
 
   ast-module-types@6.0.1: {}
-
-  astro-webrings@0.1.1(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)):
-    dependencies:
-      astro: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1)
 
   astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(typescript@5.9.2)(yaml@2.8.1):
     dependencies:
