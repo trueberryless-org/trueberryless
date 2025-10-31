@@ -19,6 +19,14 @@ const statusColors = {
   loading: "var(--ctp-surface1)",
 };
 
+const statusLabels = {
+  online: "Online",
+  idle: "Idle",
+  dnd: "Do Not Disturb",
+  offline: "Offline",
+  loading: "Loading status",
+};
+
 let discordStatus: keyof typeof statusColors = "loading";
 
 try {
@@ -35,7 +43,8 @@ try {
   discordStatus = "offline";
 }
 
-const statusColor = statusColors[discordStatus] || statusColors.offline;
+const statusColor = statusColors[discordStatus] || statusColors.loading;
+const statusLabel = statusLabels[discordStatus] || statusLabels.loading;
 ---
 
 <section class="intro">
@@ -45,6 +54,8 @@ const statusColor = statusColors[discordStatus] || statusColors.offline;
       <div
         class={`status-indicator ${discordStatus}`}
         style={`background-color: ${statusColor}`}
+        role="status"
+        aria-label={`Discord status: ${statusLabel}`}
       >
       </div>
     </div>
