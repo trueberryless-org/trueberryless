@@ -1,15 +1,13 @@
 ---
-export const prerender = false;
-
 import { Image } from "astro:assets";
 import profilePicture from "../assets/profile-picture.png";
+import { type LanyardData } from "../utils/lanyard";
 
-interface LanyardData {
-  data: {
-    discord_status: string;
-  };
-  success: boolean;
+interface Props {
+  lanyardData: LanyardData | null;
 }
+
+const { lanyardData } = Astro.props;
 
 const statusColors = {
   online: "var(--ctp-green)",
@@ -29,19 +27,7 @@ const statusLabels = {
 
 let discordStatus: keyof typeof statusColors = "loading";
 
-try {
-  const response = await fetch(`${Astro.url.origin}/api/discord-activity.json`);
-  if (response.ok) {
-    const lanyardData: LanyardData = await response.json();
-    discordStatus = lanyardData.data
-      .discord_status as keyof typeof statusColors;
-  } else {
-    discordStatus = "offline";
-  }
-} catch (error) {
-  console.error("Error fetching Discord status:", error);
-  discordStatus = "offline";
-}
+discordStatus = lanyardData?.data.discord_status || discordStatus;
 
 const statusColor = statusColors[discordStatus] || statusColors.loading;
 const statusLabel = statusLabels[discordStatus] || statusLabels.loading;

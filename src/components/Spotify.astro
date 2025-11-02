@@ -1,58 +1,11 @@
 ---
-export const prerender = false;
+import { type LanyardData } from "../utils/lanyard";
 
-interface LanyardData {
-  data: {
-    discord_user: {
-      username: string;
-      global_name: string;
-      avatar: string;
-      id: string;
-      discriminator: string;
-    };
-    discord_status: string;
-    activities: Activity[];
-    listening_to_spotify: boolean;
-    spotify?: SpotifyData;
-  };
-  success: boolean;
+interface Props {
+  lanyardData: LanyardData | null;
 }
 
-interface Activity {
-  id: string;
-  name: string;
-  type: number;
-  state?: string;
-  details?: string;
-  emoji?: { name: string };
-  timestamps?: { start: number; end: number };
-  assets?: {
-    large_image?: string;
-    large_text?: string;
-    small_image?: string;
-    small_text?: string;
-  };
-}
-
-interface SpotifyData {
-  track_id: string;
-  song: string;
-  artist: string;
-  album: string;
-  album_art_url: string;
-  timestamps: { start: number; end: number };
-}
-
-let lanyardData: LanyardData | null = null;
-
-try {
-  const response = await fetch(`${Astro.url.origin}/api/discord-activity.json`);
-  if (response.ok) {
-    lanyardData = await response.json();
-  }
-} catch (error) {
-  console.error("Error fetching Lanyard data:", error);
-}
+const { lanyardData } = Astro.props;
 
 const isListening = lanyardData?.data?.listening_to_spotify ?? false;
 const spotify = lanyardData?.data?.spotify;
