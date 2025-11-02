@@ -1,0 +1,280 @@
+---
+import { type LanyardData } from "../utils/lanyard";
+
+interface Props {
+  lanyardData: LanyardData | null;
+}
+
+const { lanyardData } = Astro.props;
+
+const isListening = lanyardData?.data?.listening_to_spotify ?? false;
+const spotify = lanyardData?.data?.spotify;
+
+let progress = 0;
+if (spotify?.timestamps) {
+  const now = Date.now();
+  const elapsed = now - spotify.timestamps.start;
+  const duration = spotify.timestamps.end - spotify.timestamps.start;
+  progress = Math.min(100, Math.max(0, (elapsed / duration) * 100));
+}
+---
+
+<section class="spotify">
+  <div class="content">
+    <div class="spotify-container">
+      {
+        !isListening || !spotify ? (
+          <div class="not-playing">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="music-icon"
+            >
+              <path
+                d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p>Not playing anything right now</p>
+          </div>
+        ) : (
+          <div class="player">
+            <div class="track-info">
+              <img
+                src={spotify.album_art_url}
+                alt={spotify.album}
+                class="album-art"
+              />
+              <div class="track-details">
+                <div class="track-title">{spotify.song}</div>
+                <div class="track-artist">{spotify.artist}</div>
+                <div class="track-album">{spotify.album}</div>
+              </div>
+            </div>
+
+            <div class="soundwave-container">
+              <svg
+                width="302"
+                height="28"
+                viewBox="0 0 344 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="soundwave"
+              >
+                {Array.from({ length: 50 }, (_, i) => {
+                  const x = i + 1 + (i + 1) * 6;
+                  const isFull = Math.floor(progress / 2) >= i + 1;
+                  return (
+                    <line
+                      x1={x}
+                      y1="3"
+                      x2={x}
+                      y2="25"
+                      stroke-width="2"
+                      stroke={
+                        isFull ? "var(--ctp-green)" : "var(--ctp-overlay0)"
+                      }
+                      class="soundwave-line"
+                    />
+                  );
+                })}
+              </svg>
+            </div>
+
+            <a
+              href={`https://open.spotify.com/track/${spotify.track_id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="spotify-button"
+            >
+              Open in Spotify
+            </a>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .spotify {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .spotify-container {
+    background-color: var(--ctp-surface0);
+    border: 2px solid var(--ctp-green);
+    border-radius: 12px;
+    padding: 2rem;
+    min-height: 200px;
+  }
+
+  .not-playing {
+    text-align: center;
+    color: var(--ctp-subtext0);
+  }
+
+  .music-icon {
+    margin: 0 auto 1rem;
+    color: var(--ctp-green);
+  }
+
+  .not-playing p {
+    margin: 0;
+  }
+
+  .player {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .track-info {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .album-art {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    .track-info {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .album-art {
+      width: 120px;
+      height: 120px;
+    }
+
+    .track-details {
+      width: 100%;
+    }
+  }
+
+  .track-details {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .track-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .track-artist {
+    font-size: 1rem;
+    color: var(--ctp-subtext0);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .track-album {
+    font-size: 0.9rem;
+    color: var(--ctp-subtext1);
+    margin-top: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .soundwave-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .soundwave {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .soundwave-line {
+    transform-origin: center;
+    transition: stroke 1s ease-in-out;
+    animation: sound 700ms linear infinite alternate;
+  }
+
+  .soundwave-line:nth-child(2n) {
+    animation-duration: 800ms;
+  }
+
+  .soundwave-line:nth-child(3n) {
+    animation-duration: 900ms;
+  }
+
+  .soundwave-line:nth-child(5n) {
+    animation-duration: 1000ms;
+  }
+
+  .soundwave-line:nth-child(7n) {
+    animation-duration: 1100ms;
+  }
+
+  @keyframes sound {
+    0% {
+      transform: scaleY(0.4);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  .spotify-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--ctp-green);
+    color: var(--ctp-base);
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 500;
+    align-self: end;
+    transition: all 0.3s ease;
+  }
+
+  .spotify-button:hover {
+    transform: scale(0.95);
+  }
+
+  @media (max-width: 600px) {
+    .spotify {
+      padding: 4rem 2rem;
+    }
+
+    .spotify-container {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .spotify-button {
+      align-self: center;
+    }
+  }
+</style>

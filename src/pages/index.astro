@@ -1,22 +1,27 @@
 ---
+export const prerender = false;
+
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Intro.astro";
 import Projects from "../components/Projects.astro";
 import WaveDivider from "../components/WaveDivider.astro";
 import Webring from "../components/Webring.astro";
-import SpotifyNowPlaying from "../components/SpotifyNowPlaying.astro";
+import Spotify from "../components/Spotify.astro";
 import Socials from "../components/Socials.astro";
+
+import { fetchLanyardData } from "../utils/lanyard";
+const lanyardData = await fetchLanyardData(Astro.url.origin);
 ---
 
 <Layout title="Felix Schneider" description="My corner of the internet">
   <main>
-    <Intro />
+    <Intro {lanyardData} />
     <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
 
     <Projects />
     <WaveDivider color="flamingo" speed={100} size={0.8} direction="right" />
 
-    <SpotifyNowPlaying />
+    <Spotify {lanyardData} />
     <WaveDivider color="mauve" speed={100} size={0.8} direction="left" />
 
     <Webring />
