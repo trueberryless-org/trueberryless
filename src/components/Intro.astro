@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import profilePicture from "../assets/profile-picture.png";
+import statusOnline from "../assets/status-online.svg";
+import statusIdle from "../assets/status-idle.svg";
+import statusDnd from "../assets/status-dnd.svg";
+import statusOffline from "../assets/status-offline.svg";
 import { type LanyardData } from "../utils/lanyard";
 
 interface Props {
@@ -8,14 +12,6 @@ interface Props {
 }
 
 const { lanyardData } = Astro.props;
-
-const statusColors = {
-  online: "var(--ctp-green)",
-  idle: "var(--ctp-yellow)",
-  dnd: "var(--ctp-red)",
-  offline: "var(--ctp-overlay0)",
-  loading: "var(--ctp-surface1)",
-};
 
 const statusLabels = {
   online: "Online",
@@ -25,12 +21,20 @@ const statusLabels = {
   loading: "Loading status",
 };
 
-let discordStatus: keyof typeof statusColors = "loading";
+const statusIcons = {
+  online: statusOnline,
+  idle: statusIdle,
+  dnd: statusDnd,
+  offline: statusOffline,
+  loading: statusOffline,
+};
+
+let discordStatus: keyof typeof statusLabels = "loading";
 
 discordStatus = lanyardData?.data.discord_status || discordStatus;
 
-const statusColor = statusColors[discordStatus] || statusColors.loading;
 const statusLabel = statusLabels[discordStatus] || statusLabels.loading;
+const statusIcon = statusIcons[discordStatus] || statusIcons.loading;
 ---
 
 <section class="intro">
@@ -39,10 +43,10 @@ const statusLabel = statusLabels[discordStatus] || statusLabels.loading;
       <Image src={profilePicture} alt="trueberryless" class="pfp" />
       <div
         class={`status-indicator ${discordStatus}`}
-        style={`background-color: ${statusColor}`}
         role="status"
         aria-label={`Discord status: ${statusLabel}`}
       >
+        <Image src={statusIcon} alt="" class="status-icon" />
       </div>
     </div>
     <div class="text">
@@ -91,74 +95,35 @@ const statusLabel = statusLabels[discordStatus] || statusLabels.loading;
     position: absolute;
     bottom: 4px;
     right: 4px;
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    border: 5.5px solid var(--ctp-base);
-    transition: background-color 0.3s ease;
+    background-color: var(--ctp-base);
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    transition: transform 0.2s ease;
   }
 
-  /* === Specific Status Styles === */
-
-  /* Online: solid circle (default look) */
-
-  /* Idle: crescent moon shape (accurate Discord style) */
-  .status-indicator.idle {
-    background-color: var(--ctp-yellow);
-  }
-  .status-indicator.idle::after {
-    content: "";
-    position: absolute;
-    top: -15%;
-    right: 35%;
-    width: 80%;
-    height: 80%;
-    background-color: var(--ctp-base);
-    border-radius: 50%;
-  }
-
-  /* DND: white horizontal bar */
-  .status-indicator.dnd::after {
-    content: "";
-    position: absolute;
-    width: 60%;
-    height: 4px;
-    background-color: var(--ctp-base);
-    border-radius: 2px;
-  }
-
-  /* Offline: hollow circle with background fill */
-  .status-indicator.offline {
-    background-color: var(--ctp-overlay0);
-  }
-  .status-indicator.offline::after {
-    content: "";
-    position: absolute;
-    width: 55%;
-    height: 55%;
-    background-color: var(--ctp-base); /* matches page bg, hides pfp */
-    border-radius: 50%;
-  }
-
-  /* Loading: pulsing grey */
   .status-indicator.loading {
     animation: pulse 1.2s infinite ease-in-out;
   }
 
   @keyframes pulse {
-    0% {
-      background-color: var(--ctp-surface1);
+    0%,
+    100% {
+      opacity: 0.5;
     }
     50% {
-      background-color: var(--ctp-overlay1);
+      opacity: 1;
     }
-    100% {
-      background-color: var(--ctp-surface1);
-    }
+  }
+
+  .status-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .text {
@@ -194,8 +159,8 @@ const statusLabel = statusLabels[discordStatus] || statusLabels.loading;
     }
 
     .status-indicator {
-      width: 20px;
-      height: 20px;
+      width: 28px;
+      height: 28px;
       bottom: 2px;
       right: 2px;
     }
