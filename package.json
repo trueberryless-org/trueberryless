@@ -17,9 +17,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.0",
-    "@astrojs/node": "^9.5.0",
-    "astro": "^5.15.3",
+    "@astrojs/netlify": "^6.6.3",
+    "@astrojs/node": "^9.5.1",
+    "astro": "^5.16.5",
     "sharp": "^0.34.4"
   },
   "devDependencies": {

@@ -6,4 +6,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://trueberryless.org",
   adapter: netlify(),
+  experimental: {
+    svgo: true,
+  },
 });
