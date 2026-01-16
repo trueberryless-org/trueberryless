@@ -1,105 +1,120 @@
 ---
-import { type LanyardData } from "../utils/lanyard";
 
-interface Props {
-  lanyardData: LanyardData | null;
-}
-
-const { lanyardData } = Astro.props;
-
-const isListening = lanyardData?.data?.listening_to_spotify ?? false;
-const spotify = lanyardData?.data?.spotify;
-
-let progress = 0;
-if (spotify?.timestamps) {
-  const now = Date.now();
-  const elapsed = now - spotify.timestamps.start;
-  const duration = spotify.timestamps.end - spotify.timestamps.start;
-  progress = Math.min(100, Math.max(0, (elapsed / duration) * 100));
-}
 ---
 
 <section class="spotify">
   <div class="content">
     <div class="spotify-container">
-      {
-        !isListening || !spotify ? (
-          <div class="not-playing">
-            <svg
-              width="64"
-              height="64"
-              viewBox="0 0 24 24"
-              fill="none"
-              class="music-icon"
-            >
-              <path
-                d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <p>Not playing anything right now</p>
-          </div>
-        ) : (
-          <div class="player">
-            <div class="track-info">
-              <img
-                src={spotify.album_art_url}
-                alt={spotify.album}
-                class="album-art"
-              />
-              <div class="track-details">
-                <div class="track-title">{spotify.song}</div>
-                <div class="track-artist">{spotify.artist}</div>
-                <div class="track-album">{spotify.album}</div>
-              </div>
-            </div>
+      <div id="spotify-not-playing" class="not-playing">
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 24 24"
+          fill="none"
+          class="music-icon"
+        >
+          <path
+            d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        <p>Not playing anything right now</p>
+      </div>
 
-            <div class="soundwave-container">
-              <svg
-                width="302"
-                height="28"
-                viewBox="0 0 344 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="soundwave"
-              >
-                {Array.from({ length: 50 }, (_, i) => {
-                  const x = i + 1 + (i + 1) * 6;
-                  const isFull = Math.floor(progress / 2) >= i + 1;
-                  return (
-                    <line
-                      x1={x}
-                      y1="3"
-                      x2={x}
-                      y2="25"
-                      stroke-width="2"
-                      stroke={
-                        isFull ? "var(--ctp-green)" : "var(--ctp-overlay0)"
-                      }
-                      class="soundwave-line"
-                    />
-                  );
-                })}
-              </svg>
-            </div>
-
-            <a
-              href={`https://open.spotify.com/track/${spotify.track_id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="spotify-button"
-            >
-              Open in Spotify
-            </a>
+      <div id="spotify-player" class="player hidden">
+        <div class="track-info">
+          <img id="spotify-art" src="" alt="Album art" class="album-art" />
+          <div class="track-details">
+            <div id="spotify-title" class="track-title"></div>
+            <div id="spotify-artist" class="track-artist"></div>
+            <div id="spotify-album" class="track-album"></div>
           </div>
-        )
-      }
+        </div>
+
+        <div class="soundwave-container">
+          <svg
+            width="302"
+            height="28"
+            viewBox="0 0 344 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="soundwave"
+          >
+            {
+              Array.from({ length: 50 }, (_, i) => {
+                const x = i + 1 + (i + 1) * 6;
+                return (
+                  <line
+                    x1={x}
+                    y1="3"
+                    x2={x}
+                    y2="25"
+                    stroke-width="2"
+                    stroke="var(--ctp-green)"
+                    class="soundwave-line"
+                  />
+                );
+              })
+            }
+          </svg>
+        </div>
+
+        <a
+          id="spotify-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="spotify-button"
+        >
+          Open in Spotify
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { $lanyard } from "../store";
+  import type { LanyardData } from "../utils/lanyard";
+
+  const notPlaying = document.getElementById("spotify-not-playing");
+  const player = document.getElementById("spotify-player");
+
+  const els = {
+    art: document.getElementById("spotify-art") as HTMLImageElement,
+    title: document.getElementById("spotify-title"),
+    artist: document.getElementById("spotify-artist"),
+    album: document.getElementById("spotify-album"),
+    link: document.getElementById("spotify-link") as HTMLAnchorElement,
+  };
+
+  $lanyard.subscribe((lanyard: LanyardData | null) => {
+    if (!notPlaying || !player) return;
+
+    const spotify = lanyard?.data?.spotify;
+    const isListening = lanyard?.data?.listening_to_spotify && spotify;
+
+    if (isListening) {
+      notPlaying.classList.add("hidden");
+      player.classList.remove("hidden");
+
+      if (els.art) {
+        els.art.src = spotify.album_art_url;
+        els.art.alt = `Album art for ${spotify.song} — ${spotify.artist}`;
+      }
+      if (els.title) els.title.textContent = spotify.song;
+      if (els.artist) els.artist.textContent = spotify.artist;
+      if (els.album) els.album.textContent = spotify.album;
+      if (els.link)
+        els.link.href = `https://open.spotify.com/track/${spotify.track_id}`;
+    } else {
+      notPlaying.classList.remove("hidden");
+      player.classList.add("hidden");
+    }
+  });
+</script>
 
 <style>
   .spotify {
@@ -118,12 +133,47 @@ if (spotify?.timestamps) {
     border: 2px solid var(--ctp-green);
     border-radius: 12px;
     padding: 2rem;
-    min-height: 200px;
+    /* Fixed height to accommodate the full player UI and prevent CLS */
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hidden {
+    display: none !important;
   }
 
   .not-playing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     color: var(--ctp-subtext0);
+    height: 100%;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .player {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .music-icon {
@@ -133,12 +183,6 @@ if (spotify?.timestamps) {
 
   .not-playing p {
     margin: 0;
-  }
-
-  .player {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
   }
 
   .track-info {
@@ -152,6 +196,7 @@ if (spotify?.timestamps) {
     height: 80px;
     border-radius: 8px;
     flex-shrink: 0;
+    object-fit: cover;
   }
 
   @media (max-width: 480px) {
@@ -222,15 +267,12 @@ if (spotify?.timestamps) {
   .soundwave-line:nth-child(2n) {
     animation-duration: 800ms;
   }
-
   .soundwave-line:nth-child(3n) {
     animation-duration: 900ms;
   }
-
   .soundwave-line:nth-child(5n) {
     animation-duration: 1000ms;
   }
-
   .soundwave-line:nth-child(7n) {
     animation-duration: 1100ms;
   }
@@ -266,7 +308,6 @@ if (spotify?.timestamps) {
     .spotify {
       padding: 4rem 2rem;
     }
-
     .spotify-container {
       padding: 1.5rem;
     }
