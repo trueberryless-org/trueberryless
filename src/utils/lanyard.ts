@@ -1,8 +1,9 @@
-export async function fetchLanyardData(
-  origin: string
-): Promise<LanyardData | null> {
+export async function getLanyardData(): Promise<LanyardData | null> {
   try {
-    const response = await fetch(`${origin}/api/discord-activity.json`);
+    const response = await fetch(
+      "https://api.lanyard.rest/v1/users/819936632874336267",
+      { signal: AbortSignal.timeout(5000) }
+    );
     if (response.ok) {
       return await response.json();
     }
