@@ -1,40 +1,18 @@
 ---
 import { Image } from "astro:assets";
 import profilePicture from "../assets/profile-picture.png";
+
 import statusOnline from "../assets/status-online.svg";
 import statusIdle from "../assets/status-idle.svg";
 import statusDnd from "../assets/status-dnd.svg";
 import statusOffline from "../assets/status-offline.svg";
-import { type LanyardData } from "../utils/lanyard";
 
-interface Props {
-  lanyardData: LanyardData | null;
-}
-
-const { lanyardData } = Astro.props;
-
-const statusLabels = {
-  online: "Online",
-  idle: "Idle",
-  dnd: "Do Not Disturb",
-  offline: "Offline",
-  loading: "Loading status",
+const statusMap = {
+  online: statusOnline.src,
+  idle: statusIdle.src,
+  dnd: statusDnd.src,
+  offline: statusOffline.src,
 };
-
-const statusIcons = {
-  online: statusOnline,
-  idle: statusIdle,
-  dnd: statusDnd,
-  offline: statusOffline,
-  loading: statusOffline,
-};
-
-let discordStatus: keyof typeof statusLabels = "loading";
-
-discordStatus = lanyardData?.data.discord_status || discordStatus;
-
-const statusLabel = statusLabels[discordStatus] || statusLabels.loading;
-const statusIcon = statusIcons[discordStatus] || statusIcons.loading;
 ---
 
 <section class="intro">
@@ -42,19 +20,59 @@ const statusIcon = statusIcons[discordStatus] || statusIcons.loading;
     <div class="pfp-container">
       <Image src={profilePicture} alt="trueberryless" class="pfp" />
       <div
-        class={`status-indicator ${discordStatus}`}
+        id="status-container"
+        class="status-indicator loading"
         role="status"
-        aria-label={`Discord status: ${statusLabel}`}
+        aria-label="Discord status: Loading"
+        data-status-urls={JSON.stringify(statusMap)}
       >
-        <Image src={statusIcon} alt="" class="status-icon" />
+        <Image
+          id="status-image"
+          src={statusOffline}
+          alt=""
+          class="status-icon"
+        />
       </div>
     </div>
+
     <div class="text">
       <h1>Hello, I'm Felix Schneider</h1>
       <p class="subtitle">also known as trueberryless everywhere online</p>
     </div>
   </div>
 </section>
+
+<script>
+  import { $lanyard } from "../store";
+  import type { LanyardData } from "../utils/lanyard";
+
+  const labels = {
+    online: "Online",
+    idle: "Idle",
+    dnd: "Do Not Disturb",
+    offline: "Offline",
+  };
+
+  const container = document.getElementById("status-container");
+  const img = document.getElementById("status-image") as HTMLImageElement;
+
+  if (container && img) {
+    const statusUrls = JSON.parse(container.dataset.statusUrls || "{}");
+
+    $lanyard.subscribe((lanyard: LanyardData | null) => {
+      if (!lanyard) return;
+
+      const status = lanyard.data.discord_status;
+
+      if (statusUrls[status]) {
+        img.src = statusUrls[status];
+      }
+
+      container.className = `status-indicator ${status}`;
+      container.setAttribute("aria-label", `Discord status: ${labels[status]}`);
+    });
+  }
+</script>
 
 <style>
   .intro {
@@ -104,16 +122,17 @@ const statusIcon = statusIcons[discordStatus] || statusIcons.loading;
     align-items: center;
     justify-content: center;
     transition: transform 0.2s ease;
+    z-index: 10;
   }
 
-  .status-indicator.loading {
+  .status-indicator.loading .status-icon {
     animation: pulse 1.2s infinite ease-in-out;
   }
 
   @keyframes pulse {
     0%,
     100% {
-      opacity: 0.5;
+      opacity: 0.4;
     }
     50% {
       opacity: 1;
@@ -147,24 +166,20 @@ const statusIcon = statusIcons[discordStatus] || statusIcons.loading;
     .intro {
       padding: 4rem 2rem 3rem;
     }
-
     .content {
       flex-direction: column;
       text-align: center;
     }
-
     .pfp {
       width: 100px;
       height: 100px;
     }
-
     .status-indicator {
       width: 28px;
       height: 28px;
       bottom: 2px;
       right: 2px;
     }
-
     h1 {
       font-size: 1.5rem;
     }

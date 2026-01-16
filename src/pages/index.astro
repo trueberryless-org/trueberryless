@@ -1,6 +1,4 @@
 ---
-export const prerender = false;
-
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Intro.astro";
 import Projects from "../components/Projects.astro";
@@ -8,20 +6,17 @@ import WaveDivider from "../components/WaveDivider.astro";
 import Webring from "../components/Webring.astro";
 import Spotify from "../components/Spotify.astro";
 import Socials from "../components/Socials.astro";
-
-import { getLanyardData } from "../utils/lanyard";
-const lanyardData = await getLanyardData();
 ---
 
 <Layout title="Felix Schneider" description="My corner of the internet">
   <main>
-    <Intro {lanyardData} />
+    <Intro />
     <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
 
     <Projects />
     <WaveDivider color="flamingo" speed={100} size={0.8} direction="right" />
 
-    <Spotify {lanyardData} />
+    <Spotify />
     <WaveDivider color="mauve" speed={100} size={0.8} direction="left" />
 
     <Webring />
@@ -30,3 +25,8 @@ const lanyardData = await getLanyardData();
     <Socials />
   </main>
 </Layout>
+
+<script>
+  import { refreshLanyard } from "../store";
+  refreshLanyard();
+</script>
