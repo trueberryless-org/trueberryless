@@ -9,8 +9,8 @@ import Webring from "../components/Webring.astro";
 import Spotify from "../components/Spotify.astro";
 import Socials from "../components/Socials.astro";
 
-import { fetchLanyardData } from "../utils/lanyard";
-const lanyardData = await fetchLanyardData(Astro.url.origin);
+import { getLanyardData } from "../utils/lanyard";
+const lanyardData = await getLanyardData();
 ---
 
 <Layout title="Felix Schneider" description="My corner of the internet">
