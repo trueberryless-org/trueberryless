@@ -52,7 +52,7 @@
                     x2={x}
                     y2="25"
                     stroke-width="2"
-                    stroke="var(--ctp-green)"
+                    stroke="var(--ctp-overlay0)"
                     class="soundwave-line"
                   />
                 );
@@ -81,6 +81,7 @@
 
   const notPlaying = document.getElementById("spotify-not-playing");
   const player = document.getElementById("spotify-player");
+  const lines = document.querySelectorAll(".soundwave-line");
 
   const els = {
     art: document.getElementById("spotify-art") as HTMLImageElement,
@@ -90,6 +91,30 @@
     link: document.getElementById("spotify-link") as HTMLAnchorElement,
   };
 
+  let currentSpotify: any = null;
+  let progressInterval: number | null = null;
+
+  function updateProgress() {
+    if (!currentSpotify || !currentSpotify.timestamps) return;
+
+    const { start, end } = currentSpotify.timestamps;
+    const now = Date.now();
+
+    const total = end - start;
+    const progress = now - start;
+    const percentage = Math.min(1, Math.max(0, progress / total));
+
+    const activeBars = Math.floor(percentage * 50);
+
+    lines.forEach((line, index) => {
+      if (index < activeBars) {
+        line.setAttribute("stroke", "var(--ctp-green)");
+      } else {
+        line.setAttribute("stroke", "var(--ctp-overlay0)");
+      }
+    });
+  }
+
   $lanyard.subscribe((lanyard: LanyardData | null) => {
     if (!notPlaying || !player) return;
 
@@ -97,19 +122,27 @@
     const isListening = lanyard?.data?.listening_to_spotify && spotify;
 
     if (isListening) {
+      currentSpotify = spotify;
       notPlaying.classList.add("hidden");
       player.classList.remove("hidden");
 
-      if (els.art) {
-        els.art.src = spotify.album_art_url;
-        els.art.alt = `Album art for ${spotify.song} — ${spotify.artist}`;
-      }
+      if (els.art) els.art.src = spotify.album_art_url;
       if (els.title) els.title.textContent = spotify.song;
       if (els.artist) els.artist.textContent = spotify.artist;
       if (els.album) els.album.textContent = spotify.album;
       if (els.link)
         els.link.href = `https://open.spotify.com/track/${spotify.track_id}`;
+
+      updateProgress();
+      if (!progressInterval) {
+        progressInterval = window.setInterval(updateProgress, 1000);
+      }
     } else {
+      currentSpotify = null;
+      if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
+      }
       notPlaying.classList.remove("hidden");
       player.classList.add("hidden");
     }
@@ -133,7 +166,6 @@
     border: 2px solid var(--ctp-green);
     border-radius: 12px;
     padding: 2rem;
-    /* Fixed height to accommodate the full player UI and prevent CLS */
     min-height: 340px;
     display: flex;
     flex-direction: column;
@@ -260,7 +292,7 @@
 
   .soundwave-line {
     transform-origin: center;
-    transition: stroke 1s ease-in-out;
+    transition: stroke 0.3s ease;
     animation: sound 700ms linear infinite alternate;
   }
 
