@@ -25,7 +25,7 @@
 
       <div id="spotify-player" class="player hidden">
         <div class="track-info">
-          <img id="spotify-art" src="" alt="" class="album-art" />
+          <img id="spotify-art" src="" alt="Album art" class="album-art" />
           <div class="track-details">
             <div id="spotify-title" class="track-title"></div>
             <div id="spotify-artist" class="track-artist"></div>
@@ -100,7 +100,10 @@
       notPlaying.classList.add("hidden");
       player.classList.remove("hidden");
 
-      if (els.art) els.art.src = spotify.album_art_url;
+      if (els.art) {
+        els.art.src = spotify.album_art_url;
+        els.art.alt = `Album art for ${spotify.song} — ${spotify.artist}`;
+      }
       if (els.title) els.title.textContent = spotify.song;
       if (els.artist) els.artist.textContent = spotify.artist;
       if (els.album) els.album.textContent = spotify.album;

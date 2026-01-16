@@ -60,9 +60,7 @@ const statusMap = {
     const statusUrls = JSON.parse(container.dataset.statusUrls || "{}");
 
     $lanyard.subscribe((lanyard: LanyardData | null) => {
-      if (!lanyard) return;
-
-      const status = lanyard.data.discord_status;
+      const status = lanyard?.data?.discord_status ?? "offline";
 
       if (statusUrls[status]) {
         img.src = statusUrls[status];
