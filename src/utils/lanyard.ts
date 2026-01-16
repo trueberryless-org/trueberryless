@@ -1,7 +1,8 @@
 export async function getLanyardData(): Promise<LanyardData | null> {
   try {
     const response = await fetch(
-      "https://api.lanyard.rest/v1/users/819936632874336267"
+      "https://api.lanyard.rest/v1/users/819936632874336267",
+      { signal: AbortSignal.timeout(5000) }
     );
     if (response.ok) {
       return await response.json();
