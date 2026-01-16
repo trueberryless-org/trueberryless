@@ -126,7 +126,10 @@
       notPlaying.classList.add("hidden");
       player.classList.remove("hidden");
 
-      if (els.art) els.art.src = spotify.album_art_url;
+      if (els.art) {
+        els.art.src = spotify.album_art_url;
+        els.art.alt = `Album art for ${spotify.song} — ${spotify.artist}`;
+      }
       if (els.title) els.title.textContent = spotify.song;
       if (els.artist) els.artist.textContent = spotify.artist;
       if (els.album) els.album.textContent = spotify.album;
