@@ -7,18 +7,43 @@ import statusIdle from "../assets/status-idle.svg";
 import statusDnd from "../assets/status-dnd.svg";
 import statusOffline from "../assets/status-offline.svg";
 
+import layer0 from "../assets/parallax/layer_0.webp";
+import layer1 from "../assets/parallax/layer_1.webp";
+import layer2 from "../assets/parallax/layer_2.webp";
+import layer3 from "../assets/parallax/layer_3.webp";
+import layer4 from "../assets/parallax/layer_4.webp";
+import layer5 from "../assets/parallax/layer_5.webp";
+
 const statusMap = {
   online: statusOnline.src,
   idle: statusIdle.src,
   dnd: statusDnd.src,
   offline: statusOffline.src,
 };
+
+const layers = [layer0, layer1, layer2, layer3, layer4, layer5];
 ---
 
-<section class="intro">
+<section class="intro parallax-container">
+  <div class="parallax-viewport">
+    <div class="sky-filler"></div>
+    {
+      layers.map((layer, i) => (
+        <Image
+          src={layer}
+          alt=""
+          class="parallax-layer"
+          data-depth={i * 0.12}
+          loading={i === 0 ? "eager" : "lazy"}
+        />
+      ))
+    }
+    <div class="parallax-filler" data-depth="0.6"></div>
+  </div>
+
   <div class="content">
     <div class="pfp-container">
-      <Image src={profilePicture} alt="trueberryless" class="pfp" />
+      <Image src={profilePicture} alt="Felix Schneider" class="pfp" />
       <div
         id="status-container"
         class="status-indicator loading"
@@ -55,17 +80,33 @@ const statusMap = {
 
   const container = document.getElementById("status-container");
   const img = document.getElementById("status-image") as HTMLImageElement;
+  const parallaxElements = document.querySelectorAll(
+    ".parallax-layer, .parallax-filler"
+  );
+
+  const updateParallax = () => {
+    const scrollY = window.scrollY;
+
+    parallaxElements.forEach((el) => {
+      const depth = parseFloat((el as HTMLElement).dataset.depth || "0");
+      const movement = -(scrollY * depth);
+      (el as HTMLElement).style.transform = `translate3d(0, ${movement}px, 0)`;
+    });
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      window.requestAnimationFrame(updateParallax);
+    },
+    { passive: true }
+  );
 
   if (container && img) {
     const statusUrls = JSON.parse(container.dataset.statusUrls || "{}");
-
     $lanyard.subscribe((lanyard: LanyardData | null) => {
       const status = lanyard?.data?.discord_status ?? "offline";
-
-      if (statusUrls[status]) {
-        img.src = statusUrls[status];
-      }
-
+      if (statusUrls[status]) img.src = statusUrls[status];
       container.className = `status-indicator ${status}`;
       container.setAttribute("aria-label", `Discord status: ${labels[status]}`);
     });
@@ -73,18 +114,83 @@ const statusMap = {
 </script>
 
 <style>
-  .intro {
-    padding: 8rem 2rem 6rem;
+  :root {
+    --tree-color: #27234d;
+    --sky-color: #fecfd4;
+    --base-color: #1e1e2e;
+  }
+
+  .parallax-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
+    background-color: var(--sky-color);
+  }
+
+  .parallax-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sky-filler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: var(--sky-color);
+    z-index: 0;
+  }
+
+  .parallax-layer {
+    position: absolute;
+    top: 15vh;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    object-position: top;
+    will-change: transform;
+  }
+
+  .parallax-filler {
+    position: absolute;
+    top: calc(25vh + 100%);
+    left: 0;
+    width: 100%;
+    height: 150vh;
+    background: linear-gradient(
+      to bottom,
+      var(--tree-color) 0%,
+      var(--tree-color) 40%,
+      var(--base-color) 100%
+    );
+    will-change: transform;
+    z-index: 5;
   }
 
   .content {
-    max-width: 600px;
-    width: 100%;
+    position: relative;
+    z-index: 10;
+    margin-top: 15vh;
+    max-width: 650px;
+    height: fit-content;
     display: flex;
     align-items: center;
     gap: 2rem;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   .pfp-container {
@@ -93,29 +199,29 @@ const statusMap = {
   }
 
   .pfp {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     border: 3px solid var(--ctp-lavender);
     transition:
-      transform 0.3s ease,
+      transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
       border-color 0.3s ease;
   }
 
   .pfp:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
     border-color: var(--ctp-pink);
   }
 
   .status-indicator {
     position: absolute;
-    bottom: 4px;
-    right: 4px;
-    width: 32px;
-    height: 32px;
+    bottom: 6px;
+    right: 6px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background-color: var(--ctp-base);
-    padding: 4px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,38 +254,35 @@ const statusMap = {
   }
 
   h1 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.2rem;
+    font-weight: 700;
     color: var(--ctp-text);
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--ctp-subtext0);
-    opacity: 0.8;
+    opacity: 0.9;
+    line-height: 1.4;
   }
 
   @media (max-width: 600px) {
-    .intro {
-      padding: 4rem 2rem 3rem;
-    }
     .content {
       flex-direction: column;
       text-align: center;
+      margin-top: 10vh;
+      padding: 2rem;
+      width: calc(100% - 3rem);
+      gap: 1.5rem;
     }
     .pfp {
-      width: 100px;
-      height: 100px;
-    }
-    .status-indicator {
-      width: 28px;
-      height: 28px;
-      bottom: 2px;
-      right: 2px;
+      width: 110px;
+      height: 110px;
     }
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
   }
 </style>
