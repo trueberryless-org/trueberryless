@@ -18,13 +18,13 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^6.6.4",
-    "astro": "^5.16.11",
+    "astro": "^5.16.16",
     "nanostores": "^1.1.0",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
-    "prettier": "3.8.0",
+    "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1"
   },
   "packageManager": "pnpm@10.10.0"
