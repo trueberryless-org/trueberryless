@@ -1,0 +1,35 @@
+---
+import { getLiveCollection } from "astro:content";
+import Event from "./Event.astro";
+
+const eventsResult = await getLiveCollection("events");
+const events = eventsResult.entries ?? [];
+const eventsError = eventsResult.error;
+---
+
+<section class="events-container">
+    <h2>Upcoming Events</h2>
+
+    {
+        eventsError && (
+            <p class="error">Could not load events: {eventsError.message}</p>
+        )
+    }
+
+    {events.length === 0 && !eventsError && <p>No events found.</p>}
+
+    <div class="events-list">
+        {events.map((event) => <Event event={event} />)}
+    </div>
+</section>
+
+<style>
+    .events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .error {
+        color: darkred;
+    }
+</style>

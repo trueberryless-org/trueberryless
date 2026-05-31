@@ -1,0 +1,108 @@
+---
+const { title, version, description, downloads, release, color } = Astro.props;
+---
+
+<li class={`project-card color-${color}`}>
+    <div class="card-header">
+        <h3>{title}</h3>
+        <span class="version">{version}</span>
+    </div>
+    <div class="card-body">
+        <p>{description}</p>
+        <span class="stats">{downloads}/wk</span>
+    </div>
+    <div class="card-footer">
+        <span>{release} ago</span>
+    </div>
+</li>
+
+<style>
+    .project-card {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .project-card.color-cyan:hover {
+        border-color: var(--accent-cyan);
+    }
+    .project-card.color-green:hover {
+        border-color: var(--accent-green);
+    }
+    .project-card.color-pink:hover {
+        border-color: var(--accent-pink);
+    }
+    .project-card.color-yellow:hover {
+        border-color: var(--accent-yellow);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dashed var(--border-color);
+        padding-bottom: 1rem;
+    }
+
+    .card-header h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .version {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    .color-cyan h3 {
+        color: var(--accent-cyan);
+    }
+    .color-green h3 {
+        color: var(--accent-green);
+    }
+    .color-pink h3 {
+        color: var(--accent-pink);
+    }
+    .color-yellow h3 {
+        color: var(--accent-yellow);
+    }
+
+    .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .card-body p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .stats {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-main);
+    }
+
+    .card-footer {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-align: right;
+        padding-top: 1rem;
+        border-top: 1px dashed var(--border-color);
+    }
+</style>

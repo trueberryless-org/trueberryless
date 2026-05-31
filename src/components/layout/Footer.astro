@@ -1,0 +1,131 @@
+---
+import { Bluesky, Github } from "simple-icons-astro";
+
+const legal = {
+    copyright: "© 2026 Felix Schneider",
+    licenseText: "Content: ",
+    licenseLabel: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+};
+
+const textLinks = [
+    { label: "blog", url: "/blog" },
+    { label: "events", url: "/events" },
+    { label: "projects", url: "/projects" },
+];
+
+const socialLinks = [
+    { name: "Bluesky", url: "/on/bluesky", iconComponent: Bluesky },
+    { name: "GitHub", url: "/on/github", iconComponent: Github },
+];
+---
+
+<footer>
+    <div class="footer-container">
+        <nav aria-label="Footer Navigation">
+            <ul class="nav-groups">
+                <li>
+                    <ul class="text-links">
+                        {
+                            textLinks.map((link) => (
+                                <li>
+                                    <a href={link.url}>{link.label}</a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <ul class="icon-links">
+                        {
+                            socialLinks.map((social) => {
+                                const Icon = social.iconComponent;
+                                return (
+                                    <li>
+                                        <a
+                                            href={social.url}
+                                            aria-label={social.name}
+                                        >
+                                            <Icon size={18} />
+                                        </a>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="legal">
+            <span>{legal.copyright}</span>
+            <span>
+                {legal.licenseText}
+                <a
+                    href={legal.licenseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {legal.licenseLabel}
+                </a>
+            </span>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem 2rem 2rem;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+    }
+
+    .nav-groups {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .text-links,
+    .icon-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .icon-links a {
+        display: flex;
+        align-items: center;
+        color: var(--text-muted);
+    }
+
+    .icon-links a:hover {
+        color: var(--accent-pink);
+    }
+
+    .icon-links :global(svg) {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+    }
+
+    .legal {
+        display: flex;
+        gap: 1rem;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+    }
+</style>

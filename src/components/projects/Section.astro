@@ -1,0 +1,62 @@
+---
+import Card from "./Card.astro";
+
+const projects = [
+    {
+        title: "@clack/prompts",
+        version: "v1.4.0",
+        description: "stylish interactive prompts",
+        downloads: "11.5M",
+        release: "2w",
+        color: "cyan",
+    },
+    {
+        title: "@bomb.sh/tab",
+        version: "v0.0.15",
+        description: "shell autocomplete",
+        downloads: "960.7k",
+        release: "1mo",
+        color: "green",
+    },
+    {
+        title: "@clack/core",
+        version: "v1.3.1",
+        description: "headless, unstyled prompt primitives",
+        downloads: "11.6M",
+        release: "2w",
+        color: "pink",
+    },
+    {
+        title: "@bomb.sh/args",
+        version: "v0.3.1",
+        description: "type-safe argument parser",
+        downloads: "6.3k",
+        release: "1y",
+        color: "yellow",
+    },
+];
+---
+
+<section class="projects">
+    <h2 class="heading">Our Projects</h2>
+    <ul class="projects-grid">
+        {projects.map((project) => <Card {...project} />)}
+    </ul>
+</section>
+
+<style>
+    .projects {
+        width: 100%;
+    }
+
+    .projects .heading {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+</style>

@@ -1,32 +1,65 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Intro from "../components/Intro.astro";
-import Projects from "../components/Projects.astro";
-import WaveDivider from "../components/WaveDivider.astro";
-import Webring from "../components/Webring.astro";
-import Spotify from "../components/Spotify.astro";
-import Socials from "../components/Socials.astro";
 ---
 
-<Layout title="Felix Schneider" description="My corner of the internet">
-  <main>
-    <Intro />
-    <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
+<Layout title="Felix Schneider">
+    <section>
+        <h1>Building minimal interfaces for the modern web</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Jason <strong
+                >studiose exque</strong
+            > se ortum, seseque ad ea committit. Quaerimus enim finem bonorum, cum
+            sit ista natura praescriptum. In iis iustitiae semina primae fuisse, quas
+            ipsas sanctitasque <code
+                style="font-family: var(--font-mono); font-size: 0.9em; background: #111; padding: 0.2rem 0.4rem; border-radius: 4px; border: 1px solid var(--border-color);"
+                >git commit</code
+            > commendavit.
+        </p>
+    </section>
 
-    <Projects />
-    <WaveDivider color="flamingo" speed={100} size={0.8} direction="right" />
+    <section>
+        <h2>The Art of Structural Engineering</h2>
+        <p>
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui
+            blanditiis praesentium voluptatum deleniti atque corrupti quos
+            dolores et quas molestias excepturi sint occaecati cupiditate non
+            provident, similique sunt in culpa qui officia deserunt mollitia
+            animi.
+        </p>
+        <blockquote>
+            "Simplicity is a great virtue but it requires hard work to achieve
+            it and education to appreciate it. And to make things worse:
+            complexity sells better."
+        </blockquote>
+    </section>
 
-    <Spotify />
-    <WaveDivider color="mauve" speed={100} size={0.8} direction="left" />
+    <hr />
 
-    <Webring />
-    <WaveDivider color="pink" speed={100} size={0.8} direction="right" />
-
-    <Socials />
-  </main>
+    <section>
+        <h3>Core Principles & Technical Stack</h3>
+        <p>
+            Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
+            quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
+            quo voluptas nulla pariatur?
+        </p>
+        <ul>
+            <li>
+                <strong>Performance:</strong> Lightweight static compilation with
+                minimal runtime.
+            </li>
+            <li>
+                <strong>Typography:</strong> Clear hierarchy using strict fluid type
+                scales.
+            </li>
+            <li>
+                <strong>Aesthetics:</strong> High-contrast monochrome palettes with
+                precise neon highlights.
+            </li>
+        </ul>
+        <p>
+            For more updates on what I am hacking on, check out the <a
+                href="/blog">blog</a
+            > or view my architectural logbook in the docs section.
+        </p>
+    </section>
 </Layout>
-
-<script>
-  import { refreshLanyard } from "../store";
-  refreshLanyard();
-</script>
