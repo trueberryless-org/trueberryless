@@ -47,11 +47,23 @@ body {
 
     background-size: var(--w) var(--h);
 
+    --parallax-factor: 0.7;
     background-position:
-        0px 0px,
-        calc(var(--w) / 2) calc(var(--h) * 0.5),
-        0px calc(var(--h) * 0.33333333333),
-        calc(var(--w) / 2) calc(var(--h) * 0.83333333333);
+        0px calc(0px + (var(--scroll-y, 0px) * var(--parallax-factor))),
+        calc(var(--w) / 2)
+            calc(
+                var(--h) * 0.5 + (var(--scroll-y, 0px) * var(--parallax-factor))
+            ),
+        0px
+            calc(
+                var(--h) * 0.33333333333 +
+                    (var(--scroll-y, 0px) * var(--parallax-factor))
+            ),
+        calc(var(--w) / 2)
+            calc(
+                var(--h) * 0.83333333333 +
+                    (var(--scroll-y, 0px) * var(--parallax-factor))
+            );
 
     color: var(--text-main);
     font-family: var(--font-sans);
