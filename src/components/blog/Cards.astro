@@ -1,0 +1,31 @@
+---
+import { getLiveCollection } from "astro:content";
+import Card from "./Card.astro";
+
+const blogResult = await getLiveCollection("blog");
+const posts = blogResult.entries ?? [];
+const blogError = blogResult.error;
+---
+
+{
+    blogError && (
+        <p class="error">Could not load blog posts: {blogError.message}</p>
+    )
+}
+
+{posts.length === 0 && !blogError && <p>No blog posts found.</p>}
+
+<div class="blog-list">
+    {posts.map((post) => <Card post={post} />)}
+</div>
+
+<style>
+    .blog-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .error {
+        color: darkred;
+    }
+</style>

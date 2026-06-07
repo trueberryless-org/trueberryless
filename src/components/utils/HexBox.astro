@@ -3,12 +3,11 @@ interface Props {
     size?: number;
 }
 
-const { size = 0.8 } = Astro.props;
+const { size = 0.9 } = Astro.props;
 ---
 
 <hex-box class="box" style={`--size-val: ${size};`}>
     <div class="hexbox overlap"></div>
-
     <div class="hexbox mask"></div>
 
     <div class="content">
@@ -19,25 +18,16 @@ const { size = 0.8 } = Astro.props;
 <style>
     .box {
         --size: calc(var(--size-val) * 1rem);
-
         --hex-w: calc(sqrt(3) * var(--size));
-
         --hex-h: calc(2 * var(--size));
-
         --hex-x: calc(sqrt(3) / 2 * var(--size));
-
         --hex-y: calc(1.5 * var(--size));
-
         --hex-bg: var(--bg-card, black);
-
         --hex-border: var(--border-normal, white);
 
         display: grid;
-
         grid-template-areas: "stack";
-
         width: max-content;
-
         transition: --hex-border 0.2s ease;
     }
 
@@ -64,7 +54,6 @@ const { size = 0.8 } = Astro.props;
 
     .box :global(.hexagon-row) {
         display: flex;
-
         margin-top: calc(-0.5 * var(--size));
     }
 
@@ -78,54 +67,35 @@ const { size = 0.8 } = Astro.props;
 
     .box :global(.hexagon) {
         background: var(--hex-bg);
-
         width: var(--hex-w);
-
         height: var(--hex-h);
-
         clip-path: polygon(
             50% 0%,
-
             100% 25%,
-
             100% 75%,
-
             50% 100%,
-
             0% 75%,
-
             0% 25%
         );
-
         transform: scale(1.04);
-
         flex-shrink: 0;
     }
 
     .box :global(.overlap .hexagon) {
         background: var(--hex-border);
-
         transform: scale(1.15);
     }
 
     .content {
         box-sizing: border-box;
-
         padding: calc(var(--hex-y) + sqrt(var(--size-val)) * 0.5rem)
             calc(var(--hex-w) + sqrt(var(--size-val)) * 0.5rem);
-
         display: flex;
-
         flex-direction: column;
-
         justify-content: center;
-
         align-items: center;
-
         text-align: center;
-
         z-index: 3;
-
         place-self: center;
     }
 </style>
@@ -138,9 +108,7 @@ const { size = 0.8 } = Astro.props;
 
         initHexGrid() {
             const content = this.querySelector(".content");
-
             const overlapBox = this.querySelector(".overlap");
-
             const maskBox = this.querySelector(".mask");
 
             if (!content || !overlapBox || !maskBox) return;
@@ -148,34 +116,26 @@ const { size = 0.8 } = Astro.props;
             const sizeVal = parseFloat(
                 this.style.getPropertyValue("--size-val"),
             );
-
             const remInPx = parseFloat(
                 getComputedStyle(document.documentElement).fontSize,
             );
 
             const sizePx = sizeVal * remInPx;
-
             const hexW = Math.sqrt(3) * sizePx;
-
             const hexH = 2 * sizePx;
-
             const hexY = 1.5 * sizePx;
 
             const rect = content.getBoundingClientRect();
-
             let cols = Math.ceil(rect.width / hexW) + 1;
-
             let rows = Math.ceil((rect.height - hexH) / hexY) + 1;
 
             if (rows % 2 === 0) rows++;
 
             let htmlOverlap = "";
-
             let htmlMask = "";
 
             for (let r = 0; r < rows; r++) {
                 htmlOverlap += '<div class="hexagon-row">';
-
                 htmlMask += '<div class="hexagon-row">';
 
                 let rowCols = r % 2 === 0 ? cols : cols - 1;
@@ -183,7 +143,6 @@ const { size = 0.8 } = Astro.props;
                 for (let c = 0; c < rowCols; c++) {
                     let isEdge =
                         r <= 1 || r >= rows - 2 || c <= 1 || c >= rowCols - 2;
-
                     htmlMask += '<div class="hexagon"></div>';
 
                     if (isEdge) {
@@ -195,12 +154,10 @@ const { size = 0.8 } = Astro.props;
                 }
 
                 htmlOverlap += "</div>";
-
                 htmlMask += "</div>";
             }
 
             overlapBox.innerHTML = htmlOverlap;
-
             maskBox.innerHTML = htmlMask;
         }
     }

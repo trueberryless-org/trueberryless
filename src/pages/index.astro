@@ -1,54 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EventSection from "../components/events/Section.astro";
+import BlogSection from "../components/blog/Section.astro";
 ---
 
 <Layout title="Felix Schneider">
     <EventSection />
-
-    <section>
-        <h2>The Art of Structural Engineering</h2>
-        <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui
-            blanditiis praesentium voluptatum deleniti atque corrupti quos
-            dolores et quas molestias excepturi sint occaecati cupiditate non
-            provident, similique sunt in culpa qui officia deserunt mollitia
-            animi.
-        </p>
-        <blockquote>
-            "Simplicity is a great virtue but it requires hard work to achieve
-            it and education to appreciate it. And to make things worse:
-            complexity sells better."
-        </blockquote>
-    </section>
-
-    <hr />
-
-    <section>
-        <h3>Core Principles & Technical Stack</h3>
-        <p>
-            Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-            quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
-            quo voluptas nulla pariatur?
-        </p>
-        <ul>
-            <li>
-                <strong>Performance:</strong> Lightweight static compilation with
-                minimal runtime.
-            </li>
-            <li>
-                <strong>Typography:</strong> Clear hierarchy using strict fluid type
-                scales.
-            </li>
-            <li>
-                <strong>Aesthetics:</strong> High-contrast monochrome palettes with
-                precise neon highlights.
-            </li>
-        </ul>
-        <p>
-            For more updates on what I am hacking on, check out the <a
-                href="/blog">blog</a
-            > or view my architectural logbook in the docs section.
-        </p>
-    </section>
+    <BlogSection />
 </Layout>

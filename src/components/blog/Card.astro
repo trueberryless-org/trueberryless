@@ -1,0 +1,130 @@
+---
+import HexBox from "../utils/HexBox.astro";
+
+const { post } = Astro.props;
+const { title, description, publishedAt, tags, contributors, site, path } =
+    post.data;
+
+const isValidUrl = site.startsWith("http");
+const canonicalUrl = isValidUrl
+    ? `${site.replace(/\/$/, "")}${path ?? ""}`
+    : null;
+---
+
+<article class="blog-card">
+    <h3>
+        {
+            canonicalUrl ? (
+                <a
+                    href={canonicalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {title}
+                </a>
+            ) : (
+                title
+            )
+        }
+    </h3>
+
+    {
+        tags && tags.length > 0 && (
+            <div class="meta">
+                {tags.map((tag: string) => (
+                    <span class="badge tag-badge">#{tag}</span>
+                ))}
+            </div>
+        )
+    }
+
+    {description && <p>{description}</p>}
+
+    <div class="footer-info">
+        {
+            publishedAt && (
+                <time datetime={publishedAt.toISOString()}>
+                    Published: {publishedAt.toLocaleDateString()}
+                </time>
+            )
+        }
+
+        {
+            contributors && contributors.length > 0 && (
+                <span class="contributors">
+                    By:{" "}
+                    {contributors
+                        .map((c: any) => c.displayName || c.did)
+                        .join(", ")}
+                </span>
+            )
+        }
+    </div>
+</article>
+
+<style>
+    .blog-card {
+        width: 100%;
+        max-width: 60ch;
+        box-sizing: border-box;
+        text-align: left;
+        background-image: var(--grid-dot);
+        background-size: var(--grid-size);
+    }
+
+    h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    h3 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    h3 a:hover {
+        color: var(--accent-cyan);
+        text-decoration: underline;
+    }
+
+    p {
+        color: var(--text-main);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.4rem;
+        border-radius: 3px;
+        font-weight: bold;
+        border: 1px solid currentColor;
+        background: transparent;
+    }
+
+    .badge.tag-badge {
+        color: var(--accent-cyan);
+    }
+
+    .footer-info {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-family: inherit;
+        margin-top: 1rem;
+    }
+
+    .contributors {
+        color: var(--text-main);
+    }
+</style>

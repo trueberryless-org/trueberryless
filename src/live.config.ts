@@ -4,6 +4,11 @@ import {
   EventRecordSchema,
   transformEventRecord,
 } from "./types/events";
+import {
+  BlogOutputSchema,
+  BlogRecordSchema,
+  transformBlogRecord,
+} from "./types/blog";
 
 const events = defineAtProtoLiveCollection({
   source: {
@@ -20,4 +25,19 @@ const events = defineAtProtoLiveCollection({
   outputSchema: EventOutputSchema,
 });
 
-export const collections = { events };
+const blog = defineAtProtoLiveCollection({
+  source: {
+    repo: "did:plc:pbjvqaziagcyv2vqodldn5op",
+    collection: "site.standard.document",
+    parseRecord: (value) => BlogRecordSchema.parse(value),
+  },
+  transform: async ({ value, rkey }) => {
+    return {
+      id: rkey,
+      data: transformBlogRecord(value),
+    };
+  },
+  outputSchema: BlogOutputSchema,
+});
+
+export const collections = { events, blog };
