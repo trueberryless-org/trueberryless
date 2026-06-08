@@ -1,0 +1,46 @@
+{
+  "id": "id.sifa.profile.skill",
+  "defs": {
+    "main": {
+      "key": "tid",
+      "type": "record",
+      "record": {
+        "type": "object",
+        "required": [
+          "name",
+          "createdAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 640,
+            "minLength": 1,
+            "description": "Skill name (e.g., 'JavaScript', 'Project Management').",
+            "maxGraphemes": 64
+          },
+          "category": {
+            "type": "string",
+            "description": "Broad skill category for grouping.",
+            "knownValues": [
+              "id.sifa.defs#technical",
+              "id.sifa.defs#business",
+              "id.sifa.defs#creative",
+              "id.sifa.defs#interpersonal",
+              "id.sifa.defs#language",
+              "id.sifa.defs#industry"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Client-declared timestamp when this record was originally created."
+          }
+        }
+      },
+      "description": "Record representing a single professional skill."
+    }
+  },
+  "$type": "com.atproto.lexicon.schema",
+  "lexicon": 1,
+  "description": "A skill claimed by the user. Can be endorsed by other users via id.sifa.endorsement."
+}

@@ -83,7 +83,7 @@ web_modules/
 .cache
 .parcel-cache
 
-# Astro 
+# Astro
 .astro
 
 # Next.js build output
@@ -136,3 +136,6 @@ dist
 
 # Netlify
 .netlify
+
+# ATproto
+src/lexicons/

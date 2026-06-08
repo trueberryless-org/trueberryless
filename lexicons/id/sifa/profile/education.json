@@ -1,0 +1,89 @@
+{
+  "id": "id.sifa.profile.education",
+  "defs": {
+    "main": {
+      "key": "tid",
+      "type": "record",
+      "record": {
+        "type": "object",
+        "required": [
+          "institution",
+          "createdAt"
+        ],
+        "properties": {
+          "grade": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Grade, GPA, or classification achieved.",
+            "maxGraphemes": 50
+          },
+          "degree": {
+            "type": "string",
+            "maxLength": 2560,
+            "description": "Degree name (e.g., 'Bachelor of Science', 'Master of Arts').",
+            "maxGraphemes": 256
+          },
+          "labels": {
+            "refs": [
+              "com.atproto.label.defs#selfLabels"
+            ],
+            "type": "union",
+            "description": "Self-label values for this education record."
+          },
+          "endedAt": {
+            "type": "string",
+            "description": "End date (graduation or expected graduation) in YYYY-MM or YYYY-MM-DD format. Omit if currently enrolled."
+          },
+          "location": {
+            "ref": "community.lexicon.location.address",
+            "type": "ref",
+            "description": "Institution location. Sifa enforces ISO 3166-1 alpha-2 country codes at the app layer."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Client-declared timestamp when this record was originally created."
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "Start date in YYYY-MM or YYYY-MM-DD format."
+          },
+          "activities": {
+            "type": "string",
+            "maxLength": 10000,
+            "description": "Activities, societies, and extracurriculars.",
+            "maxGraphemes": 1000
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 50000,
+            "description": "Additional description or notes about the education.",
+            "maxGraphemes": 5000
+          },
+          "institution": {
+            "type": "string",
+            "maxLength": 2560,
+            "minLength": 1,
+            "description": "Name of the educational institution.",
+            "maxGraphemes": 256
+          },
+          "fieldOfStudy": {
+            "type": "string",
+            "maxLength": 2560,
+            "description": "Field of study or major.",
+            "maxGraphemes": 256
+          },
+          "institutionDid": {
+            "type": "string",
+            "format": "did",
+            "description": "DID of the institution's ATproto account, if one exists."
+          }
+        }
+      },
+      "description": "Record representing a single education credential."
+    }
+  },
+  "$type": "com.atproto.lexicon.schema",
+  "lexicon": 1,
+  "description": "An education entry in the user's professional profile."
+}

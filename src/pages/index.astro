@@ -1,32 +1,234 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Intro from "../components/Intro.astro";
-import Projects from "../components/Projects.astro";
-import WaveDivider from "../components/WaveDivider.astro";
-import Webring from "../components/Webring.astro";
-import Spotify from "../components/Spotify.astro";
-import Socials from "../components/Socials.astro";
+import { getLiveCollection } from "astro:content";
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=3600, must-revalidate"
+);
+
+const { entries: posts, error: postsError } = await getLiveCollection("posts");
+const { entries: books, error: booksError } = await getLiveCollection("books");
+const { entries: events, error: eventsError } =
+  await getLiveCollection("events");
+const { entries: likes, error: likesError } = await getLiveCollection("likes");
+const { entries: education, error: educationError } =
+  await getLiveCollection("education");
+const { entries: honor, error: honorError } = await getLiveCollection("honor");
+const { entries: skill, error: skillError } = await getLiveCollection("skill");
+const { entries: position, error: positionError } =
+  await getLiveCollection("position");
+const { entries: repos, error: reposError } = await getLiveCollection("repos");
+const { entries: blueskyPosts, error: blueskyPostsError } =
+  await getLiveCollection("blueskyPosts");
+const { entries: follows, error: followsError } =
+  await getLiveCollection("follows");
+
+if (postsError) console.error(postsError.message);
+if (booksError) console.error(booksError.message);
+if (eventsError) console.error(eventsError.message);
+if (likesError) console.error(likesError.message);
+if (educationError) console.error(educationError.message);
+if (honorError) console.error(honorError.message);
+if (skillError) console.error(skillError.message);
+if (positionError) console.error(positionError.message);
+if (reposError) console.error(reposError.message);
+if (blueskyPostsError) console.error(blueskyPostsError.message);
+if (followsError) console.error(followsError.message);
 ---
 
-<Layout title="Felix Schneider" description="My corner of the internet">
-  <main>
-    <Intro />
-    <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Live ATProto Hub</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      details {
+        background: #f4f4f4;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: bold;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Live Overview (All Data Dump)</h1>
 
-    <Projects />
-    <WaveDivider color="flamingo" speed={100} size={0.8} direction="right" />
+      <section>
+        <h2>Posts</h2>
+        {
+          posts?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.title || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
 
-    <Spotify />
-    <WaveDivider color="mauve" speed={100} size={0.8} direction="left" />
+      <section>
+        <h2>Books</h2>
+        {
+          books?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.title || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
 
-    <Webring />
-    <WaveDivider color="pink" speed={100} size={0.8} direction="right" />
+      <section>
+        <h2>Events</h2>
+        {
+          events?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.name || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
 
-    <Socials />
-  </main>
-</Layout>
+      <section>
+        <h2>Likes</h2>
+        {
+          likes?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
 
-<script>
-  import { refreshLanyard } from "../store";
-  refreshLanyard();
-</script>
+      <section>
+        <h2>Education</h2>
+        {
+          education?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.institution || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+
+      <section>
+        <h2>Honors</h2>
+        {
+          honor?.map((item) => (
+            <article>
+              <details>
+                <summary>
+                  {item.data.title || item.data.name || item.id}
+                </summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        {
+          skill?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.name || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+
+      <section>
+        <h2>Positions</h2>
+        {
+          position?.map((item) => (
+            <article>
+              <details>
+                <summary>
+                  {item.data.title || item.data.role || item.id}
+                </summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+
+      <section>
+        <h2>Repositories</h2>
+        {
+          repos?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.name || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+
+      <section>
+        <h2>Bluesky Posts</h2>
+        {
+          blueskyPosts?.map((item) => (
+            <article>
+              <details>
+                <summary>
+                  {item.data.text
+                    ? item.data.text.substring(0, 60) + "..."
+                    : item.id}
+                </summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+
+      <section>
+        <h2>Follows</h2>
+        {
+          follows?.map((item) => (
+            <article>
+              <details>
+                <summary>{item.data.subject || item.id}</summary>
+                <pre>{JSON.stringify(item.data, null, 2)}</pre>
+              </details>
+            </article>
+          ))
+        }
+      </section>
+    </main>
+  </body>
+</html>
