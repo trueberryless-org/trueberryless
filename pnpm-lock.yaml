@@ -20,6 +20,9 @@ importers:
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
+      simple-icons-astro:
+        specifier: ^16.1.0
+        version: 16.1.0(astro@6.4.4(@netlify/blobs@10.7.9)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(yaml@2.8.1))
     devDependencies:
       '@trivago/prettier-plugin-sort-imports':
         specifier: 6.0.2
@@ -3121,6 +3124,11 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+
+  simple-icons-astro@16.1.0:
+    resolution: {integrity: sha512-BzkYMmN1J8S2iAzMpNo1NtjNfdleWY7ZY39onZ1EWE7yCfjiOXfEo5zSIhX84OuNFeB/VlmWiEeQy6lc/jHrfQ==}
+    peerDependencies:
+      astro: '>=2.7.1'
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -7239,6 +7247,10 @@ snapshots:
       '@types/hast': 3.0.4
 
   signal-exit@4.1.0: {}
+
+  simple-icons-astro@16.1.0(astro@6.4.4(@netlify/blobs@10.7.9)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(yaml@2.8.1)):
+    dependencies:
+      astro: 6.4.4(@netlify/blobs@10.7.9)(@types/node@24.6.0)(jiti@2.6.1)(rollup@4.52.3)(yaml@2.8.1)
 
   sisteransi@1.0.5: {}
 

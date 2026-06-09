@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="hideoo-block">
+  <h2>{title}</h2>
+  <div class="block-content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .hideoo-block {
+    width: 100%;
+    margin-bottom: 56px;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .block-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+</style>

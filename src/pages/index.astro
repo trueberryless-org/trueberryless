@@ -1,234 +1,222 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Badge from "../components/Badge.astro";
 import { getLiveCollection } from "astro:content";
+
+import astroLogo from "../assets/astro.png";
+import blueskyLogo from "../assets/bluesky.png";
+import npmxLogo from "../assets/npmx.png";
+import starlightLogo from "../assets/starlight.png";
 
 Astro.response.headers.set(
   "Cache-Control",
   "public, max-age=3600, must-revalidate"
 );
 
-const { entries: posts, error: postsError } = await getLiveCollection("posts");
-const { entries: books, error: booksError } = await getLiveCollection("books");
-const { entries: events, error: eventsError } =
-  await getLiveCollection("events");
-const { entries: likes, error: likesError } = await getLiveCollection("likes");
-const { entries: education, error: educationError } =
-  await getLiveCollection("education");
-const { entries: honor, error: honorError } = await getLiveCollection("honor");
-const { entries: skill, error: skillError } = await getLiveCollection("skill");
-const { entries: position, error: positionError } =
-  await getLiveCollection("position");
-const { entries: repos, error: reposError } = await getLiveCollection("repos");
-const { entries: blueskyPosts, error: blueskyPostsError } =
-  await getLiveCollection("blueskyPosts");
-const { entries: follows, error: followsError } =
-  await getLiveCollection("follows");
-
-if (postsError) console.error(postsError.message);
-if (booksError) console.error(booksError.message);
-if (eventsError) console.error(eventsError.message);
-if (likesError) console.error(likesError.message);
-if (educationError) console.error(educationError.message);
-if (honorError) console.error(honorError.message);
-if (skillError) console.error(skillError.message);
-if (positionError) console.error(positionError.message);
-if (reposError) console.error(reposError.message);
-if (blueskyPostsError) console.error(blueskyPostsError.message);
-if (followsError) console.error(followsError.message);
+const { entries: posts } = await getLiveCollection("posts");
+const { entries: books } = await getLiveCollection("books");
+const { entries: events } = await getLiveCollection("events");
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>My Live ATProto Hub</title>
-    <style>
-      body {
-        font-family: system-ui, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-      }
-      details {
-        background: #f4f4f4;
-        padding: 0.5rem;
-        margin-bottom: 0.5rem;
-        border-radius: 4px;
-      }
-      summary {
-        cursor: pointer;
-        font-weight: bold;
-      }
-      pre {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        font-size: 0.85rem;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>Live Overview (All Data Dump)</h1>
+<Layout title="Felix Schneider">
+  <Hero name="Felix Schneider" />
 
-      <section>
-        <h2>Posts</h2>
+  <main class="layout-stream">
+    <section class="intro-block">
+      <p>Hey, there!</p>
+      <p>
+        I am a developer who loves building open source in my free time. I
+        currently maintain
+        <Badge href="https://npmx.dev" icon={npmxLogo.src} text="npmx.dev" />
+        and
+        <Badge
+          href="https://allcontributors.org"
+          icon="https://avatars.githubusercontent.com/u/46410174?v=4"
+          text="All Contributors"
+        />. I also love to create <Badge
+          href="https://astro.build"
+          icon={astroLogo.src}
+          text="Astro"
+        /> websites and work on its documentation framework,
+        <Badge
+          href="https://starlight.astro.build"
+          icon={starlightLogo.src}
+          text="Starlight"
+        />.
+      </p>
+      <p>
+        When I'm not coding, you can usually find me hanging out on
+        <Badge
+          href="https://bsky.app/profile/yourprofile"
+          icon={blueskyLogo.src}
+          text="Bluesky"
+        />.
+      </p>
+    </section>
+
+    <Section title="Recent Projects & Documents">
+      <div class="grid">
         {
-          posts?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.title || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
+          posts?.slice(0, 4).map((post) => (
+            <a href={post.data.path || "#"} class="card">
+              <div class="card-title-row">
+                <span class="title">{post.data.title}</span>
+              </div>
+              <p class="description">
+                {post.data.description ||
+                  "No document summary metadata compiled."}
+              </p>
+            </a>
           ))
         }
-      </section>
+      </div>
+    </Section>
 
-      <section>
-        <h2>Books</h2>
+    <Section title="Reading Stream Favorites">
+      <ul class="list">
         {
-          books?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.title || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
+          books?.slice(0, 4).map((book) => (
+            <li class="list-item">
+              <span class="item-main">{book.data.title}</span>
+              <span class="item-meta">Finished</span>
+            </li>
           ))
         }
-      </section>
+      </ul>
+    </Section>
 
-      <section>
-        <h2>Events</h2>
+    <Section title="Aggregated Calendar Events">
+      <ul class="list">
         {
-          events?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.name || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
+          events?.slice(0, 3).map((event) => (
+            <li class="list-item clickable">
+              <div class="item-left">
+                <span class="item-main">
+                  {event.data.name || "Untitled Network Event"}
+                </span>
+              </div>
+              <span class="arrow">→</span>
+            </li>
           ))
         }
-      </section>
+      </ul>
+    </Section>
+  </main>
+</Layout>
 
-      <section>
-        <h2>Likes</h2>
-        {
-          likes?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+<style>
+  .layout-stream {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 24px 120px 24px;
+    background-color: var(--bg);
+  }
 
-      <section>
-        <h2>Education</h2>
-        {
-          education?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.institution || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+  .intro-block {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-      <section>
-        <h2>Honors</h2>
-        {
-          honor?.map((item) => (
-            <article>
-              <details>
-                <summary>
-                  {item.data.title || item.data.name || item.id}
-                </summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+  .intro-block strong {
+    font-weight: 600;
+  }
 
-      <section>
-        <h2>Skills</h2>
-        {
-          skill?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.name || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
 
-      <section>
-        <h2>Positions</h2>
-        {
-          position?.map((item) => (
-            <article>
-              <details>
-                <summary>
-                  {item.data.title || item.data.role || item.id}
-                </summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
 
-      <section>
-        <h2>Repositories</h2>
-        {
-          repos?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.name || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
 
-      <section>
-        <h2>Bluesky Posts</h2>
-        {
-          blueskyPosts?.map((item) => (
-            <article>
-              <details>
-                <summary>
-                  {item.data.text
-                    ? item.data.text.substring(0, 60) + "..."
-                    : item.id}
-                </summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
+  .card:hover {
+    border-color: var(--text);
+    background-color: oklch(1 0 0 / 0.4);
+  }
 
-      <section>
-        <h2>Follows</h2>
-        {
-          follows?.map((item) => (
-            <article>
-              <details>
-                <summary>{item.data.subject || item.id}</summary>
-                <pre>{JSON.stringify(item.data, null, 2)}</pre>
-              </details>
-            </article>
-          ))
-        }
-      </section>
-    </main>
-  </body>
-</html>
+  .card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .card-title-row .title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+
+  .card .description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--card-bg);
+    overflow: hidden;
+  }
+
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  .list-item:last-child {
+    border-bottom: none;
+  }
+
+  .list-item.clickable {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .list-item.clickable:hover {
+    background-color: oklch(0.15 0.02 45 / 0.02);
+  }
+
+  .item-main {
+    font-weight: 600;
+  }
+
+  .item-meta,
+  .arrow {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+</style>

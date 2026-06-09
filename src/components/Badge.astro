@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface IconProps extends HTMLAttributes<"svg"> {
+  size?: number | string;
+}
+
+interface Props {
+  href: string;
+  text: string;
+  icon?: string | ((props: IconProps) => any);
+  alt?: string;
+}
+
+const { href, text, icon, alt = "Badge icon" } = Astro.props;
+
+const IconComponent = typeof icon === "function" ? icon : null;
+---
+
+<a href={href} class="gh-badge">
+  {
+    IconComponent ? (
+      <IconComponent size="1.2em" />
+    ) : (
+      icon && <img src={icon as string} alt={alt} />
+    )
+  }
+  <span>{text}</span>
+</a>
+
+<style>
+  .gh-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.2em 0.4em;
+    height: 1.6em;
+    font-size: 0.95em;
+    vertical-align: middle;
+    transform: translateY(-0.1em);
+
+    background-color: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border-radius: 4px;
+
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .gh-badge:hover {
+    background-color: var(--bg);
+  }
+
+  .gh-badge :global(img),
+  .gh-badge :global(svg) {
+    width: 1.1em;
+    height: 1.1em;
+    border-radius: 2px;
+    object-fit: contain;
+  }
+</style>
