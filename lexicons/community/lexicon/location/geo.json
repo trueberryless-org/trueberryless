@@ -3,10 +3,7 @@
   "defs": {
     "main": {
       "type": "object",
-      "required": [
-        "latitude",
-        "longitude"
-      ],
+      "required": ["latitude", "longitude"],
       "properties": {
         "name": {
           "type": "string",

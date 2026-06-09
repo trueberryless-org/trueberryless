@@ -3,9 +3,7 @@
   "defs": {
     "uri": {
       "type": "object",
-      "required": [
-        "uri"
-      ],
+      "required": ["uri"],
       "properties": {
         "uri": {
           "type": "string",
@@ -23,10 +21,7 @@
       "type": "record",
       "record": {
         "type": "object",
-        "required": [
-          "createdAt",
-          "name"
-        ],
+        "required": ["createdAt", "name"],
         "properties": {
           "mode": {
             "ref": "community.lexicon.calendar.event#mode",

@@ -55,9 +55,7 @@
     },
     "skillRef": {
       "type": "object",
-      "required": [
-        "uri"
-      ],
+      "required": ["uri"],
       "properties": {
         "uri": {
           "type": "string",
@@ -429,9 +427,7 @@
     },
     "industryDomain": {
       "type": "object",
-      "required": [
-        "industry"
-      ],
+      "required": ["industry"],
       "properties": {
         "domain": {
           "type": "string",

@@ -3,12 +3,7 @@
   "defs": {
     "review": {
       "type": "object",
-      "required": [
-        "review",
-        "createdAt",
-        "did",
-        "handle"
-      ],
+      "required": ["review", "createdAt", "did", "handle"],
       "properties": {
         "did": {
           "type": "string",
@@ -35,14 +30,7 @@
     },
     "comment": {
       "type": "object",
-      "required": [
-        "comment",
-        "createdAt",
-        "book",
-        "parent",
-        "did",
-        "handle"
-      ],
+      "required": ["comment", "createdAt", "book", "parent", "did", "handle"],
       "properties": {
         "did": {
           "type": "string",
@@ -75,12 +63,7 @@
     },
     "profile": {
       "type": "object",
-      "required": [
-        "displayName",
-        "handle",
-        "booksRead",
-        "reviews"
-      ],
+      "required": ["displayName", "handle", "booksRead", "reviews"],
       "properties": {
         "avatar": {
           "type": "string"
@@ -125,12 +108,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "knownValues": [
-            "review",
-            "rated",
-            "started",
-            "finished"
-          ]
+          "knownValues": ["review", "rated", "started", "finished"]
         },
         "title": {
           "type": "string",
@@ -272,9 +250,7 @@
     },
     "bookProgress": {
       "type": "object",
-      "required": [
-        "updatedAt"
-      ],
+      "required": ["updatedAt"],
       "properties": {
         "percent": {
           "type": "integer",

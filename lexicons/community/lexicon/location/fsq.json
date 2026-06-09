@@ -3,9 +3,7 @@
   "defs": {
     "main": {
       "type": "object",
-      "required": [
-        "fsq_place_id"
-      ],
+      "required": ["fsq_place_id"],
       "properties": {
         "name": {
           "type": "string",

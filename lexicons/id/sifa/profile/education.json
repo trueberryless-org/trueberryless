@@ -6,10 +6,7 @@
       "type": "record",
       "record": {
         "type": "object",
-        "required": [
-          "institution",
-          "createdAt"
-        ],
+        "required": ["institution", "createdAt"],
         "properties": {
           "grade": {
             "type": "string",
@@ -24,9 +21,7 @@
             "maxGraphemes": 256
           },
           "labels": {
-            "refs": [
-              "com.atproto.label.defs#selfLabels"
-            ],
+            "refs": ["com.atproto.label.defs#selfLabels"],
             "type": "union",
             "description": "Self-label values for this education record."
           },

@@ -6,12 +6,7 @@
       "type": "record",
       "record": {
         "type": "object",
-        "required": [
-          "company",
-          "title",
-          "startedAt",
-          "createdAt"
-        ],
+        "required": ["company", "title", "startedAt", "createdAt"],
         "properties": {
           "title": {
             "type": "string",
@@ -21,9 +16,7 @@
             "maxGraphemes": 256
           },
           "labels": {
-            "refs": [
-              "com.atproto.label.defs#selfLabels"
-            ],
+            "refs": ["com.atproto.label.defs#selfLabels"],
             "type": "union",
             "description": "Self-label values for this position record."
           },

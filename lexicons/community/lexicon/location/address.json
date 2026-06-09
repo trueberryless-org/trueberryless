@@ -3,9 +3,7 @@
   "defs": {
     "main": {
       "type": "object",
-      "required": [
-        "country"
-      ],
+      "required": ["country"],
       "properties": {
         "name": {
           "type": "string",
