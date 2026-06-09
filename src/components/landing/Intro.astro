@@ -1,0 +1,55 @@
+---
+import Badge from "@/components/utils/Badge.astro";
+
+import astroLogo from "@/assets/astro.png";
+import blueskyLogo from "@/assets/bluesky.png";
+import npmxLogo from "@/assets/npmx.png";
+import starlightLogo from "@/assets/starlight.png";
+---
+
+<section class="intro-block">
+  <p>Hey there!</p>
+  <p>
+    I am a developer who loves building open source in my free time. I currently
+    help maintain
+    <Badge href="https://npmx.dev" icon={npmxLogo.src} text="npmx.dev" />
+    and
+    <Badge
+      href="https://allcontributors.org"
+      icon="https://avatars.githubusercontent.com/u/46410174?v=4"
+      text="All Contributors"
+    />. I also love to create <Badge
+      href="https://astro.build"
+      icon={astroLogo.src}
+      text="Astro"
+    /> websites and work on its documentation framework,
+    <Badge
+      href="https://starlight.astro.build"
+      icon={starlightLogo.src}
+      text="Starlight"
+    />.
+  </p>
+  <p>
+    When I'm not coding, you can usually find me hanging out on
+    <Badge
+      href="https://bsky.app/profile/yourprofile"
+      icon={blueskyLogo.src}
+      text="Bluesky"
+    />.
+  </p>
+</section>
+
+<style>
+  .intro-block {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .intro-block strong {
+    font-weight: 600;
+  }
+</style>

@@ -1,108 +1,27 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import Section from "../components/Section.astro";
-import Badge from "../components/Badge.astro";
-import { getLiveCollection } from "astro:content";
-
-import astroLogo from "../assets/astro.png";
-import blueskyLogo from "../assets/bluesky.png";
-import npmxLogo from "../assets/npmx.png";
-import starlightLogo from "../assets/starlight.png";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/landing/Hero.astro";
+import Intro from "@/components/landing/Intro.astro";
+import RecentPosts from "@/components/landing/RecentPosts.astro";
+import ReadingSummary from "@/components/landing/ReadingSummary.astro";
+import UpcomingEvents from "@/components/landing/UpcomingEvents.astro";
+import Experience from "@/components/landing/Experience.astro";
 
 Astro.response.headers.set(
   "Cache-Control",
   "public, max-age=3600, must-revalidate"
 );
-
-const { entries: posts } = await getLiveCollection("posts");
-const { entries: books } = await getLiveCollection("books");
-const { entries: events } = await getLiveCollection("events");
 ---
 
 <Layout title="Felix Schneider">
   <Hero name="Felix Schneider" />
 
   <main class="layout-stream">
-    <section class="intro-block">
-      <p>Hey, there!</p>
-      <p>
-        I am a developer who loves building open source in my free time. I
-        currently maintain
-        <Badge href="https://npmx.dev" icon={npmxLogo.src} text="npmx.dev" />
-        and
-        <Badge
-          href="https://allcontributors.org"
-          icon="https://avatars.githubusercontent.com/u/46410174?v=4"
-          text="All Contributors"
-        />. I also love to create <Badge
-          href="https://astro.build"
-          icon={astroLogo.src}
-          text="Astro"
-        /> websites and work on its documentation framework,
-        <Badge
-          href="https://starlight.astro.build"
-          icon={starlightLogo.src}
-          text="Starlight"
-        />.
-      </p>
-      <p>
-        When I'm not coding, you can usually find me hanging out on
-        <Badge
-          href="https://bsky.app/profile/yourprofile"
-          icon={blueskyLogo.src}
-          text="Bluesky"
-        />.
-      </p>
-    </section>
-
-    <Section title="Recent Projects & Documents">
-      <div class="grid">
-        {
-          posts?.slice(0, 4).map((post) => (
-            <a href={post.data.path || "#"} class="card">
-              <div class="card-title-row">
-                <span class="title">{post.data.title}</span>
-              </div>
-              <p class="description">
-                {post.data.description ||
-                  "No document summary metadata compiled."}
-              </p>
-            </a>
-          ))
-        }
-      </div>
-    </Section>
-
-    <Section title="Reading Stream Favorites">
-      <ul class="list">
-        {
-          books?.slice(0, 4).map((book) => (
-            <li class="list-item">
-              <span class="item-main">{book.data.title}</span>
-              <span class="item-meta">Finished</span>
-            </li>
-          ))
-        }
-      </ul>
-    </Section>
-
-    <Section title="Aggregated Calendar Events">
-      <ul class="list">
-        {
-          events?.slice(0, 3).map((event) => (
-            <li class="list-item clickable">
-              <div class="item-left">
-                <span class="item-main">
-                  {event.data.name || "Untitled Network Event"}
-                </span>
-              </div>
-              <span class="arrow">→</span>
-            </li>
-          ))
-        }
-      </ul>
-    </Section>
+    <Intro />
+    <RecentPosts />
+    <ReadingSummary />
+    <UpcomingEvents />
+    <Experience />
   </main>
 </Layout>
 
@@ -113,110 +32,7 @@ const { entries: events } = await getLiveCollection("events");
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 80px 24px 120px 24px;
+    padding: 80px 24px 80px 24px;
     background-color: var(--bg);
-  }
-
-  .intro-block {
-    font-size: 1.05rem;
-    color: var(--text);
-    margin-bottom: 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .intro-block strong {
-    font-weight: 600;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
-  }
-
-  @media (max-width: 640px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition:
-      border-color 0.2s ease,
-      background-color 0.2s ease;
-  }
-
-  .card:hover {
-    border-color: var(--text);
-    background-color: oklch(1 0 0 / 0.4);
-  }
-
-  .card-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .card-title-row .title {
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
-  }
-
-  .card .description {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  .list {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    background: var(--card-bg);
-    overflow: hidden;
-  }
-
-  .list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.95rem;
-  }
-
-  .list-item:last-child {
-    border-bottom: none;
-  }
-
-  .list-item.clickable {
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  .list-item.clickable:hover {
-    background-color: oklch(0.15 0.02 45 / 0.02);
-  }
-
-  .item-main {
-    font-weight: 600;
-  }
-
-  .item-meta,
-  .arrow {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
   }
 </style>

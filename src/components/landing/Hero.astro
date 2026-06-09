@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import astro from "../assets/astro.png";
-import npmx from "../assets/npmx.png";
-import starlight from "../assets/starlight.png";
+import astro from "@/assets/astro.png";
+import npmx from "@/assets/npmx.png";
+import starlight from "@/assets/starlight.png";
 
 interface Props {
   name: string;
@@ -47,32 +47,46 @@ const { name } = Astro.props;
 
   <div class="floating-logos">
     <div class="logo-parallax" style="top: 15%; left: 15%; --speed: 0.7;">
-      <div class="logo-wrapper" style="animation-delay: 0s;">
+      <a
+        href="https://astro.build"
+        class="logo-wrapper"
+        style="animation-delay: 0s;"
+      >
         <Image src={astro} alt="Astro Logo" class="tech-logo" />
-      </div>
+      </a>
     </div>
     <div class="logo-parallax" style="top: 75%; left: 57%; --speed: 0.05;">
-      <div class="logo-wrapper" style="animation-delay: -1.5s;">
+      <a
+        href="https://npmx.dev"
+        class="logo-wrapper"
+        style="animation-delay: -1.5s;"
+      >
         <Image src={npmx} alt="npmx Logo" class="tech-logo" />
-      </div>
+      </a>
     </div>
     <div class="logo-parallax" style="top: 30%; left: 77%; --speed: 0.45;">
-      <div class="logo-wrapper" style="animation-delay: -3s;">
+      <a
+        href="https://starlight.astro.build"
+        class="logo-wrapper"
+        style="animation-delay: -3s;"
+      >
         <Image src={starlight} alt="Starlight Logo" class="tech-logo" />
-      </div>
+      </a>
     </div>
   </div>
 
   <div class="hero-center-wrapper" id="hero-content">
-    <!-- Blobs Removed -->
     <h1 class="hero-text">{name}</h1>
   </div>
 </section>
 
 <style is:global>
-  /* Define CSS variable based on scroll */
   :root {
     --scroll-y: 0px;
+  }
+
+  body {
+    padding-top: 0;
   }
 </style>
 
@@ -113,7 +127,6 @@ const { name } = Astro.props;
     border-left: var(--b-width) var(--b-style) var(--b-color);
     border-right: var(--b-width) var(--b-style) var(--b-color);
     will-change: transform;
-    /* CSS Parallax */
     transform: translate3d(0, calc(var(--scroll-y) * var(--speed, 0)), 0);
   }
 
@@ -141,14 +154,12 @@ const { name } = Astro.props;
   .floating-logos {
     position: absolute;
     inset: 0;
-    pointer-events: none;
     z-index: 40;
   }
 
   .logo-parallax {
     position: absolute;
     will-change: transform;
-    /* CSS Parallax */
     transform: translate3d(0, calc(var(--scroll-y) * var(--speed, 0)), 0);
   }
 
@@ -193,7 +204,6 @@ const { name } = Astro.props;
     align-items: center;
     justify-content: center;
     will-change: transform;
-    /* CSS Parallax */
     transform: translate3d(0, calc(var(--scroll-y) * 0.5), 0);
   }
 
@@ -239,7 +249,6 @@ const { name } = Astro.props;
   const root = document.documentElement;
 
   function updateScroll() {
-    // Set CSS variable based on current scroll position
     root.style.setProperty("--scroll-y", `${window.scrollY}px`);
     ticking = false;
   }
@@ -255,6 +264,5 @@ const { name } = Astro.props;
     { passive: true }
   );
 
-  // Initial set
   updateScroll();
 </script>

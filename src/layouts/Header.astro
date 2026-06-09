@@ -1,0 +1,407 @@
+---
+const links = [
+  { label: "Posts", url: "/posts" },
+  { label: "Books", url: "/books" },
+  { label: "Events", url: "/events" },
+];
+---
+
+<header class="glass-header">
+  <div class="header-inner">
+    <div class="pills-wrapper">
+      <div class="unified-bg"></div>
+
+      <div class="logo-pill">
+        <div class="pill-bg"></div>
+        <a href="/" class="logo">Felix Schneider</a>
+      </div>
+
+      <div class="menu-pill">
+        <div class="pill-bg"></div>
+        <div class="menu-toggle-wrapper">
+          <button class="menu-toggle" aria-label="Toggle Menu">Menu</button>
+        </div>
+
+        <nav aria-label="Main Navigation" class="nav-menu">
+          <div class="nav-menu-content">
+            <ul class="nav-links">
+              {
+                links.map((link) => (
+                  <li class="nav-item">
+                    <a href={link.url}>{link.label}</a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector(".menu-toggle");
+  const headerInner = document.querySelector(".header-inner");
+
+  button?.addEventListener("click", () => {
+    if (headerInner?.classList.contains("is-open")) {
+      headerInner.classList.remove("is-open");
+      headerInner.classList.add("is-closing");
+      setTimeout(() => {
+        headerInner.classList.remove("is-closing");
+      }, 700);
+    } else {
+      headerInner?.classList.remove("is-closing");
+      headerInner?.classList.add("is-open");
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 600) {
+      headerInner?.classList.remove("is-open");
+      headerInner?.classList.remove("is-closing");
+    }
+  });
+</script>
+
+<style>
+  .glass-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    --spring: cubic-bezier(0.46, 0.12, 0.56, -0.08);
+    --spring-bouncy: cubic-bezier(0.34, 1.15, 0.64, 1);
+  }
+
+  .header-inner {
+    width: 100%;
+    max-width: var(--max-width);
+    display: flex;
+    justify-content: center;
+  }
+
+  .pills-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 0;
+    position: relative;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: gap 0.4s var(--spring) 0.3s;
+  }
+
+  .header-inner.is-open .pills-wrapper {
+    gap: 12px;
+    transition: gap 0.5s var(--spring-bouncy) 0s;
+    animation: squeeze-open 0.6s var(--spring-bouncy) forwards;
+  }
+
+  .header-inner.is-closing .pills-wrapper {
+    animation: squeeze-close 0.7s var(--spring) forwards;
+  }
+
+  @keyframes squeeze-open {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(0.96);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes squeeze-close {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(0.96);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .unified-bg,
+  .pill-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    background: oklch(0.99 0.005 75 / 0.6);
+    backdrop-filter: blur(17px) saturate(180%);
+    -webkit-backdrop-filter: blur(17px) saturate(180%);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 30px oklch(0.2 0.02 75 / 0.15);
+    pointer-events: none;
+  }
+
+  .unified-bg {
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 0s 0.65s;
+  }
+
+  .pill-bg {
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0s 0.65s;
+  }
+
+  .logo-pill,
+  .menu-pill {
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    transition: flex-grow 0.4s var(--spring) 0.3s;
+  }
+
+  .logo-pill {
+    padding: 12px 16px 12px 24px;
+    display: block;
+  }
+
+  .menu-pill {
+    padding: 12px 24px 12px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-pill .pill-bg {
+    border-radius: 1.5rem 0 0 1.5rem;
+    border-right-width: 0;
+    transition:
+      border-radius 0.4s var(--spring) 0.3s,
+      border-width 0.4s var(--spring) 0.3s,
+      opacity 0s 0.65s;
+  }
+
+  .menu-pill .pill-bg {
+    border-radius: 0 1.5rem 1.5rem 0;
+    border-left-width: 0;
+    transition:
+      border-radius 0.4s var(--spring) 0.3s,
+      border-width 0.4s var(--spring) 0.3s,
+      opacity 0s 0.65s;
+  }
+
+  .header-inner.is-open .logo-pill,
+  .header-inner.is-open .menu-pill {
+    flex-grow: 0;
+    transition: flex-grow 0.5s var(--spring-bouncy) 0s;
+  }
+
+  .header-inner.is-open .unified-bg {
+    opacity: 0;
+    transition: opacity 0s 0s;
+  }
+
+  .header-inner.is-open .pill-bg {
+    opacity: 1;
+    transition: opacity 0s 0s;
+  }
+
+  .header-inner.is-open .logo-pill .pill-bg {
+    border-radius: 1.5rem;
+    border-right-width: 1px;
+    transition:
+      border-radius 0.4s var(--spring-bouncy) 0s,
+      border-width 0.4s var(--spring-bouncy) 0s,
+      opacity 0s 0s;
+  }
+
+  .header-inner.is-open .menu-pill .pill-bg {
+    border-radius: 1.5rem;
+    border-left-width: 1px;
+    transition:
+      border-radius 0.4s var(--spring-bouncy) 0s,
+      border-width 0.4s var(--spring-bouncy) 0s,
+      opacity 0s 0s;
+  }
+
+  .logo,
+  .menu-toggle {
+    position: relative;
+    z-index: 2;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    font-family: inherit;
+    display: block;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .menu-toggle-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .nav-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s var(--spring) 0s;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .nav-menu-content {
+    overflow: hidden;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .header-inner.is-open .nav-menu {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.6s var(--spring-bouncy) 0.1s;
+  }
+
+  .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .nav-item {
+    opacity: 0;
+    transform: translateX(6px);
+    transition:
+      opacity 0.2s ease 0s,
+      transform 0.3s var(--spring) 0s;
+  }
+
+  .header-inner.is-open .nav-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      opacity 0.3s ease,
+      transform 0.5s var(--spring-bouncy);
+  }
+
+  .header-inner.is-open .nav-item:nth-child(1) {
+    transition-delay: 0.2s;
+  }
+  .header-inner.is-open .nav-item:nth-child(2) {
+    transition-delay: 0.25s;
+  }
+  .header-inner.is-open .nav-item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  @media (max-width: 600px) {
+    .menu-toggle-wrapper {
+      display: flex;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+      padding-top: 24px;
+      padding-bottom: 8px;
+    }
+  }
+
+  @media (min-width: 601px) {
+    .pills-wrapper {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .unified-bg {
+      opacity: 1 !important;
+    }
+
+    .pill-bg {
+      opacity: 0 !important;
+      display: none;
+    }
+
+    .logo-pill,
+    .menu-pill {
+      flex-grow: 1 !important;
+    }
+
+    .logo-pill {
+      padding: 12px 24px;
+    }
+
+    .menu-pill {
+      padding: 12px 24px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .menu-toggle-wrapper {
+      display: none;
+    }
+
+    .nav-menu {
+      grid-template-rows: 1fr !important;
+      width: auto;
+    }
+
+    .nav-menu-content {
+      overflow: visible;
+    }
+
+    .nav-links {
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+      padding: 0;
+    }
+
+    .nav-item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>

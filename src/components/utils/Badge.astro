@@ -1,14 +1,10 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-
-interface IconProps extends HTMLAttributes<"svg"> {
-  size?: number | string;
-}
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
 interface Props {
   href: string;
   text: string;
-  icon?: string | ((props: IconProps) => any);
+  icon?: string | AstroComponentFactory;
   alt?: string;
 }
 
@@ -17,7 +13,7 @@ const { href, text, icon, alt = "Badge icon" } = Astro.props;
 const IconComponent = typeof icon === "function" ? icon : null;
 ---
 
-<a href={href} class="gh-badge">
+<a href={href} class="badge">
   {
     IconComponent ? (
       <IconComponent size="1.2em" />
@@ -29,11 +25,12 @@ const IconComponent = typeof icon === "function" ? icon : null;
 </a>
 
 <style>
-  .gh-badge {
+  .badge {
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
     padding: 0.2em 0.4em;
+    margin: 0 -0.05em;
     height: 1.6em;
     font-size: 0.95em;
     vertical-align: middle;
@@ -49,12 +46,12 @@ const IconComponent = typeof icon === "function" ? icon : null;
     transition: all 0.2s ease;
   }
 
-  .gh-badge:hover {
+  .badge:hover {
     background-color: var(--bg);
   }
 
-  .gh-badge :global(img),
-  .gh-badge :global(svg) {
+  .badge :global(img),
+  .badge :global(svg) {
     width: 1.1em;
     height: 1.1em;
     border-radius: 2px;

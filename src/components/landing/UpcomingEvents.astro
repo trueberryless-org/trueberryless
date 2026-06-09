@@ -1,0 +1,38 @@
+---
+import { getLiveCollection } from "astro:content";
+import Section from "@/components/utils/Section.astro";
+import List from "@/components/utils/List.astro";
+
+const { entries: events } = await getLiveCollection("events");
+
+const upcomingEvents =
+  events
+    ?.filter(
+      (e) => e.data.startsAt && new Date(e.data.startsAt).getTime() > Date.now()
+    )
+    .sort(
+      (a, b) =>
+        new Date(a.data.startsAt!).getTime() -
+        new Date(b.data.startsAt!).getTime()
+    )
+    .slice(0, 3) || [];
+---
+
+{
+  upcomingEvents.length > 0 && (
+    <Section title="Upcoming Events">
+      <List>
+        {upcomingEvents.map((event) => (
+          <li class="list-item clickable">
+            <div class="item-left">
+              <span class="item-main">
+                {event.data.name || "Untitled Network Event"}
+              </span>
+            </div>
+            <span class="arrow">→</span>
+          </li>
+        ))}
+      </List>
+    </Section>
+  )
+}

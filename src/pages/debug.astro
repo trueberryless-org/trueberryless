@@ -1,10 +1,6 @@
 ---
 import { getLiveCollection } from "astro:content";
-
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, max-age=3600, must-revalidate"
-);
+import BaseHead from "@/layouts/BaseHead.astro";
 
 const { entries: posts, error: postsError } = await getLiveCollection("posts");
 const { entries: books, error: booksError } = await getLiveCollection("books");
@@ -39,7 +35,10 @@ if (followsError) console.error(followsError.message);
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>My Live ATProto Hub</title>
+    <BaseHead
+      title={"Debug Mode | Felix Schneider"}
+      description={"View the website with raw data"}
+    />
     <style>
       body {
         font-family: system-ui, sans-serif;
@@ -71,6 +70,13 @@ if (followsError) console.error(followsError.message);
       <section>
         <h2>Posts</h2>
         {
+          postsError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading posts:</strong> {postsError.message}
+            </div>
+          )
+        }
+        {
           posts?.map((item) => (
             <article>
               <details>
@@ -84,6 +90,13 @@ if (followsError) console.error(followsError.message);
 
       <section>
         <h2>Books</h2>
+        {
+          booksError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading books:</strong> {booksError.message}
+            </div>
+          )
+        }
         {
           books?.map((item) => (
             <article>
@@ -99,6 +112,13 @@ if (followsError) console.error(followsError.message);
       <section>
         <h2>Events</h2>
         {
+          eventsError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading events:</strong> {eventsError.message}
+            </div>
+          )
+        }
+        {
           events?.map((item) => (
             <article>
               <details>
@@ -113,10 +133,22 @@ if (followsError) console.error(followsError.message);
       <section>
         <h2>Likes</h2>
         {
+          likesError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading likes:</strong> {likesError.message}
+            </div>
+          )
+        }
+        {
           likes?.map((item) => (
             <article>
               <details>
-                <summary>{item.id}</summary>
+                <summary>
+                  {item.data.subjectRef?.replace(
+                    "https://npmx.dev/package/",
+                    ""
+                  ) || item.id}
+                </summary>
                 <pre>{JSON.stringify(item.data, null, 2)}</pre>
               </details>
             </article>
@@ -126,6 +158,13 @@ if (followsError) console.error(followsError.message);
 
       <section>
         <h2>Education</h2>
+        {
+          educationError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading education:</strong> {educationError.message}
+            </div>
+          )
+        }
         {
           education?.map((item) => (
             <article>
@@ -140,6 +179,13 @@ if (followsError) console.error(followsError.message);
 
       <section>
         <h2>Honors</h2>
+        {
+          honorError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading honors:</strong> {honorError.message}
+            </div>
+          )
+        }
         {
           honor?.map((item) => (
             <article>
@@ -157,6 +203,13 @@ if (followsError) console.error(followsError.message);
       <section>
         <h2>Skills</h2>
         {
+          skillError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading skills:</strong> {skillError.message}
+            </div>
+          )
+        }
+        {
           skill?.map((item) => (
             <article>
               <details>
@@ -170,6 +223,13 @@ if (followsError) console.error(followsError.message);
 
       <section>
         <h2>Positions</h2>
+        {
+          positionError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading positions:</strong> {positionError.message}
+            </div>
+          )
+        }
         {
           position?.map((item) => (
             <article>
@@ -187,6 +247,13 @@ if (followsError) console.error(followsError.message);
       <section>
         <h2>Repositories</h2>
         {
+          reposError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading repositories:</strong> {reposError.message}
+            </div>
+          )
+        }
+        {
           repos?.map((item) => (
             <article>
               <details>
@@ -200,6 +267,14 @@ if (followsError) console.error(followsError.message);
 
       <section>
         <h2>Bluesky Posts</h2>
+        {
+          blueskyPostsError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading blueskyPosts:</strong>{" "}
+              {blueskyPostsError.message}
+            </div>
+          )
+        }
         {
           blueskyPosts?.map((item) => (
             <article>
@@ -218,6 +293,13 @@ if (followsError) console.error(followsError.message);
 
       <section>
         <h2>Follows</h2>
+        {
+          followsError && (
+            <div style="color: red; padding: 1rem; background: #fee;">
+              <strong>Error loading follows:</strong> {followsError.message}
+            </div>
+          )
+        }
         {
           follows?.map((item) => (
             <article>

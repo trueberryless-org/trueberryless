@@ -1,0 +1,53 @@
+---
+import { getLiveCollection } from "astro:content";
+import Section from "@/components/utils/Section.astro";
+import List from "@/components/utils/List.astro";
+
+const { entries: books } = await getLiveCollection("books");
+---
+
+{
+  books && books.length > 0 && (
+    <Section title="Reading Summary">
+      <List>
+        {(() => {
+          const sortedByDate = [...books].sort((a, b) => {
+            const dateA = new Date(
+              a.data.finishedAt || a.data.startedAt || 0
+            ).getTime();
+            const dateB = new Date(
+              b.data.finishedAt || b.data.startedAt || 0
+            ).getTime();
+            return dateB - dateA;
+          });
+          const latest = sortedByDate[0];
+
+          const favorites = [...books]
+            .filter((b) => typeof b.data.stars === "number")
+            .sort((a, b) => (b.data.stars ?? 0) - (a.data.stars ?? 0))
+            .filter((b) => b.data.hiveId !== latest.data.hiveId)
+            .slice(0, 3);
+
+          return [
+            <li class="list-item">
+              <span class="item-main">{latest.data.title}</span>
+              <span class="item-meta">
+                {latest.data.startedAt
+                  ? `Started: ${new Date(latest.data.startedAt).toLocaleDateString()}`
+                  : "Started: Unknown"}
+              </span>
+            </li>,
+            ...favorites.map((book) => (
+              <li class="list-item">
+                <span class="item-main">{book.data.title}</span>
+                <span class="item-meta">
+                  {(book.data.stars ?? 0) / 2} stars
+                </span>
+              </li>
+            )),
+          ];
+        })()}
+      </List>
+    </Section>
+  )
+}

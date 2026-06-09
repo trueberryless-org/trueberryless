@@ -14,7 +14,11 @@ const { title, description = "My corner of the internet." } = Astro.props;
 <meta name="description" content={description} />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin="anonymous"
+/>
 <link
   href="https://fonts.googleapis.com/css2?family=Datatype&display=swap"
   rel="stylesheet"

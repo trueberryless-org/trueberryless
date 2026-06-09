@@ -3,6 +3,7 @@ import { defineLiveCollection } from "astro:content";
 import type { Main as BookRecord } from "../src/lexicons/buzz/bookhive/book";
 import type { Main as DocumentRecord } from "../src/lexicons/site/standard/document";
 import { atprotoLoader } from "./loaders/atproto";
+import { BookStatusMap } from "./loaders/enums";
 
 const actorDid = "did:plc:pbjvqaziagcyv2vqodldn5op";
 const pdsEndpoint = "https://npmx.social";
@@ -21,6 +22,9 @@ export const collections = {
     loader: atprotoLoader<BookRecord>({
       ...baseConfig,
       collection: "buzz.bookhive.book",
+      mappers: {
+        status: BookStatusMap,
+      },
     }),
   }),
   events: defineLiveCollection({

@@ -1,0 +1,79 @@
+---
+import { getLiveCollection } from "astro:content";
+import Section from "@/components/utils/Section.astro";
+
+const { entries: skills } = (await getLiveCollection("skill")) || {
+  entries: [],
+};
+const { entries: education } = (await getLiveCollection("education")) || {
+  entries: [],
+};
+
+const sortedSkills = (skills || [])
+  .sort((a, b) => a.data.name.localeCompare(b.data.name))
+  .slice(0, 30);
+
+const sortedEducation = (education || [])
+  .sort((a, b) => {
+    const dateA = a.data.endedAt ? new Date(a.data.endedAt).getTime() : 0;
+    const dateB = b.data.endedAt ? new Date(b.data.endedAt).getTime() : 0;
+    return dateB - dateA;
+  })
+  .slice(0, 30);
+---
+
+{
+  sortedSkills.length > 0 && (
+    <Section title="Skills">
+      <div class="badge-grid">
+        {sortedSkills.map((skill) => (
+          <span class="badge">{skill.data.name}</span>
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+{
+  sortedEducation.length > 0 && (
+    <Section title="Education">
+      <div class="badge-grid">
+        {sortedEducation.map((edu) => (
+          <span class="badge">
+            {edu.data.institution}
+            {edu.data.degree ? `, ${edu.data.degree}` : ""}
+          </span>
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+<style>
+  .badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2em 0.6em;
+    height: 1.6em;
+    font-size: 0.95em;
+    vertical-align: middle;
+
+    background-color: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border-radius: 4px;
+
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .badge:hover {
+    background-color: var(--bg);
+  }
+</style>
