@@ -4,6 +4,7 @@
   --bg: oklch(0.9455 0.03 90);
   --bg-subtle: oklch(0.975 0.015 90);
   --card-bg: oklch(0.975 0.022 90);
+  --badge-bg: oklch(0.975 0.022 90);
   --text: oklch(0.18 0.02 90);
   --text-muted: oklch(0.45 0.02 90);
   --border: oklch(0.86 0.02 90);
