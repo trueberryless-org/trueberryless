@@ -261,7 +261,10 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
   .header-inner.is-open .logo-pill,
   .header-inner.is-open .menu-pill {
     flex-grow: 0;
-    transition: flex-grow 0.5s var(--spring-bouncy) 0s;
+    padding: 12px 24px;
+    transition:
+      flex-grow 0.5s var(--spring-bouncy) 0s,
+      padding 0.5s var(--spring-bouncy) 0s;
   }
 
   .header-inner.is-open .unified-bg {
@@ -466,7 +469,12 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
 
     .logo-pill,
     .menu-pill {
-      flex-grow: 1 !important;
+      position: relative;
+      z-index: 1;
+      flex-grow: 1;
+      transition:
+        flex-grow 0.5s var(--spring-close-width) 0s,
+        padding 0.5s var(--spring-close-width) 0s;
     }
 
     .logo-pill {
