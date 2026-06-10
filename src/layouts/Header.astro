@@ -9,6 +9,8 @@ const links = [
 
 const firstWordRest = ["e", "l", "i", "x", "\u00A0"];
 const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
+
+const pathname = Astro.url.pathname;
 ---
 
 <header class="glass-header">
@@ -18,7 +20,7 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
 
       <div class="logo-pill">
         <div class="pill-bg"></div>
-        <a href="/" class="logo">
+        <a href="/" class={pathname === "/" ? "logo active" : "logo"}>
           <span class="initial">F</span>
           <span class="rest">
             <span class="rest-inner">
@@ -43,6 +45,9 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
               }
             </span>
           </span>
+          <span class="appendix">
+            <span class="appendix-inner">&nbsp;- Home</span>
+          </span>
         </a>
       </div>
 
@@ -56,11 +61,19 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
           <div class="nav-menu-content">
             <ul class="nav-links">
               {
-                links.map((link) => (
-                  <li class="nav-item">
-                    <a href={link.url}>{link.label}</a>
-                  </li>
-                ))
+                links.map((link) => {
+                  const isActive =
+                    link.url === "/"
+                      ? pathname === "/"
+                      : pathname.startsWith(link.url);
+                  return (
+                    <li class="nav-item">
+                      <a href={link.url} class={isActive ? "active" : ""}>
+                        {link.label}
+                      </a>
+                    </li>
+                  );
+                })
               }
               <li class="nav-item">
                 <button
@@ -184,7 +197,9 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
   }
 
   .glass-header:not(.is-ready) .rest,
-  .glass-header:not(.is-ready) .char {
+  .glass-header:not(.is-ready) .char,
+  .glass-header:not(.is-ready) .appendix,
+  .glass-header:not(.is-ready) .appendix-inner {
     transition: none !important;
   }
 
@@ -354,10 +369,15 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
     font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: -0.02em;
-    color: var(--text);
+    color: var(--text-muted);
     text-decoration: none;
     display: flex;
     align-items: center;
+    transition: color 0.2s ease;
+  }
+
+  .logo.active {
+    color: var(--text);
   }
 
   .rest {
@@ -395,6 +415,35 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
     filter: blur(0px);
     transform: translateY(0) scale(1);
     transition-delay: calc(0.3s + (var(--char-index) * 0.025s));
+  }
+
+  .appendix {
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: grid-template-columns 0.8s cubic-bezier(0.65, 0, 0.05, 1) 0s;
+  }
+
+  .appendix-inner {
+    overflow: hidden;
+    min-width: 0;
+    white-space: nowrap;
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0.3s;
+  }
+
+  .header-inner.is-scrolled .appendix {
+    grid-template-columns: 0fr;
+    transition: grid-template-columns 0.8s cubic-bezier(0.65, 0, 0.05, 1) 0.15s;
+  }
+
+  .header-inner.is-scrolled .appendix-inner {
+    opacity: 0;
+    transform: translateX(10px);
+    transition-delay: 0s;
   }
 
   .menu-toggle-wrapper {
@@ -448,7 +497,8 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
     text-decoration: none;
   }
 
-  .nav-links a:hover {
+  .nav-links a:hover,
+  .nav-links a.active {
     color: var(--text);
   }
 
@@ -641,6 +691,10 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
 
     .rest {
       grid-template-columns: 1fr !important;
+    }
+
+    .appendix {
+      grid-template-columns: 0fr !important;
     }
 
     .char {

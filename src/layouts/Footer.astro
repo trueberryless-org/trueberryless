@@ -74,12 +74,27 @@ const socialLinks = [
   </div>
 </footer>
 
+<script>
+  const updateMaxScroll = () => {
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
+    document.documentElement.style.setProperty(
+      "--max-scroll",
+      `${maxScroll}px`
+    );
+  };
+  window.addEventListener("scroll", updateMaxScroll);
+  window.addEventListener("resize", updateMaxScroll);
+  updateMaxScroll();
+</script>
+
 <style>
   footer {
     width: 100%;
     border-top: 1px solid var(--border);
     background-color: var(--bg-subtle);
     padding: 64px;
+    overflow: hidden;
   }
 
   @media (max-width: 768px) {
@@ -96,6 +111,12 @@ const socialLinks = [
     text-align: center;
     max-width: 1440px;
     margin: 0 auto;
+    will-change: transform;
+    transform: translate3d(
+      0,
+      calc((var(--max-scroll, 0px) - var(--scroll-y, 0px)) * -0.35),
+      0
+    );
   }
 
   .nav-groups {
@@ -169,5 +190,11 @@ const socialLinks = [
 
   .legal a:hover {
     color: var(--text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-container {
+      transform: none !important;
+    }
   }
 </style>

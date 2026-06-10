@@ -33,6 +33,7 @@ const years = Object.keys(groupedPosts).sort((a, b) => Number(b) - Number(a));
 
 <Layout title="Blog">
   <main class="layout-stream">
+    <h1 class="title">Blog Posts</h1>
     <div class="blog-container">
       {
         years.map((year) => (
@@ -52,6 +53,10 @@ const years = Object.keys(groupedPosts).sort((a, b) => Number(b) - Number(a));
     margin: 0 auto;
     padding: 80px 24px 80px 24px;
     background-color: var(--bg);
+  }
+
+  .title {
+    margin-bottom: 5rem;
   }
 
   .blog-container {
