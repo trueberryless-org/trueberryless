@@ -81,10 +81,6 @@ const { name } = Astro.props;
 </section>
 
 <style is:global>
-  :root {
-    --scroll-y: 0px;
-  }
-
   body {
     padding-top: 0;
   }
@@ -242,27 +238,16 @@ const { name } = Astro.props;
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
     pointer-events: none;
   }
-</style>
 
-<script>
-  let ticking = false;
-  const root = document.documentElement;
+  @media (prefers-reduced-motion: reduce) {
+    .hex,
+    .logo-parallax,
+    .hero-center-wrapper {
+      transform: none !important;
+    }
 
-  function updateScroll() {
-    root.style.setProperty("--scroll-y", `${window.scrollY}px`);
-    ticking = false;
+    .logo-wrapper {
+      animation: none !important;
+    }
   }
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScroll);
-        ticking = true;
-      }
-    },
-    { passive: true }
-  );
-
-  updateScroll();
-</script>
+</style>
