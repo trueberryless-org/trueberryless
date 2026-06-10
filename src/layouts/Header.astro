@@ -529,4 +529,13 @@ const secondWordRest = ["c", "h", "n", "e", "i", "d", "e", "r"];
       transform: translateX(0) !important;
     }
   }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .unified-bg,
+    .pill-bg {
+      background: oklch(0.99 0.005 75 / 1);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
 </style>
