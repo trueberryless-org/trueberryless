@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+import BaseHead from "@/layouts/BaseHead.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import ScrollTracker from "@/layouts/ScrollTracker.astro";
+import Breadcrumbs from "@/layouts/Breadcrumbs.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <Header />
+    <div class="main-container">
+      <main>
+        <Breadcrumbs />
+        <slot />
+      </main>
+    </div>
+    <Footer />
+    <ScrollTracker />
+  </body>
+</html>
+
+<style>
+  .main-container {
+    width: 100%;
+    background-color: var(--bg);
+  }
+
+  main {
+    position: relative;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 120px 24px 80px 24px;
+  }
+</style>

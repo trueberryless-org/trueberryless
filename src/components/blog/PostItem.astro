@@ -1,27 +1,19 @@
 ---
+import { processPost } from "@/lib/blog";
+
 interface Props {
   post: any;
 }
 
 const { post } = Astro.props;
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  const month = date.toLocaleString("en-US", { month: "short" }).toUpperCase();
-  const day = date.getDate().toString().padStart(2, "0");
-  return `${month}.${day}`;
-};
-
-const formattedDate = formatDate(post.data.publishedAt);
-const firstTag = post.data.tags?.[0];
-const otherTags = post.data.tags?.slice(1).join("  ") || "";
-const postUrl = post.data.path || `/blog/${post.id.split("/").pop()}`;
+const { title, formattedDate, postUrl, firstTag, otherTags } =
+  processPost(post);
 ---
 
 <article class="post-item">
-  <a href={postUrl} class="post-link">
+  <a href={postUrl} target="_blank" rel="noopener noreferrer" class="post-link">
     <h3 class="post-title">
-      {post.data.title || "Untitled"}
+      {title}
     </h3>
 
     <span class="post-separator">&middot;</span>

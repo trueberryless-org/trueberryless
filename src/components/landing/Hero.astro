@@ -131,14 +131,6 @@ const { name } = Astro.props;
 </section>
 
 <style is:global>
-  :root:not(.dark) .dark-logo {
-    display: none;
-  }
-
-  :root.dark .light-logo {
-    display: none;
-  }
-
   main {
     padding-top: 0;
   }
@@ -210,6 +202,14 @@ const { name } = Astro.props;
     inset: 0;
     z-index: 40;
     pointer-events: none;
+  }
+
+  :root:not(.dark) .dark-logo {
+    display: none;
+  }
+
+  :root.dark .light-logo {
+    display: none;
   }
 
   .logo-parallax {

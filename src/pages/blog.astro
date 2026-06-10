@@ -1,0 +1,31 @@
+---
+import LayoutBreadcrumbs from "@/layouts/LayoutBreadcrumbs.astro";
+import YearGroup from "@/components/blog/YearGroup.astro";
+import { getGroupedPosts } from "@/lib/blog";
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=3600, must-revalidate"
+);
+
+const { groupedPosts, years } = await getGroupedPosts();
+---
+
+<LayoutBreadcrumbs title="Blog">
+  <h1 class="title">Blog Posts</h1>
+  <div class="blog-container">
+    {years.map((year) => <YearGroup year={year} posts={groupedPosts[year]} />)}
+  </div>
+</LayoutBreadcrumbs>
+
+<style>
+  .title {
+    margin-bottom: 5rem;
+  }
+
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+</style>

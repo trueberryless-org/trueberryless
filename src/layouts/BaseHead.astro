@@ -1,4 +1,6 @@
 ---
+import ThemeScript from "./ThemeScript.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -12,6 +14,7 @@ const { title, description = "My corner of the internet." } = Astro.props;
 <link rel="icon" type="image/png" href="/favicon.png" />
 <title>{title}</title>
 <meta name="description" content={description} />
+<ThemeScript />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link

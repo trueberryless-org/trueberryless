@@ -6,25 +6,41 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<section class="hideoo-block">
-  <h2>{title}</h2>
+<section class="section-container">
+  <div class="section-header">
+    <h2>{title}</h2>
+    <div class="header-actions">
+      <slot name="header-actions" />
+    </div>
+  </div>
   <div class="block-content">
     <slot />
   </div>
 </section>
 
 <style>
-  .hideoo-block {
+  .section-container {
     width: 100%;
     margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
   }
 
   h2 {
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
     color: var(--text);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
   }
 
   .block-content {
