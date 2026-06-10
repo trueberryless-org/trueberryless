@@ -2,6 +2,7 @@
 import { getLiveCollection } from "astro:content";
 import Section from "@/components/utils/Section.astro";
 import List from "@/components/utils/List.astro";
+import ActionLink from "@/components/utils/ActionLink.astro";
 
 const { entries: books } = await getLiveCollection("books");
 ---
@@ -9,6 +10,8 @@ const { entries: books } = await getLiveCollection("books");
 {
   books && books.length > 0 && (
     <Section title="Reading Summary">
+      <ActionLink slot="header-actions" href="/books" text="View all" />
+
       <List>
         {(() => {
           const sortedByDate = [...books].sort((a, b) => {

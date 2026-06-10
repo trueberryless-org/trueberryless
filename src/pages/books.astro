@@ -1,0 +1,46 @@
+---
+import LayoutBreadcrumbs from "@/layouts/LayoutBreadcrumbs.astro";
+import Book from "@/components/books/Book.astro";
+import { getLibraryBooks } from "@/lib/books";
+
+export const prerender = false;
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=3600, must-revalidate"
+);
+
+const books = await getLibraryBooks();
+---
+
+<LayoutBreadcrumbs title="Bookshelf">
+  <h1 class="title">Bookshelf</h1>
+  <div class="books-grid">
+    {
+      books.map((book) => (
+        <Book
+          title={book.title}
+          authors={book.authors}
+          coverUrl={book.coverUrl}
+          rotation={book.rotation}
+          hiveId={book.hiveId}
+          thickness={book.thickness}
+        />
+      ))
+    }
+  </div>
+</LayoutBreadcrumbs>
+
+<style>
+  .title {
+    margin-bottom: 5rem;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 4rem 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+</style>
