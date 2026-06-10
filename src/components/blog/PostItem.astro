@@ -1,0 +1,92 @@
+---
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = date.toLocaleString("en-US", { month: "short" }).toUpperCase();
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${month}.${day}`;
+};
+
+const formattedDate = formatDate(post.data.publishedAt);
+const firstTag = post.data.tags?.[0];
+const otherTags = post.data.tags?.slice(1).join("  ") || "";
+const postUrl = post.data.path || `/blog/${post.id.split("/").pop()}`;
+---
+
+<article class="post-item">
+  <a href={postUrl} class="post-link">
+    <h3 class="post-title">
+      {post.data.title || "Untitled"}
+    </h3>
+
+    <span class="post-separator">&middot;</span>
+
+    <time datetime={post.data.publishedAt} class="post-meta-item">
+      {formattedDate}
+    </time>
+
+    {
+      firstTag && (
+        <>
+          <span class="post-separator">&middot;</span>
+          <span class="post-meta-item">{firstTag}</span>
+        </>
+      )
+    }
+
+    {
+      otherTags && (
+        <>
+          <span class="post-separator">&middot;</span>
+          <span class="post-meta-item">{otherTags}</span>
+        </>
+      )
+    }
+  </a>
+</article>
+
+<style>
+  .post-link {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px 0;
+    transition: opacity 0.2s ease;
+    text-decoration: none;
+  }
+
+  .post-link:hover {
+    opacity: 0.6;
+  }
+
+  .post-title {
+    display: inline;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .post-separator {
+    color: var(--text-muted);
+    opacity: 0.6;
+    user-select: none;
+  }
+
+  .post-meta-item {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+</style>

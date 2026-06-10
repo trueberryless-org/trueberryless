@@ -1,0 +1,62 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getLiveCollection } from "astro:content";
+import YearGroup from "@/components/blog/YearGroup.astro";
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=3600, must-revalidate"
+);
+
+const { entries: posts } = await getLiveCollection("posts");
+
+const sortedPosts =
+  posts?.sort((a: any, b: any) => {
+    const dateA = new Date(a.data.publishedAt);
+    const dateB = new Date(b.data.publishedAt);
+    return dateB.getTime() - dateA.getTime();
+  }) || [];
+
+const groupedPosts = sortedPosts.reduce(
+  (acc: Record<string, any[]>, post: any) => {
+    const date = new Date(post.data.publishedAt);
+    const year = date.getFullYear().toString();
+    if (!acc[year]) acc[year] = [];
+    acc[year].push(post);
+    return acc;
+  },
+  {} as Record<string, any[]>
+);
+
+const years = Object.keys(groupedPosts).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Blog">
+  <main class="layout-stream">
+    <div class="blog-container">
+      {
+        years.map((year) => (
+          <YearGroup year={year} posts={groupedPosts[year]} />
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .layout-stream {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 24px 80px 24px;
+    background-color: var(--bg);
+  }
+
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+</style>

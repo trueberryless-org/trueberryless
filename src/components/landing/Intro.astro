@@ -1,10 +1,14 @@
 ---
 import Badge from "@/components/utils/Badge.astro";
 
-import astroLogo from "@/assets/astro.png";
-import blueskyLogo from "@/assets/bluesky.png";
-import npmxLogo from "@/assets/npmx.png";
-import starlightLogo from "@/assets/starlight.png";
+import astroLight from "@/assets/logos/light/astro.png";
+import blueskyLight from "@/assets/logos/light/bluesky.png";
+import npmxLight from "@/assets/logos/light/npmx.png";
+import starlightLight from "@/assets/logos/light/starlight.png";
+import astroDark from "@/assets/logos/dark/astro.png";
+import blueskyDark from "@/assets/logos/dark/bluesky.png";
+import npmxDark from "@/assets/logos/dark/npmx.png";
+import starlightDark from "@/assets/logos/dark/starlight.png";
 ---
 
 <section class="intro-block">
@@ -12,32 +16,81 @@ import starlightLogo from "@/assets/starlight.png";
   <p>
     I am a developer who loves building open source in my free time. I currently
     help maintain
-    <Badge href="https://npmx.dev" icon={npmxLogo.src} text="npmx.dev" />
+    <span class="light-only"
+      ><Badge
+        href="https://npmx.dev"
+        icon={npmxLight.src}
+        text="npmx.dev"
+      /></span
+    >
+    <span class="dark-only"
+      ><Badge
+        href="https://npmx.dev"
+        icon={npmxDark.src}
+        text="npmx.dev"
+      /></span
+    >
     and
     <Badge
       href="https://allcontributors.org"
       icon="https://avatars.githubusercontent.com/u/46410174?v=4"
       text="All Contributors"
-    />. I also love to create <Badge
-      href="https://astro.build"
-      icon={astroLogo.src}
-      text="Astro"
-    /> websites and work on its documentation framework,
-    <Badge
-      href="https://starlight.astro.build"
-      icon={starlightLogo.src}
-      text="Starlight"
-    />.
+    />. I also love to create <span class="light-only"
+      ><Badge
+        href="https://astro.build"
+        icon={astroLight.src}
+        text="Astro"
+      /></span
+    ><span class="dark-only"
+      ><Badge
+        href="https://astro.build"
+        icon={astroDark.src}
+        text="Astro"
+      /></span
+    > websites and work on its documentation framework,
+    <span class="light-only"
+      ><Badge
+        href="https://starlight.astro.build"
+        icon={starlightLight.src}
+        text="Starlight"
+      /></span
+    >
+    <span class="dark-only"
+      ><Badge
+        href="https://starlight.astro.build"
+        icon={starlightDark.src}
+        text="Starlight"
+      /></span
+    >.
   </p>
   <p>
     When I'm not coding, you can usually find me hanging out on
-    <Badge
-      href="https://bsky.app/profile/yourprofile"
-      icon={blueskyLogo.src}
-      text="Bluesky"
-    />.
+    <span class="light-only"
+      ><Badge
+        href="https://bsky.app/profile/yourprofile"
+        icon={blueskyLight.src}
+        text="Bluesky"
+      /></span
+    >
+    <span class="dark-only"
+      ><Badge
+        href="https://bsky.app/profile/yourprofile"
+        icon={blueskyDark.src}
+        text="Bluesky"
+      /></span
+    >.
   </p>
 </section>
+
+<style is:global>
+  :root:not(.dark) .dark-only {
+    display: none;
+  }
+
+  :root.dark .light-only {
+    display: none;
+  }
+</style>
 
 <style>
   .intro-block {

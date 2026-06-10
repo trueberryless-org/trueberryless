@@ -1,26 +1,36 @@
 :root {
-  /* Base Constants */
   --white: oklch(1 0 0);
   --black: oklch(0 0 0);
-
-  /* Core Backgrounds */
   --bg: oklch(0.9455 0.03 90);
   --bg-subtle: oklch(0.975 0.015 90);
   --card-bg: oklch(0.975 0.022 90);
-
-  /* Typography & Borders */
   --text: oklch(0.18 0.02 90);
   --text-muted: oklch(0.45 0.02 90);
   --border: oklch(0.86 0.02 90);
-
-  /* Decorative Blobs */
   --blob-1: oklch(0.88 0.04 80 / 0.35);
   --blob-2: oklch(0.86 0.03 90 / 0.35);
   --blob-3: oklch(0.89 0.04 100 / 0.35);
-
+  --header-bg: oklch(0.99 0.005 75 / 0.6);
+  --header-bg-solid: oklch(0.99 0.005 75 / 1);
+  --header-shadow: oklch(0.2 0.02 75 / 0.15);
   --radius-pill: 9999px;
   --radius-card: 12px;
   --max-width: 760px;
+}
+
+:root.dark {
+  --bg: oklch(0 0 0);
+  --bg-subtle: oklch(0.12 0.005 250);
+  --card-bg: oklch(0.15 0.005 250);
+  --text: oklch(0.95 0.01 240);
+  --text-muted: oklch(0.7 0.02 240);
+  --border: oklch(0.2 0.005 250);
+  --blob-1: oklch(0.15 0.04 250 / 0.35);
+  --blob-2: oklch(0.15 0.03 260 / 0.35);
+  --blob-3: oklch(0.15 0.04 270 / 0.35);
+  --header-bg: oklch(0.12 0.005 250 / 0.6);
+  --header-bg-solid: oklch(0.12 0.005 250 / 1);
+  --header-shadow: oklch(0 0 0 / 0.5);
 }
 
 * {

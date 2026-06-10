@@ -1,8 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import astro from "@/assets/astro.png";
-import npmx from "@/assets/npmx.png";
-import starlight from "@/assets/starlight.png";
+import astroLight from "@/assets/logos/light/astro.png";
+import npmxLight from "@/assets/logos/light/npmx.png";
+import starlightLight from "@/assets/logos/light/starlight.png";
+import astroDark from "@/assets/logos/dark/astro.png";
+import npmxDark from "@/assets/logos/dark/npmx.png";
+import starlightDark from "@/assets/logos/dark/starlight.png";
 
 interface Props {
   name: string;
@@ -52,7 +55,8 @@ const { name } = Astro.props;
         class="logo-wrapper"
         style="animation-delay: 0s;"
       >
-        <Image src={astro} alt="Astro Logo" class="tech-logo" />
+        <Image src={astroLight} alt="Astro Logo" class="tech-logo light-logo" />
+        <Image src={astroDark} alt="Astro Logo" class="tech-logo dark-logo" />
       </a>
     </div>
     <div class="logo-parallax" style="top: 75%; left: 57%; --speed: 0.05;">
@@ -61,7 +65,8 @@ const { name } = Astro.props;
         class="logo-wrapper"
         style="animation-delay: -1.5s;"
       >
-        <Image src={npmx} alt="npmx Logo" class="tech-logo" />
+        <Image src={npmxLight} alt="npmx Logo" class="tech-logo light-logo" />
+        <Image src={npmxDark} alt="npmx Logo" class="tech-logo dark-logo" />
       </a>
     </div>
     <div class="logo-parallax" style="top: 30%; left: 77%; --speed: 0.45;">
@@ -70,7 +75,16 @@ const { name } = Astro.props;
         class="logo-wrapper"
         style="animation-delay: -3s;"
       >
-        <Image src={starlight} alt="Starlight Logo" class="tech-logo" />
+        <Image
+          src={starlightLight}
+          alt="Starlight Logo"
+          class="tech-logo light-logo"
+        />
+        <Image
+          src={starlightDark}
+          alt="Starlight Logo"
+          class="tech-logo dark-logo"
+        />
       </a>
     </div>
   </div>
@@ -81,6 +95,14 @@ const { name } = Astro.props;
 </section>
 
 <style is:global>
+  :root:not(.dark) .dark-logo {
+    display: none;
+  }
+
+  :root.dark .light-logo {
+    display: none;
+  }
+
   body {
     padding-top: 0;
   }
