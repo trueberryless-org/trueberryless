@@ -4,8 +4,7 @@ import BaseHead from "@/layouts/BaseHead.astro";
 
 const { entries: posts, error: postsError } = await getLiveCollection("posts");
 const { entries: books, error: booksError } = await getLiveCollection("books");
-const { entries: events, error: eventsError } =
-  await getLiveCollection("events");
+const { entries: rsvps, error: rsvpsError } = await getLiveCollection("rsvps");
 const { entries: likes, error: likesError } = await getLiveCollection("likes");
 const { entries: education, error: educationError } =
   await getLiveCollection("education");
@@ -21,7 +20,7 @@ const { entries: follows, error: followsError } =
 
 if (postsError) console.error(postsError.message);
 if (booksError) console.error(booksError.message);
-if (eventsError) console.error(eventsError.message);
+if (rsvpsError) console.error(rsvpsError.message);
 if (likesError) console.error(likesError.message);
 if (educationError) console.error(educationError.message);
 if (honorError) console.error(honorError.message);
@@ -112,14 +111,14 @@ if (followsError) console.error(followsError.message);
       <section>
         <h2>Events</h2>
         {
-          eventsError && (
+          rsvpsError && (
             <div style="color: red; padding: 1rem; background: #fee;">
-              <strong>Error loading events:</strong> {eventsError.message}
+              <strong>Error loading events:</strong> {rsvpsError.message}
             </div>
           )
         }
         {
-          events?.map((item) => (
+          rsvps?.map((item) => (
             <article>
               <details>
                 <summary>{item.data.name || item.id}</summary>

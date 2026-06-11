@@ -27,10 +27,10 @@ export const collections = {
       },
     }),
   }),
-  events: defineLiveCollection({
+  rsvps: defineLiveCollection({
     loader: atprotoLoader({
       ...baseConfig,
-      collection: "community.lexicon.calendar.event",
+      collection: "community.lexicon.calendar.rsvp",
     }),
   }),
   likes: defineLiveCollection({
