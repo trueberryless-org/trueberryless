@@ -2,6 +2,7 @@ import { defineLiveCollection } from "astro:content";
 
 import type { Main as BookRecord } from "../src/lexicons/buzz/bookhive/book";
 import type { Main as DocumentRecord } from "../src/lexicons/site/standard/document";
+import type { Main as PublicationRecord } from "../src/lexicons/site/standard/publication";
 import { atprotoLoader } from "./loaders/atproto";
 import { BookStatusMap } from "./loaders/enums";
 
@@ -16,6 +17,12 @@ export const collections = {
     loader: atprotoLoader<DocumentRecord>({
       ...baseConfig,
       collection: "site.standard.document",
+    }),
+  }),
+  publications: defineLiveCollection({
+    loader: atprotoLoader<PublicationRecord>({
+      ...baseConfig,
+      collection: "site.standard.publication",
     }),
   }),
   books: defineLiveCollection({
@@ -67,7 +74,7 @@ export const collections = {
     loader: atprotoLoader({
       ...baseConfig,
       collection: "app.bsky.feed.post",
-      maxItems: 10,
+      maxItems: 100,
     }),
   }),
   follows: defineLiveCollection({

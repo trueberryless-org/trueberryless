@@ -17,12 +17,18 @@ const { title, description = "My corner of the internet." } = Astro.props;
 <ThemeScript />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link rel="dns-prefetch" href="https://cdn.bsky.app" />
+<link rel="preconnect" href="https://npmx.social" />
 <link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin="anonymous"
-/>
-<link
+  rel="preload"
+  as="style"
   href="https://fonts.googleapis.com/css2?family=Datatype&display=swap"
-  rel="stylesheet"
+  onload="this.onload=null;this.rel='stylesheet'"
 />
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Datatype&display=swap"
+  />
+</noscript>

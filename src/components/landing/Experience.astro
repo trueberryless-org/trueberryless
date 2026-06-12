@@ -1,25 +1,11 @@
 ---
-import { getLiveCollection } from "astro:content";
+import { getSkills, getEducation } from "@/lib/experience";
 import Section from "@/components/utils/Section.astro";
 
-const { entries: skills } = (await getLiveCollection("skill")) || {
-  entries: [],
-};
-const { entries: education } = (await getLiveCollection("education")) || {
-  entries: [],
-};
-
-const sortedSkills = (skills || [])
-  .sort((a, b) => a.data.name.localeCompare(b.data.name))
-  .slice(0, 30);
-
-const sortedEducation = (education || [])
-  .sort((a, b) => {
-    const dateA = a.data.endedAt ? new Date(a.data.endedAt).getTime() : 0;
-    const dateB = b.data.endedAt ? new Date(b.data.endedAt).getTime() : 0;
-    return dateB - dateA;
-  })
-  .slice(0, 30);
+const [sortedSkills, sortedEducation] = await Promise.all([
+  getSkills(),
+  getEducation(),
+]);
 ---
 
 {
@@ -27,7 +13,7 @@ const sortedEducation = (education || [])
     <Section title="Skills">
       <div class="badge-grid">
         {sortedSkills.map((skill) => (
-          <span class="badge">{skill.data.name}</span>
+          <span class="badge">{skill.name}</span>
         ))}
       </div>
     </Section>
@@ -40,8 +26,8 @@ const sortedEducation = (education || [])
       <div class="badge-grid">
         {sortedEducation.map((edu) => (
           <span class="badge">
-            {edu.data.institution}
-            {edu.data.degree ? `, ${edu.data.degree}` : ""}
+            {edu.institution}
+            {edu.degree ? `, ${edu.degree}` : ""}
           </span>
         ))}
       </div>

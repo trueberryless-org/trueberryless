@@ -1,0 +1,95 @@
+---
+import { getBlueskyPosts, actorDid } from "@/lib/bluesky";
+import { Heart } from "@lucide/astro";
+import Section from "@/components/utils/Section.astro";
+import List from "@/components/utils/List.astro";
+import ActionLink from "@/components/utils/ActionLink.astro";
+
+interface Props {
+  fetchLimit?: number;
+  displayLimit?: number;
+}
+
+const { fetchLimit = 100, displayLimit = 4 } = Astro.props;
+
+const filteredPosts = await getBlueskyPosts(fetchLimit, displayLimit);
+---
+
+{
+  filteredPosts.length > 0 && (
+    <Section title="Bluesky">
+      <ActionLink
+        href={`https://bsky.app/profile/${actorDid}`}
+        slot="header-actions"
+        text="View profile"
+      />
+
+      <List>
+        {filteredPosts.map((post) => {
+          const rkey = post.rkey;
+          const postUrl = post.postUrl;
+          const text = post.text;
+          const likes = post.likes;
+
+          return (
+            <li class="list-item clickable">
+              <a
+                href={postUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="post-link"
+              >
+                <span class="item-main">
+                  <span class="post-text">{text}</span>
+                </span>
+                <span class="post-meta">
+                  <Heart class="meta-icon" />
+                  <span>{likes}</span>
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </List>
+    </Section>
+  )
+}
+
+<style>
+  .post-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    gap: 1.5rem;
+  }
+  .item-main {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    flex: 1;
+    word-break: break-word;
+  }
+  .post-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .meta-icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+  }
+</style>

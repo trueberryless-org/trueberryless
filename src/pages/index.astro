@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/landing/Hero.astro";
 import Intro from "@/components/landing/Intro.astro";
 import RecentPosts from "@/components/landing/RecentPosts.astro";
+import RecentBlueskyPosts from "@/components/landing/RecentBlueskyPosts.astro";
 import ReadingSummary from "@/components/landing/ReadingSummary.astro";
 import UpcomingEvents from "@/components/landing/UpcomingEvents.astro";
 import Experience from "@/components/landing/Experience.astro";
@@ -21,6 +22,7 @@ Astro.response.headers.set(
     <RecentPosts />
     <ReadingSummary />
     <UpcomingEvents />
+    <RecentBlueskyPosts />
     <Experience />
   </main>
 </Layout>

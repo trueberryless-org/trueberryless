@@ -1,50 +1,33 @@
 ---
-import { getLiveCollection } from "astro:content";
+import { getReadingSummary } from "@/lib/books";
 import Section from "@/components/utils/Section.astro";
 import List from "@/components/utils/List.astro";
 import ActionLink from "@/components/utils/ActionLink.astro";
 
-const { entries: books } = await getLiveCollection("books");
+const summary = await getReadingSummary();
 ---
 
 {
-  books && books.length > 0 && (
+  summary && (
     <Section title="Reading Summary">
       <ActionLink slot="header-actions" href="/books" text="View all" />
 
       <List>
         {(() => {
-          const sortedByDate = [...books].sort((a, b) => {
-            const dateA = new Date(
-              a.data.finishedAt || a.data.startedAt || 0
-            ).getTime();
-            const dateB = new Date(
-              b.data.finishedAt || b.data.startedAt || 0
-            ).getTime();
-            return dateB - dateA;
-          });
-          const latest = sortedByDate[0];
-
-          const favorites = [...books]
-            .filter((b) => typeof b.data.stars === "number")
-            .sort((a, b) => (b.data.stars ?? 0) - (a.data.stars ?? 0))
-            .filter((b) => b.data.hiveId !== latest.data.hiveId)
-            .slice(0, 3);
-
           return [
             <li class="list-item">
-              <span class="item-main">{latest.data.title}</span>
+              <span class="item-main">{summary.latest.title}</span>
               <span class="item-meta">
-                {latest.data.startedAt
-                  ? `Started: ${new Date(latest.data.startedAt).toLocaleDateString()}`
+                {summary.latest.startedAt
+                  ? `Started: ${new Date(summary.latest.startedAt).toLocaleDateString()}`
                   : "Started: Unknown"}
               </span>
             </li>,
-            ...favorites.map((book) => (
+            ...summary.favorites.map((book) => (
               <li class="list-item">
-                <span class="item-main">{book.data.title}</span>
+                <span class="item-main">{book.title}</span>
                 <span class="item-meta">
-                  {(book.data.stars ?? 0) / 2} stars
+                  {(book.stars ?? 0) / 2} stars
                 </span>
               </li>
             )),

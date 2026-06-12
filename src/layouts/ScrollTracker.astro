@@ -13,7 +13,6 @@
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  // Completely disable the event listener and CSS variable updates if reduced motion is preferred
   if (!prefersReducedMotion) {
     let ticking = false;
     const root = document.documentElement;

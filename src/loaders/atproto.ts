@@ -51,7 +51,7 @@ export function atprotoLoader<
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-        const response = await fetch(url);
+        const response = await fetch(url, { signal: controller.signal });
         clearTimeout(timeoutId);
         if (!response.ok)
           throw new Error(`List failed: ${response.statusText}`);
@@ -95,7 +95,7 @@ export function atprotoLoader<
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-      const response = await fetch(url);
+      const response = await fetch(url, { signal: controller.signal });
       clearTimeout(timeoutId);
       if (!response.ok) throw new Error(`Fetch failed: ${response.statusText}`);
 

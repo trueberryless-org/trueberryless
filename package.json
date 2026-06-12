@@ -12,8 +12,8 @@
   "author": "trueberryless <trueberryless@gmail.com> (https://trueberryless.org)",
   "scripts": {
     "astro": "astro",
-    "build": "lex build --clear && astro build",
-    "dev": "lex build --clear && astro dev",
+    "build": "lex build --override && astro build",
+    "dev": "lex build --override && astro dev",
     "preview": "astro preview"
   },
   "dependencies": {

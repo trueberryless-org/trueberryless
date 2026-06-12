@@ -1,25 +1,5 @@
 import { getLiveCollection } from "astro:content";
 
-export async function getPublication(uri: string, slingshotEndpoint: string) {
-  const match = uri.match(/^at:\/\/([^/]+)\/([^/]+)\/(.+)$/);
-  if (!match) return null;
-
-  const [_, repo, collection, rkey] = match;
-  const url = new URL("/xrpc/com.atproto.repo.getRecord", slingshotEndpoint);
-  url.searchParams.set("repo", repo);
-  url.searchParams.set("collection", collection);
-  url.searchParams.set("rkey", rkey);
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) return null;
-    const data = await response.json();
-    return data.value;
-  } catch {
-    return null;
-  }
-}
-
 export function processPost(post: any) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -51,21 +31,18 @@ export function processPost(post: any) {
 }
 
 export async function getAugmentedPosts() {
-  const result = await getLiveCollection("posts");
-  const posts = result?.entries || [];
-  const slingshotEndpoint = "https://slingshot.microcosm.blue";
+  const [postsResult, publicationsResult] = await Promise.all([
+    getLiveCollection("posts"),
+    getLiveCollection("publications"),
+  ]);
 
-  const uniqueSites = [...new Set(posts.map((p: any) => p.data.site))];
+  const posts = postsResult?.entries || [];
+  const publications = publicationsResult?.entries || [];
+
   const publicationMap: Record<string, any> = {};
-
-  await Promise.all(
-    uniqueSites.map(async (siteUri) => {
-      if (typeof siteUri === "string" && siteUri.startsWith("at://")) {
-        const pub = await getPublication(siteUri, slingshotEndpoint);
-        if (pub) publicationMap[siteUri] = pub;
-      }
-    })
-  );
+  publications.forEach((pub: any) => {
+    publicationMap[pub.id] = pub.data;
+  });
 
   return posts.map((post: any) => ({
     ...post,

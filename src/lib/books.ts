@@ -13,6 +13,18 @@ export interface BookItem {
   thickness: number;
 }
 
+export interface ReadingSummaryItem {
+  title: string;
+  hiveId: string;
+  startedAt?: string;
+  stars?: number;
+}
+
+export interface ReadingSummary {
+  latest: ReadingSummaryItem;
+  favorites: ReadingSummaryItem[];
+}
+
 export async function getLibraryBooks(): Promise<BookItem[]> {
   const { entries: allBooks, error } = await getLiveCollection("books");
 
@@ -77,4 +89,44 @@ export async function getLibraryBooks(): Promise<BookItem[]> {
       thickness: Math.round(thickness),
     };
   });
+}
+
+export async function getReadingSummary(): Promise<ReadingSummary | null> {
+  const { entries: books, error } = await getLiveCollection("books");
+
+  if (error || !books || books.length === 0) {
+    return null;
+  }
+
+  const sortedByDate = [...books].sort((a: any, b: any) => {
+    const dateA = new Date(
+      a.data.finishedAt || a.data.startedAt || 0
+    ).getTime();
+    const dateB = new Date(
+      b.data.finishedAt || b.data.startedAt || 0
+    ).getTime();
+    return dateB - dateA;
+  });
+
+  const latest = sortedByDate[0];
+
+  const favorites = [...books]
+    .filter((b: any) => typeof b.data.stars === "number")
+    .sort((a: any, b: any) => (b.data.stars ?? 0) - (a.data.stars ?? 0))
+    .filter((b: any) => b.data.hiveId !== latest.data.hiveId)
+    .slice(0, 3)
+    .map((b: any) => ({
+      title: b.data.title as string,
+      hiveId: b.data.hiveId as string,
+      stars: b.data.stars as number,
+    }));
+
+  return {
+    latest: {
+      title: latest.data.title as string,
+      hiveId: latest.data.hiveId as string,
+      startedAt: latest.data.startedAt as string | undefined,
+    },
+    favorites,
+  };
 }
