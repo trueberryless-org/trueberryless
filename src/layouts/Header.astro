@@ -103,6 +103,8 @@ const pathname = Astro.url.pathname;
   const themeToggle = document.getElementById("theme-toggle");
   const themeText = themeToggle?.querySelector(".theme-text");
 
+  const SCROLL_THRESHOLD_DIVISOR = 1.8;
+
   button?.addEventListener("click", () => {
     if (headerInner?.classList.contains("is-open")) {
       headerInner.classList.remove("is-open");
@@ -124,7 +126,7 @@ const pathname = Astro.url.pathname;
   });
 
   const checkScroll = () => {
-    const threshold = window.innerHeight / 1.8;
+    const threshold = window.innerHeight / SCROLL_THRESHOLD_DIVISOR;
     if (window.scrollY > threshold) {
       headerInner?.classList.add("is-scrolled");
     } else {
