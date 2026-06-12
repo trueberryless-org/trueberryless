@@ -37,21 +37,23 @@ export async function getBlueskyPosts(
 
   const chunks = chunkArray(uris, 25);
 
-  for (const chunk of chunks) {
-    try {
-      const queryParams = new URLSearchParams();
-      chunk.forEach((uri: string) => queryParams.append("uris", uri));
-      const response = await fetch(
-        `https://public.api.bsky.app/xrpc/app.bsky.feed.getPosts?${queryParams.toString()}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        data.posts?.forEach((p: any) => {
-          likeCounts[p.uri] = p.likeCount || 0;
-        });
-      }
-    } catch {}
-  }
+  await Promise.all(
+    chunks.map(async (chunk) => {
+      try {
+        const queryParams = new URLSearchParams();
+        chunk.forEach((uri: string) => queryParams.append("uris", uri));
+        const response = await fetch(
+          `https://public.api.bsky.app/xrpc/app.bsky.feed.getPosts?${queryParams.toString()}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          data.posts?.forEach((p: any) => {
+            likeCounts[p.uri] = p.likeCount || 0;
+          });
+        }
+      } catch {}
+    })
+  );
 
   const postsWithLikes = postsToFetch.map((post: any) => {
     const rkey = post.id.split("/").pop() as string;

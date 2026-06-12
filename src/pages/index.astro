@@ -7,6 +7,9 @@ import RecentBlueskyPosts from "@/components/landing/RecentBlueskyPosts.astro";
 import ReadingSummary from "@/components/landing/ReadingSummary.astro";
 import UpcomingEvents from "@/components/landing/UpcomingEvents.astro";
 import Experience from "@/components/landing/Experience.astro";
+import SectionSkeleton from "@/components/utils/SectionSkeleton.astro";
+
+export const prerender = false;
 
 Astro.response.headers.set(
   "Cache-Control",
@@ -19,11 +22,21 @@ Astro.response.headers.set(
 
   <main class="layout-stream">
     <Intro />
-    <RecentPosts />
-    <ReadingSummary />
-    <UpcomingEvents />
-    <RecentBlueskyPosts />
-    <Experience />
+    <RecentPosts server:defer>
+      <SectionSkeleton slot="fallback" title="Recent Blog Posts" rows={3} />
+    </RecentPosts>
+    <ReadingSummary server:defer>
+      <SectionSkeleton slot="fallback" title="Reading Summary" rows={4} />
+    </ReadingSummary>
+    <UpcomingEvents server:defer>
+      <SectionSkeleton slot="fallback" title="Upcoming Events" rows={3} />
+    </UpcomingEvents>
+    <RecentBlueskyPosts server:defer>
+      <SectionSkeleton slot="fallback" title="Bluesky" rows={4} />
+    </RecentBlueskyPosts>
+    <Experience server:defer>
+      <SectionSkeleton slot="fallback" title="Skills" rows={2} />
+    </Experience>
   </main>
 </Layout>
 
