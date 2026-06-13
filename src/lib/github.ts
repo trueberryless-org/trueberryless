@@ -11,10 +11,10 @@ const SHOWCASE_PROJECTS = [
   "withstudiocms",
   "catppuccin",
   "rose-pine",
-  "zen-browser",
-  "colibri-social",
   "bombshell-dev",
   "emdash-cms",
+  "zen-browser",
+  "colibri-social",
 ];
 
 export async function getOwnProjects() {
@@ -38,7 +38,13 @@ export async function getOwnProjects() {
       )
       .slice(0, 8)
       .map((repo: any) => ({
-        name: repo.name,
+        name: repo.name
+          .replace(/[-_]/g, " ")
+          .replace(
+            /\w\S*/g,
+            (txt: string) =>
+              txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+          ),
         description: repo.description,
         url: repo.html_url,
         stars: repo.stargazers_count,

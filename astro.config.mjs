@@ -1,9 +1,12 @@
-// @ts-check
 import netlify from "@astrojs/netlify";
+import node from "@astrojs/node";
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://trueberryless.org",
-  adapter: netlify(),
+  output: "static",
+  adapter:
+    process.env.ADAPTER_TYPE === "netlify"
+      ? netlify()
+      : node({ mode: "standalone" }),
 });
