@@ -13,7 +13,7 @@
   "scripts": {
     "astro": "astro",
     "build": "lex build --override && astro build",
-    "build:netlify": "ADAPTER_TYPE=netlify lex build --override && astro build",
+    "build:netlify": "lex build --override && ADAPTER_TYPE=netlify astro build",
     "dev": "lex build --override && astro dev",
     "preview": "astro preview"
   },
