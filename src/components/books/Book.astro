@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   title: string;
   authors: string;
@@ -26,7 +28,7 @@ const { title, authors, coverUrl, rotation, hiveId, thickness } = Astro.props;
       <div class="cover">
         {
           coverUrl ? (
-            <img src={coverUrl} alt={title} loading="lazy" />
+            <Image src={coverUrl} alt={title} loading="lazy" inferSize />
           ) : (
             <div class="fallback">{title}</div>
           )

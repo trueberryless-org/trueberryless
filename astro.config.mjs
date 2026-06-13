@@ -15,4 +15,7 @@ export default defineConfig({
     defaultStrategy: "hover",
     prefetchAll: true,
   },
+  image: {
+    domains: ["cdn.bsky.app"],
+  },
 });

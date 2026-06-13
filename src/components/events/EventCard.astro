@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 const { event } = Astro.props;
 const { name } = event.data;
 const {
@@ -93,11 +95,12 @@ const extraCount =
           attendees && attendees.length > 0 && (
             <div class="avatar-stack">
               {attendees.map((avatar: string) => (
-                <img
+                <Image
                   src={avatar}
                   class="avatar"
                   alt="Attendee"
                   loading="lazy"
+                  inferSize
                 />
               ))}
               {extraCount > 0 && <span class="more-count">+{extraCount}</span>}
@@ -110,7 +113,12 @@ const extraCount =
     <div class="card-image-wrapper">
       {
         imageUrl ? (
-          <img src={imageUrl} alt={name} class="event-cover-image" />
+          <Image
+            src={imageUrl}
+            alt={name}
+            class="event-cover-image"
+            inferSize
+          />
         ) : (
           <div class="image-placeholder">{initials}</div>
         )
