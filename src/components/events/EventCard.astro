@@ -95,13 +95,7 @@ const extraCount =
           attendees && attendees.length > 0 && (
             <div class="avatar-stack">
               {attendees.map((avatar: string) => (
-                <Image
-                  src={avatar}
-                  class="avatar"
-                  alt="Attendee"
-                  loading="lazy"
-                  inferSize
-                />
+                <Image src={avatar} class="avatar" alt="Attendee" inferSize />
               ))}
               {extraCount > 0 && <span class="more-count">+{extraCount}</span>}
             </div>
@@ -118,6 +112,7 @@ const extraCount =
             alt={name}
             class="event-cover-image"
             inferSize
+            priority
           />
         ) : (
           <div class="image-placeholder">{initials}</div>

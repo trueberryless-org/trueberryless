@@ -28,7 +28,7 @@ const { title, authors, coverUrl, rotation, hiveId, thickness } = Astro.props;
       <div class="cover">
         {
           coverUrl ? (
-            <Image src={coverUrl} alt={title} loading="lazy" inferSize />
+            <Image src={coverUrl} alt={title} inferSize />
           ) : (
             <div class="fallback">{title}</div>
           )
