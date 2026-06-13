@@ -13,7 +13,7 @@ const { href, text, icon, alt = "Badge icon" } = Astro.props;
 ---
 
 <a href={href} class="badge">
-  {icon && <Image src={icon} alt={alt} />}
+  {icon && <Image src={icon} alt={alt} width={128} />}
   <span>{text}</span>
 </a>
 
