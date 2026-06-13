@@ -1,5 +1,6 @@
 import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
@@ -9,4 +10,9 @@ export default defineConfig({
     process.env.ADAPTER_TYPE === "netlify"
       ? netlify()
       : node({ mode: "standalone" }),
+  integrations: [sitemap()],
+  prefetch: {
+    defaultStrategy: "hover",
+    prefetchAll: true,
+  },
 });
