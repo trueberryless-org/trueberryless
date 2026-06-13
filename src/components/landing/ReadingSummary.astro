@@ -26,9 +26,7 @@ const summary = await getReadingSummary();
             ...summary.favorites.map((book) => (
               <li class="list-item">
                 <span class="item-main">{book.title}</span>
-                <span class="item-meta">
-                  {(book.stars ?? 0) / 2} stars
-                </span>
+                <span class="item-meta">{(book.stars ?? 0) / 2} stars</span>
               </li>
             )),
           ];
