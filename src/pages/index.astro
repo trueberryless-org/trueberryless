@@ -6,7 +6,6 @@ import RecentPosts from "@/components/landing/RecentPosts.astro";
 import RecentBlueskyPosts from "@/components/landing/RecentBlueskyPosts.astro";
 import ReadingSummary from "@/components/landing/ReadingSummary.astro";
 import UpcomingEvents from "@/components/landing/UpcomingEvents.astro";
-import Experience from "@/components/landing/Experience.astro";
 import SectionSkeleton from "@/components/utils/SectionSkeleton.astro";
 
 export const prerender = false;
@@ -34,9 +33,6 @@ Astro.response.headers.set(
     <RecentBlueskyPosts server:defer>
       <SectionSkeleton slot="fallback" title="Bluesky" rows={4} />
     </RecentBlueskyPosts>
-    <Experience server:defer>
-      <SectionSkeleton slot="fallback" title="Skills" rows={2} />
-    </Experience>
   </main>
 </Layout>
 

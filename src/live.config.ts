@@ -40,36 +40,6 @@ export const collections = {
       collection: "community.lexicon.calendar.rsvp",
     }),
   }),
-  likes: defineLiveCollection({
-    loader: atprotoLoader({ ...baseConfig, collection: "dev.npmx.feed.like" }),
-  }),
-  education: defineLiveCollection({
-    loader: atprotoLoader({
-      ...baseConfig,
-      collection: "id.sifa.profile.education",
-    }),
-  }),
-  honor: defineLiveCollection({
-    loader: atprotoLoader({
-      ...baseConfig,
-      collection: "id.sifa.profile.honor",
-    }),
-  }),
-  skill: defineLiveCollection({
-    loader: atprotoLoader({
-      ...baseConfig,
-      collection: "id.sifa.profile.skill",
-    }),
-  }),
-  position: defineLiveCollection({
-    loader: atprotoLoader({
-      ...baseConfig,
-      collection: "id.sifa.profile.position",
-    }),
-  }),
-  repos: defineLiveCollection({
-    loader: atprotoLoader({ ...baseConfig, collection: "sh.tangled.repo" }),
-  }),
   blueskyPosts: defineLiveCollection({
     loader: atprotoLoader({
       ...baseConfig,

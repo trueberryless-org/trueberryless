@@ -21,6 +21,8 @@
   --book-pages-darker: oklch(0.93 0.02 90);
   --book-cover-bg: var(--card-bg);
   --book-back: oklch(0.86 0.02 90);
+  --glow-star: oklch(0.85 0.15 90);
+  --glow-pr: oklch(0.65 0.2 300);
 }
 
 :root.dark {
@@ -41,6 +43,8 @@
   --book-pages-darker: oklch(0.8 0.02 90);
   --book-cover-bg: var(--card-bg);
   --book-back: oklch(0.6 0.005 250);
+  --glow-star: oklch(0.85 0.15 90);
+  --glow-pr: oklch(0.65 0.2 300);
 }
 
 * {

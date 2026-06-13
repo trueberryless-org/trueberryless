@@ -2,6 +2,13 @@ import { getLiveCollection } from "astro:content";
 
 const slingshotEndpoint = "https://slingshot.microcosm.blue";
 const bskyPublicApi = "https://public.api.bsky.app";
+const constellationEndpoint = "https://constellation.microcosm.blue";
+
+const defaultFetchOptions = {
+  headers: {
+    "User-Agent": "trueberryless.org (bsky: @trueberryless.org)",
+  },
+};
 
 async function fetchRecord(uri: string): Promise<any | null> {
   const match = uri.match(/^at:\/\/([^/]+)\/([^/]+)\/(.+)$/);
@@ -14,7 +21,7 @@ async function fetchRecord(uri: string): Promise<any | null> {
       url.searchParams.set("repo", repo);
       url.searchParams.set("collection", collection);
       url.searchParams.set("rkey", rkey);
-      const res = await fetch(url);
+      const res = await fetch(url, defaultFetchOptions);
       if (res.ok) {
         const data = await res.json();
         return data.value ?? null;
@@ -27,11 +34,48 @@ async function fetchRecord(uri: string): Promise<any | null> {
 async function fetchProfile(did: string): Promise<any | null> {
   try {
     const res = await fetch(
-      `${bskyPublicApi}/xrpc/app.bsky.actor.getProfile?actor=${did}`
+      `${bskyPublicApi}/xrpc/app.bsky.actor.getProfile?actor=${did}`,
+      defaultFetchOptions
     );
     if (res.ok) return await res.json();
   } catch {}
   return null;
+}
+
+async function fetchBacklinks(subjectUri: string): Promise<string[]> {
+  try {
+    const url = new URL(
+      "/xrpc/blue.microcosm.links.getBacklinks",
+      constellationEndpoint
+    );
+    url.searchParams.set("subject", subjectUri);
+    url.searchParams.set(
+      "source",
+      "community.lexicon.calendar.rsvp:subject.uri"
+    );
+
+    const res = await fetch(url.toString(), defaultFetchOptions);
+
+    if (res.ok) {
+      const data = await res.json();
+
+      const list =
+        data.links || data.records || data.items || data.backlinks || [];
+      return list
+        .map((item: any) => {
+          if (typeof item === "string") return item;
+          if (item?.uri) return item.uri;
+          if (item?.did && item?.collection && item?.rkey) {
+            return `at://${item.did}/${item.collection}/${item.rkey}`;
+          }
+          return item?.source;
+        })
+        .filter(
+          (uri: any) => typeof uri === "string" && uri.startsWith("at://")
+        );
+    }
+  } catch {}
+  return [];
 }
 
 export const getProcessedEvents = async () => {
@@ -73,18 +117,30 @@ export const getProcessedEvents = async () => {
     ),
   ] as string[];
 
-  const uniqueDids = [
-    ...new Set(
-      uniqueUris
-        .map((uri) => uri.match(/^at:\/\/([^/]+)\//)?.[1])
-        .filter(Boolean)
-    ),
-  ] as string[];
-
-  const [recordResults, profileResults] = await Promise.all([
+  const [recordResults, backlinksResults] = await Promise.all([
     Promise.all(uniqueUris.map((uri) => fetchRecord(uri))),
-    Promise.all(uniqueDids.map((did) => fetchProfile(did))),
+    Promise.all(uniqueUris.map((uri) => fetchBacklinks(uri))),
   ]);
+
+  const allDids = new Set<string>();
+
+  uniqueUris.forEach((uri) => {
+    const match = uri.match(/^at:\/\/([^/]+)\//);
+    if (match) allDids.add(match[1]);
+  });
+
+  backlinksResults.forEach((links) => {
+    links.forEach((linkUri) => {
+      const match = linkUri.match(/^at:\/\/([^/]+)\//);
+      if (match) allDids.add(match[1]);
+    });
+  });
+
+  const uniqueDids = [...allDids] as string[];
+
+  const profileResults = await Promise.all(
+    uniqueDids.map((did) => fetchProfile(did))
+  );
 
   const profileMap = new Map<string, any>();
   uniqueDids.forEach((did, i) => {
@@ -119,8 +175,22 @@ export const getProcessedEvents = async () => {
         locationText = loc.name || loc.street || loc.city || loc.address || "";
       }
 
-      const profile = did ? profileMap.get(did) : undefined;
-      const attendees: string[] = profile?.avatar ? [profile.avatar] : [];
+      const backlinks = backlinksResults[i];
+
+      const attendeeDids = [
+        ...new Set(
+          backlinks
+            .map((l) => l.match(/^at:\/\/([^/]+)\//)?.[1])
+            .filter(Boolean)
+        ),
+      ] as string[];
+
+      const attendeesAvatars = attendeeDids
+        .map((attendeeDid) => profileMap.get(attendeeDid)?.avatar)
+        .filter((avatar): avatar is string => Boolean(avatar));
+
+      const attendees = attendeesAvatars.slice(0, 5);
+      const totalAttendees = attendeeDids.length;
 
       let imageUrl: string | null = null;
       if (Array.isArray(value.media)) {
@@ -155,7 +225,7 @@ export const getProcessedEvents = async () => {
         atmoUrl,
         locationText,
         attendees,
-        totalAttendees: profile ? 1 : 0,
+        totalAttendees,
         imageUrl,
       };
     })
@@ -173,7 +243,8 @@ export const getTopPosts = async (
 ) => {
   try {
     const res = await fetch(
-      `${bskyPublicApi}/xrpc/app.bsky.feed.getAuthorFeed?actor=${handle}&limit=${lookback}`
+      `${bskyPublicApi}/xrpc/app.bsky.feed.getAuthorFeed?actor=${handle}&limit=${lookback}`,
+      defaultFetchOptions
     );
     if (!res.ok) return [];
     const data = await res.json();
