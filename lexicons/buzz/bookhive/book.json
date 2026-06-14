@@ -1,0 +1,92 @@
+{
+  "id": "buzz.bookhive.book",
+  "defs": {
+    "main": {
+      "key": "tid",
+      "type": "record",
+      "record": {
+        "type": "object",
+        "required": ["title", "authors", "hiveId", "createdAt"],
+        "properties": {
+          "cover": {
+            "type": "blob",
+            "accept": ["image/png", "image/jpeg"],
+            "maxSize": 1000000,
+            "description": "Cover image of the book"
+          },
+          "owned": {
+            "type": "boolean",
+            "description": "Whether the user owns this book"
+          },
+          "stars": {
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "description": "Number of stars given to the book (1-10) which will be mapped to 1-5 stars"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "description": "The title of the book"
+          },
+          "hiveId": {
+            "type": "string",
+            "description": "The book's hive id, used to correlate user's books with the hive"
+          },
+          "review": {
+            "type": "string",
+            "description": "The book's review",
+            "maxGraphemes": 15000
+          },
+          "status": {
+            "type": "string",
+            "knownValues": [
+              "buzz.bookhive.defs#finished",
+              "buzz.bookhive.defs#reading",
+              "buzz.bookhive.defs#wantToRead",
+              "buzz.bookhive.defs#abandoned"
+            ]
+          },
+          "authors": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "description": "The authors of the book (tab separated)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The date the user started reading the book"
+          },
+          "finishedAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The date the user finished reading the book"
+          },
+          "hiveBookUri": {
+            "type": "string",
+            "description": "AT-URI of the canonical catalogBook record in @bookhive.buzz"
+          },
+          "identifiers": {
+            "ref": "buzz.bookhive.defs#bookIdentifiers",
+            "type": "ref",
+            "description": "External identifiers for the book"
+          },
+          "bookProgress": {
+            "ref": "buzz.bookhive.defs#bookProgress",
+            "type": "ref",
+            "description": "Progress tracking details for the book"
+          }
+        }
+      },
+      "description": "A book in the user's library"
+    }
+  },
+  "$type": "com.atproto.lexicon.schema",
+  "lexicon": 1
+}

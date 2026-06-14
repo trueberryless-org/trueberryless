@@ -1,0 +1,134 @@
+:root {
+  --white: oklch(1 0 0);
+  --black: oklch(0 0 0);
+  --bg: oklch(0.9455 0.03 90);
+  --bg-subtle: oklch(0.975 0.015 90);
+  --card-bg: oklch(0.975 0.022 90);
+  --badge-bg: oklch(0.975 0.022 90);
+  --text: oklch(0.18 0.02 90);
+  --text-muted: oklch(0.45 0.02 90);
+  --border: oklch(0.86 0.02 90);
+  --blob-1: oklch(0.88 0.04 80 / 0.35);
+  --blob-2: oklch(0.86 0.03 90 / 0.35);
+  --blob-3: oklch(0.89 0.04 100 / 0.35);
+  --header-bg: oklch(0.99 0.005 75 / 0.6);
+  --header-bg-solid: oklch(0.99 0.005 75 / 1);
+  --header-shadow: oklch(0.2 0.02 75 / 0.15);
+  --radius-pill: 9999px;
+  --radius-card: 12px;
+  --max-width: 760px;
+  --book-pages: oklch(0.96 0.02 90);
+  --book-pages-darker: oklch(0.93 0.02 90);
+  --book-cover-bg: var(--card-bg);
+  --book-back: oklch(0.86 0.02 90);
+  --glow-star: oklch(0.85 0.15 90);
+  --glow-pr: oklch(0.65 0.2 300);
+}
+
+:root.dark {
+  --bg: oklch(0 0 0);
+  --bg-subtle: oklch(0.12 0.005 250);
+  --card-bg: oklch(0.16 0.005 250);
+  --badge-bg: oklch(0.22 0.005 250);
+  --text: oklch(0.95 0.01 240);
+  --text-muted: oklch(0.7 0.02 240);
+  --border: oklch(0.2 0.005 250);
+  --blob-1: oklch(0.15 0.04 250 / 0.35);
+  --blob-2: oklch(0.15 0.03 260 / 0.35);
+  --blob-3: oklch(0.15 0.04 270 / 0.35);
+  --header-bg: oklch(0.12 0.005 250 / 0.6);
+  --header-bg-solid: oklch(0.12 0.005 250 / 1);
+  --header-shadow: oklch(0 0 0 / 0.5);
+  --book-pages: oklch(0.9 0.02 90);
+  --book-pages-darker: oklch(0.8 0.02 90);
+  --book-cover-bg: var(--card-bg);
+  --book-back: oklch(0.6 0.005 250);
+  --glow-star: oklch(0.85 0.15 90);
+  --glow-pr: oklch(0.65 0.2 300);
+}
+
+:root.celestial {
+  --bg: linear-gradient(135deg, oklch(0.12 0.05 280), oklch(0.04 0.02 295));
+  --bg-subtle: linear-gradient(
+    135deg,
+    oklch(0.15 0.06 280),
+    oklch(0.06 0.03 295)
+  );
+  --card-bg: linear-gradient(
+    135deg,
+    oklch(0.2 0.08 290 / 0.3),
+    oklch(0.12 0.05 300 / 0.2)
+  );
+  --badge-bg: linear-gradient(
+    135deg,
+    oklch(0.3 0.1 300 / 0.4),
+    oklch(0.2 0.08 310 / 0.3)
+  );
+  --text: oklch(0.96 0.01 315);
+  --text-muted: oklch(0.82 0.03 315);
+  --border: oklch(0.3 0.06 315 / 0.25);
+  --blob-1: oklch(0.3 0.14 330 / 0.4);
+  --blob-2: oklch(0.25 0.12 290 / 0.4);
+  --blob-3: oklch(0.28 0.13 315 / 0.4);
+  --header-bg: linear-gradient(
+    135deg,
+    oklch(0.12 0.05 280 / 0.7),
+    oklch(0.06 0.03 295 / 0.7)
+  );
+  --header-bg-solid: linear-gradient(
+    135deg,
+    oklch(0.12 0.05 280),
+    oklch(0.06 0.03 295)
+  );
+  --header-shadow: oklch(0.02 0.01 295 / 0.5);
+  --book-pages: oklch(0.94 0.02 315);
+  --book-pages-darker: oklch(0.86 0.03 315);
+  --book-cover-bg: var(--card-bg);
+  --book-back: oklch(0.15 0.04 315);
+  --glow-star: oklch(0.88 0.12 330);
+  --glow-pr: oklch(0.75 0.14 310);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-subtle);
+  color: var(--text);
+  font-family:
+    "Datatype",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  background: var(--bg);
+  padding-top: 100px;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

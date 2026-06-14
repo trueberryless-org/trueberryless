@@ -1,0 +1,355 @@
+---
+import { Image } from "astro:assets";
+
+const { event } = Astro.props;
+const { name } = event.data;
+const {
+  startDate,
+  endDate,
+  atmoUrl,
+  locationText,
+  attendees,
+  totalAttendees,
+  imageUrl,
+} = event;
+
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: false,
+});
+
+const dayFormatter = new Intl.DateTimeFormat("en-US", {
+  day: "numeric",
+  month: "short",
+});
+
+const weekdayFormatter = new Intl.DateTimeFormat("en-US", {
+  weekday: "long",
+});
+
+const formattedTime = timeFormatter.format(startDate);
+let timeDisplay = formattedTime;
+
+if (endDate && endDate.getTime() !== startDate.getTime()) {
+  timeDisplay += ` - ${timeFormatter.format(endDate)}`;
+}
+
+const formattedDay = dayFormatter.format(startDate);
+const formattedWeekday = weekdayFormatter.format(startDate);
+
+const words = name.split(" ");
+const initials =
+  words.length > 1
+    ? (words[0][0] + words[1][0]).toUpperCase()
+    : name.substring(0, 2).toUpperCase();
+
+const extraCount =
+  totalAttendees > attendees.length ? totalAttendees - attendees.length : 0;
+---
+
+<div class="timeline-row">
+  <div class="timeline-date">
+    <span class="day-month">{formattedDay}</span>
+    <span class="day-name">{formattedWeekday}</span>
+  </div>
+
+  <div class="timeline-marker">
+    <div class="dot"></div>
+  </div>
+
+  <a
+    href={atmoUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="card-container"
+  >
+    <div class="card-content">
+      <span class="event-time">{timeDisplay}</span>
+      <h3 class="event-name">{name}</h3>
+
+      {
+        locationText && (
+          <div class="event-location">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>{locationText}</span>
+          </div>
+        )
+      }
+
+      <div class="card-footer">
+        {
+          attendees && attendees.length > 0 && (
+            <div class="avatar-stack">
+              {attendees.map((avatar: string) => (
+                <Image src={avatar} class="avatar" alt="Attendee" inferSize />
+              ))}
+              {extraCount > 0 && <span class="more-count">+{extraCount}</span>}
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="card-image-wrapper">
+      {
+        imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={name}
+            class="event-cover-image"
+            inferSize
+            priority
+          />
+        ) : (
+          <div class="image-placeholder">{initials}</div>
+        )
+      }
+    </div>
+  </a>
+</div>
+
+<style>
+  .timeline-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .timeline-date {
+    width: 120px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+  }
+
+  .day-month {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .day-name {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .timeline-marker {
+    width: 40px;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .timeline-marker::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    border-left: 1px dashed var(--border);
+  }
+
+  .timeline-row:last-child .timeline-marker::before {
+    bottom: 0;
+  }
+
+  .dot {
+    position: absolute;
+    top: 32px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    z-index: 2;
+  }
+
+  .card-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0;
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.2s ease,
+      border-color 0.2s ease;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .card-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-color: var(--text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-container {
+      transition: none;
+    }
+    .card-container:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    padding: 24px;
+  }
+
+  .event-time {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .event-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .event-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .avatar-stack {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--card-bg);
+    object-fit: cover;
+    margin-left: -8px;
+    background: var(--bg);
+  }
+
+  .avatar:first-child {
+    margin-left: 0;
+  }
+
+  .more-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-left: 8px;
+  }
+
+  .card-image-wrapper {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--bg-subtle), var(--border));
+    position: relative;
+  }
+
+  .event-cover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-placeholder {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    opacity: 0.5;
+    letter-spacing: 0.05em;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-row {
+      flex-direction: column;
+      margin-bottom: 32px;
+    }
+    .timeline-date {
+      width: 100%;
+      flex-direction: row;
+      gap: 12px;
+      padding-top: 0;
+      margin-bottom: 12px;
+      align-items: baseline;
+    }
+    .timeline-marker {
+      display: none;
+    }
+    .card-container {
+      flex-direction: column;
+    }
+    .card-content {
+      padding: 20px;
+    }
+    .card-image-wrapper {
+      width: 100%;
+      height: 180px;
+      border-left: none;
+      border-bottom: 1px solid var(--border);
+      order: -1;
+    }
+  }
+</style>

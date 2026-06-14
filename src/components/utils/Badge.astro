@@ -1,0 +1,53 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  href: string;
+  text: string;
+  icon?: ImageMetadata;
+  alt?: string;
+}
+
+const { href, text, icon, alt = "Badge icon" } = Astro.props;
+---
+
+<a href={href} class="badge">
+  {icon && <Image src={icon} alt={alt} width={128} />}
+  <span>{text}</span>
+</a>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.2em 0.4em;
+    margin: 0 -0.05em;
+    height: 1.6em;
+    font-size: 0.95em;
+    vertical-align: middle;
+    transform: translateY(-0.1em);
+
+    background: var(--badge-bg);
+    backdrop-filter: blur(8px);
+    border-radius: 4px;
+
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .badge:hover {
+    background: var(--bg);
+  }
+
+  .badge :global(img),
+  .badge :global(svg) {
+    width: 1.1em;
+    height: 1.1em;
+    border-radius: 2px;
+    object-fit: contain;
+  }
+</style>

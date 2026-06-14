@@ -1,0 +1,186 @@
+---
+import LayoutMinimal from "@/layouts/LayoutMinimal.astro";
+---
+
+<LayoutMinimal title="404 - Page Not Found">
+  <section class="not-found-viewport">
+    <div class="hexagon-space">
+      <div class="hex" style="top: 15%; left: 20%; --size: 250px; z-index: 1;">
+      </div>
+      <div
+        class="hex"
+        style="top: 60%; left: 70%; --size: 350px; z-index: 2; --b-width: 3px;"
+      >
+      </div>
+      <div
+        class="hex"
+        style="top: 45%; left: 10%; --size: 150px; z-index: 3; --b-style: dashed;"
+      >
+      </div>
+      <div
+        class="hex"
+        style="top: 25%; left: 65%; --size: 180px; z-index: 4; --b-style: dashed; --b-width: 3px;"
+      >
+      </div>
+    </div>
+
+    <div class="content-wrapper-404">
+      <h1 class="error-code">404</h1>
+      <p class="error-text">Page not found</p>
+      <a href="/" class="back-link">Return to Home</a>
+    </div>
+  </section>
+</LayoutMinimal>
+
+<style is:global>
+  main {
+    padding-top: 0;
+  }
+</style>
+
+<style>
+  .not-found-viewport {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-subtle);
+  }
+
+  .hexagon-space {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hex {
+    --b-width: 2px;
+    --b-color: var(--text-muted);
+    --b-style: dotted;
+
+    position: absolute;
+    width: var(--size);
+    height: calc(var(--size) * 1.1547);
+    background: var(--bg-subtle);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-sizing: border-box;
+    border-left: var(--b-width) var(--b-style) var(--b-color);
+    border-right: var(--b-width) var(--b-style) var(--b-color);
+  }
+
+  .hex::before,
+  .hex::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--b-width) * -1);
+    right: calc(var(--b-width) * -1);
+    box-sizing: border-box;
+    border-left: var(--b-width) var(--b-style) var(--b-color);
+    border-right: var(--b-width) var(--b-style) var(--b-color);
+  }
+
+  .hex::before {
+    transform: rotate(60deg);
+  }
+
+  .hex::after {
+    transform: rotate(120deg);
+  }
+
+  .content-wrapper-404 {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .error-code {
+    position: relative;
+    z-index: 2;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--text);
+    margin: 0;
+    padding: 0 60px;
+  }
+
+  .error-code::before {
+    content: "";
+    position: absolute;
+    inset: -80px;
+    z-index: -1;
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 40%,
+      transparent 80%
+    );
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    pointer-events: none;
+  }
+
+  .error-text {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin: 0;
+    font-weight: 500;
+    z-index: 2;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+
+  .back-link:hover {
+    background: var(--card-bg);
+    transform: translateY(-2px);
+    border-color: var(--border);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .error-code::before {
+      display: none;
+    }
+
+    .back-link {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: var(--bg-subtle);
+    }
+  }
+</style>

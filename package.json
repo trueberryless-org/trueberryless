@@ -12,15 +12,21 @@
   "author": "trueberryless <trueberryless@gmail.com> (https://trueberryless.org)",
   "scripts": {
     "astro": "astro",
-    "build": "astro build",
-    "dev": "astro dev",
+    "build": "lex build --override && astro build",
+    "build:netlify": "lex build --override && ADAPTER_TYPE=netlify astro build",
+    "dev": "lex build --override && astro dev",
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.5",
-    "astro": "^5.18.1",
-    "nanostores": "^1.3.0",
-    "sharp": "^0.34.5"
+    "@astrojs/netlify": "^7.0.12",
+    "@astrojs/node": "^10.1.4",
+    "@astrojs/sitemap": "^3.7.3",
+    "@atproto/lex": "^0.1.3",
+    "@lucide/astro": "^1.17.0",
+    "astro": "^6.4.4",
+    "octokit": "^5.0.5",
+    "sharp": "^0.34.5",
+    "simple-icons-astro": "^16.1.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "6.0.2",

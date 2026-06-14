@@ -1,0 +1,52 @@
+---
+import PostItem from "@/components/blog/PostItem.astro";
+
+interface Props {
+  year: string;
+  posts: any[];
+}
+
+const { year, posts } = Astro.props;
+---
+
+<section class="year-group">
+  <div class="year-watermark">{year}</div>
+  <div class="post-list">
+    {posts.map((post) => <PostItem post={post} />)}
+  </div>
+</section>
+
+<style>
+  .year-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .year-watermark {
+    position: absolute;
+    top: -60px;
+    left: -80px;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    font-size: 14rem;
+    font-weight: 900;
+    color: var(--text);
+    opacity: 0.07;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

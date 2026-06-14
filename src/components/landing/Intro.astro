@@ -1,0 +1,50 @@
+---
+import IntroBadge from "@/components/utils/IntroBadge.astro";
+---
+
+<section class="intro-block">
+  <p>Hey there.</p>
+  <p>
+    I'm a developer who builds open source in my free time. I help maintain
+    <IntroBadge name="npmx" />
+    as well as the
+    <IntroBadge name="all-contributors" />
+    ecosystem. I also build sites with the
+    <IntroBadge name="astro" />
+    web framework, and focus most of my contributions on its
+    <IntroBadge name="starlight" />
+    documentation tool.
+  </p>
+  <p>
+    Outside of coding, I'm usually hanging out on the
+    <IntroBadge name="bluesky" />
+    platform. You can find my professional history over on my
+    <IntroBadge name="sifa" />
+    profile page.
+  </p>
+</section>
+
+<style is:global>
+  :root:not(.dark) .dark-only {
+    display: none;
+  }
+
+  :root.dark .light-only {
+    display: none;
+  }
+</style>
+
+<style>
+  .intro-block {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .intro-block strong {
+    font-weight: 600;
+  }
+</style>

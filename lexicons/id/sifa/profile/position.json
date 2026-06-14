@@ -1,0 +1,108 @@
+{
+  "id": "id.sifa.profile.position",
+  "defs": {
+    "main": {
+      "key": "tid",
+      "type": "record",
+      "record": {
+        "type": "object",
+        "required": ["company", "title", "startedAt", "createdAt"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 2560,
+            "minLength": 1,
+            "description": "Job title or role name.",
+            "maxGraphemes": 256
+          },
+          "labels": {
+            "refs": ["com.atproto.label.defs#selfLabels"],
+            "type": "union",
+            "description": "Self-label values for this position record."
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "ref": "id.sifa.defs#skillRef",
+              "type": "ref"
+            },
+            "maxLength": 50,
+            "description": "Skills used in this position. Each entry is a URI reference to an id.sifa.profile.skill record owned by the same DID."
+          },
+          "company": {
+            "type": "string",
+            "maxLength": 2560,
+            "minLength": 1,
+            "description": "Company or organization name.",
+            "maxGraphemes": 256
+          },
+          "endedAt": {
+            "type": "string",
+            "description": "End date of the position in YYYY-MM or YYYY-MM-DD format. Omit if this is a current position."
+          },
+          "location": {
+            "ref": "community.lexicon.location.address",
+            "type": "ref",
+            "description": "Work location. Sifa enforces ISO 3166-1 alpha-2 country codes at the app layer."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Client-declared timestamp when this record was originally created."
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "description": "Whether this is the user's primary current position, displayed on the identity card."
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "Start date of the position in YYYY-MM or YYYY-MM-DD format."
+          },
+          "companyDid": {
+            "type": "string",
+            "format": "did",
+            "description": "DID of the company's ATproto account, if one exists. Enables verified company linking."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 50000,
+            "description": "Description of responsibilities, achievements, and duties.",
+            "maxGraphemes": 5000
+          },
+          "workplaceType": {
+            "type": "string",
+            "description": "Workplace arrangement (on-site, remote, hybrid).",
+            "knownValues": [
+              "id.sifa.defs#onSite",
+              "id.sifa.defs#remote",
+              "id.sifa.defs#hybrid"
+            ]
+          },
+          "employmentType": {
+            "type": "string",
+            "description": "Type of employment (full-time, part-time, contract, etc.).",
+            "knownValues": [
+              "id.sifa.defs#fullTime",
+              "id.sifa.defs#partTime",
+              "id.sifa.defs#temporary",
+              "id.sifa.defs#seasonal",
+              "id.sifa.defs#contract",
+              "id.sifa.defs#freelance",
+              "id.sifa.defs#selfEmployed",
+              "id.sifa.defs#independentWork",
+              "id.sifa.defs#internship",
+              "id.sifa.defs#apprenticeship",
+              "id.sifa.defs#fellowship",
+              "id.sifa.defs#trainee",
+              "id.sifa.defs#volunteer"
+            ]
+          }
+        }
+      },
+      "description": "Record representing a single work position or role."
+    }
+  },
+  "$type": "com.atproto.lexicon.schema",
+  "lexicon": 1,
+  "description": "A work experience entry in the user's professional profile."
+}

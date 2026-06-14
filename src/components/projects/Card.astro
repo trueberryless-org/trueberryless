@@ -1,0 +1,153 @@
+---
+interface Props {
+  name: string;
+  description?: string;
+  url: string;
+  stars?: number;
+  contributions?: number;
+}
+
+const { name, description, url, stars, contributions } = Astro.props;
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="card-link">
+  <div class="card-container">
+    <div class="card-header">
+      <h3 class="card-title">{name}</h3>
+      <div class="card-metrics">
+        {
+          stars !== undefined && (
+            <span class="metric star-metric">
+              <svg
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="icon-star"
+              >
+                <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
+              </svg>
+              {stars}
+            </span>
+          )
+        }
+        {
+          contributions !== undefined && (
+            <span class="metric pr-metric">
+              <svg
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="icon-pr"
+              >
+                <path d="M7.177 3.073L9.573.677A.25.25 0 0 1 10 .854v4.792a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm-2.25.75a2.25 2.25 0 1 1 3 2.122v5.256a2.25 2.25 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25ZM11 2.5h-1V4h1a1.5 1.5 0 0 1 1.5 1.5v5.628a2.25 2.25 0 1 0 1.5 0V5.5A3 3 0 0 0 11 2.5Zm1.25 8.25a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM3.75 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z" />
+              </svg>
+              {contributions}
+            </span>
+          )
+        }
+      </div>
+    </div>
+    {description && <p class="card-description">{description}</p>}
+  </div>
+</a>
+
+<style>
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    height: 100%;
+  }
+
+  .card-container {
+    background: var(--card-bg);
+    box-shadow: inset 0px 4px 12px var(--header-shadow);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 0;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .card-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
+      0px 0px 0px 0px var(--header-shadow),
+      0px 0px 0px 0px var(--header-shadow);
+    transition: box-shadow 0.2s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    word-break: break-word;
+    flex-grow: 1;
+    font-family: monospace;
+  }
+
+  .card-metrics {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .metric {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .icon-star,
+  .icon-pr {
+    transition:
+      filter 0.2s ease,
+      color 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card-link:hover .star-metric .icon-star {
+      color: var(--glow-star);
+    }
+
+    .card-link:hover .pr-metric .icon-pr {
+      color: var(--glow-pr);
+    }
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: monospace;
+  }
+</style>

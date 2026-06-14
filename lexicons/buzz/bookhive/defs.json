@@ -1,0 +1,314 @@
+{
+  "id": "buzz.bookhive.defs",
+  "defs": {
+    "review": {
+      "type": "object",
+      "required": ["review", "createdAt", "did", "handle"],
+      "properties": {
+        "did": {
+          "type": "string",
+          "description": "The DID of the user who made the review"
+        },
+        "stars": {
+          "type": "integer",
+          "description": "The number of stars given to the book"
+        },
+        "handle": {
+          "type": "string",
+          "description": "The handle of the user who made the review"
+        },
+        "review": {
+          "type": "string",
+          "description": "The review content"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date the review was created"
+        }
+      }
+    },
+    "comment": {
+      "type": "object",
+      "required": ["comment", "createdAt", "book", "parent", "did", "handle"],
+      "properties": {
+        "did": {
+          "type": "string",
+          "description": "The DID of the user who made the comment"
+        },
+        "book": {
+          "ref": "com.atproto.repo.strongRef",
+          "type": "ref"
+        },
+        "handle": {
+          "type": "string",
+          "description": "The handle of the user who made the comment"
+        },
+        "parent": {
+          "ref": "com.atproto.repo.strongRef",
+          "type": "ref"
+        },
+        "comment": {
+          "type": "string",
+          "maxLength": 100000,
+          "description": "The content of the comment.",
+          "maxGraphemes": 10000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "datetime",
+          "description": "Client-declared timestamp when this comment was originally created."
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": ["displayName", "handle", "booksRead", "reviews"],
+      "properties": {
+        "avatar": {
+          "type": "string"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "reviews": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "booksRead": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isFollowing": {
+          "type": "boolean",
+          "description": "Whether the authed user is following this profile"
+        }
+      }
+    },
+    "reading": {
+      "type": "token",
+      "description": "User is currently reading the book"
+    },
+    "activity": {
+      "type": "object",
+      "required": [
+        "type",
+        "createdAt",
+        "hiveId",
+        "title",
+        "userDid",
+        "userHandle"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "knownValues": ["review", "rated", "started", "finished"]
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the book"
+        },
+        "hiveId": {
+          "type": "string",
+          "description": "The hive id of the book"
+        },
+        "userDid": {
+          "type": "string",
+          "description": "The DID of the user who added the book"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "datetime"
+        },
+        "userHandle": {
+          "type": "string",
+          "description": "The handle of the user who added the book"
+        }
+      }
+    },
+    "finished": {
+      "type": "token",
+      "description": "User has finished reading the book"
+    },
+    "userBook": {
+      "type": "object",
+      "required": [
+        "userDid",
+        "title",
+        "authors",
+        "hiveId",
+        "createdAt",
+        "thumbnail"
+      ],
+      "properties": {
+        "cover": {
+          "type": "string",
+          "description": "Cover image of the book"
+        },
+        "owned": {
+          "type": "boolean",
+          "description": "Whether the user owns this book"
+        },
+        "stars": {
+          "type": "integer",
+          "maximum": 10,
+          "minimum": 1,
+          "description": "Number of stars given to the book (1-10) which will be mapped to 1-5 stars"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 512,
+          "minLength": 1,
+          "description": "The title of the book"
+        },
+        "hiveId": {
+          "type": "string",
+          "description": "The book's hive id, used to correlate user's books with the hive"
+        },
+        "rating": {
+          "type": "integer",
+          "maximum": 1000,
+          "minimum": 0,
+          "description": "Average rating (0-1000)"
+        },
+        "review": {
+          "type": "string",
+          "description": "The book's review",
+          "maxGraphemes": 15000
+        },
+        "status": {
+          "type": "string",
+          "knownValues": [
+            "buzz.bookhive.defs#finished",
+            "buzz.bookhive.defs#reading",
+            "buzz.bookhive.defs#wantToRead",
+            "buzz.bookhive.defs#abandoned"
+          ]
+        },
+        "authors": {
+          "type": "string",
+          "maxLength": 2048,
+          "minLength": 1,
+          "description": "The authors of the book (tab separated)"
+        },
+        "userDid": {
+          "type": "string",
+          "description": "The DID of the user who added the book"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "datetime"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date the user started reading the book"
+        },
+        "thumbnail": {
+          "type": "string",
+          "description": "Cover image of the book"
+        },
+        "finishedAt": {
+          "type": "string",
+          "format": "datetime",
+          "description": "The date the user finished reading the book"
+        },
+        "userHandle": {
+          "type": "string",
+          "description": "The handle of the user who added the book"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 5000,
+          "description": "Book description/summary"
+        },
+        "identifiers": {
+          "ref": "buzz.bookhive.defs#bookIdentifiers",
+          "type": "ref",
+          "description": "External identifiers for the book"
+        },
+        "bookProgress": {
+          "ref": "buzz.bookhive.defs#bookProgress",
+          "type": "ref",
+          "description": "Progress tracking information for the book"
+        }
+      }
+    },
+    "abandoned": {
+      "type": "token",
+      "description": "User has abandoned the book"
+    },
+    "wantToRead": {
+      "type": "token",
+      "description": "User wants to read the book"
+    },
+    "bookProgress": {
+      "type": "object",
+      "required": ["updatedAt"],
+      "properties": {
+        "percent": {
+          "type": "integer",
+          "maximum": 100,
+          "minimum": 0,
+          "description": "How far through the book the reader is (0-100)"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "datetime",
+          "description": "When the progress was last updated"
+        },
+        "totalPages": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total number of pages in the book"
+        },
+        "currentPage": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current page the user is on"
+        },
+        "totalChapters": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total number of chapters in the book"
+        },
+        "currentChapter": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current chapter the user is on"
+        }
+      },
+      "description": "Reading progress tracking data"
+    },
+    "bookIdentifiers": {
+      "type": "object",
+      "properties": {
+        "hiveId": {
+          "type": "string",
+          "description": "BookHive's internal ID"
+        },
+        "isbn10": {
+          "type": "string",
+          "description": "10-digit ISBN"
+        },
+        "isbn13": {
+          "type": "string",
+          "description": "13-digit ISBN"
+        },
+        "goodreadsId": {
+          "type": "string",
+          "description": "Goodreads book ID"
+        }
+      },
+      "description": "External identifiers for a book"
+    }
+  },
+  "$type": "com.atproto.lexicon.schema",
+  "lexicon": 1
+}

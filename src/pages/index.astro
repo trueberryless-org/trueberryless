@@ -1,32 +1,39 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Intro from "../components/Intro.astro";
-import Projects from "../components/Projects.astro";
-import WaveDivider from "../components/WaveDivider.astro";
-import Webring from "../components/Webring.astro";
-import Spotify from "../components/Spotify.astro";
-import Socials from "../components/Socials.astro";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/landing/Hero.astro";
+import Intro from "@/components/landing/Intro.astro";
+import RecentPosts from "@/components/landing/RecentPosts.astro";
+import RecentBlueskyPosts from "@/components/landing/RecentBlueskyPosts.astro";
+import ReadingSummary from "@/components/landing/ReadingSummary.astro";
+import UpcomingEvents from "@/components/landing/UpcomingEvents.astro";
+import SectionSkeleton from "@/components/utils/SectionSkeleton.astro";
 ---
 
-<Layout title="Felix Schneider" description="My corner of the internet">
-  <main>
+<Layout title="Felix Schneider">
+  <Hero name="Felix Schneider" />
+
+  <div class="content-wrapper layout-stream">
     <Intro />
-    <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
-
-    <Projects />
-    <WaveDivider color="flamingo" speed={100} size={0.8} direction="right" />
-
-    <Spotify />
-    <WaveDivider color="mauve" speed={100} size={0.8} direction="left" />
-
-    <Webring />
-    <WaveDivider color="pink" speed={100} size={0.8} direction="right" />
-
-    <Socials />
-  </main>
+    <RecentPosts server:defer>
+      <SectionSkeleton slot="fallback" title="Recent Blog Posts" rows={3} />
+    </RecentPosts>
+    <ReadingSummary server:defer>
+      <SectionSkeleton slot="fallback" title="Reading Summary" rows={4} />
+    </ReadingSummary>
+    <UpcomingEvents server:defer>
+      <SectionSkeleton slot="fallback" title="Upcoming Events" rows={1} />
+    </UpcomingEvents>
+    <RecentBlueskyPosts server:defer>
+      <SectionSkeleton slot="fallback" title="Bluesky" rows={4} />
+    </RecentBlueskyPosts>
+  </div>
 </Layout>
 
-<script>
-  import { refreshLanyard } from "../store";
-  refreshLanyard();
-</script>
+<style>
+  .layout-stream {
+    position: relative;
+    z-index: 10;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+</style>

@@ -1,0 +1,326 @@
+---
+import { Image } from "astro:assets";
+
+import astroLight from "@/assets/logos/light/astro.png";
+import npmxLight from "@/assets/logos/light/npmx.png";
+import starlightLight from "@/assets/logos/light/starlight.png";
+import catppuccinLight from "@/assets/logos/light/catppuccin.png";
+import emdashLight from "@/assets/logos/light/emdash-cms.png";
+import astroDark from "@/assets/logos/dark/astro.png";
+import npmxDark from "@/assets/logos/dark/npmx.png";
+import starlightDark from "@/assets/logos/dark/starlight.png";
+import catppuccinDark from "@/assets/logos/dark/catppuccin.png";
+import emdashDark from "@/assets/logos/dark/emdash-cms.png";
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<section class="hero-viewport" id="hero-section">
+  <div class="hexagon-space">
+    <div
+      class="hex"
+      style="top: -5%; left: 65%; --size: 280px; z-index: 1; --speed: 0.73;"
+    >
+    </div>
+    <div
+      class="hex"
+      style="top: 20%; left: 7%; --size: 400px; z-index: 2; --b-width: 3px; --speed: 0.61;"
+    >
+    </div>
+    <div
+      class="hex"
+      style="top: 55%; left: 72%; --size: 220px; z-index: 30; --b-width: 3px; --b-style: dashed; --speed: 0.38;"
+    >
+    </div>
+    <div
+      class="hex"
+      style="top: 61%; left: -4%; --size: 300px; z-index: 4; --b-style: dashed; --speed: 0.48;"
+    >
+    </div>
+    <div
+      class="hex"
+      style="top: 58%; left: 35%; --size: 180px; z-index: 5; --speed: 0.33;"
+    >
+    </div>
+    <div
+      class="hex"
+      style="top: 25%; left: 52%; --size: 120px; z-index: 6; --b-style: dashed; --b-width: 3px; --speed: 0.41;"
+    >
+    </div>
+  </div>
+
+  <div class="floating-logos">
+    <div class="logo-parallax" style="top: 15%; left: 35%; --speed: 0.58;">
+      <a
+        href="https://astro.build"
+        class="logo-wrapper"
+        style="animation-delay: 0s;"
+      >
+        <Image src={astroLight} alt="Astro Logo" class="tech-logo light-logo" />
+        <Image src={astroDark} alt="Astro Logo" class="tech-logo dark-logo" />
+      </a>
+    </div>
+    <div class="logo-parallax" style="top: 75%; left: 57%; --speed: 0.34;">
+      <a
+        href="https://npmx.dev"
+        class="logo-wrapper"
+        style="animation-delay: -1.4s;"
+      >
+        <Image src={npmxLight} alt="npmx Logo" class="tech-logo light-logo" />
+        <Image src={npmxDark} alt="npmx Logo" class="tech-logo dark-logo" />
+      </a>
+    </div>
+    <div class="logo-parallax" style="top: 80%; left: 25%; --speed: 0.27;">
+      <a
+        href="https://starlight.astro.build"
+        class="logo-wrapper"
+        style="animation-delay: -3.1s;"
+      >
+        <Image
+          src={starlightLight}
+          alt="Starlight Logo"
+          class="tech-logo light-logo"
+        />
+        <Image
+          src={starlightDark}
+          alt="Starlight Logo"
+          class="tech-logo dark-logo"
+        />
+      </a>
+    </div>
+    <div class="logo-parallax" style="top: 41%; left: 5%; --speed: 0.39;">
+      <a
+        href="https://catppuccin.com"
+        class="logo-wrapper"
+        style="animation-delay: -4.8s;"
+      >
+        <Image
+          src={catppuccinLight}
+          alt="Catppuccin Logo"
+          class="tech-logo light-logo"
+        />
+        <Image
+          src={catppuccinDark}
+          alt="Catppuccin Logo"
+          class="tech-logo dark-logo"
+        />
+      </a>
+    </div>
+    <div class="logo-parallax" style="top: 25%; left: 77%; --speed: 0.52;">
+      <a
+        href="https://www.emdashcms.com/"
+        class="logo-wrapper"
+        style="animation-delay: -4.5s;"
+      >
+        <Image
+          src={emdashLight}
+          alt="EmDash Logo"
+          class="tech-logo light-logo"
+        />
+        <Image src={emdashDark} alt="EmDash Logo" class="tech-logo dark-logo" />
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-center-wrapper" id="hero-content">
+    <h1 class="hero-text">{name}</h1>
+  </div>
+</section>
+
+<style is:global>
+  main {
+    padding-top: 0;
+  }
+</style>
+
+<style>
+  .hero-viewport {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hexagon-space {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hex {
+    --b-width: 2px;
+    --b-color: var(--text-muted);
+    --b-style: dotted;
+
+    position: absolute;
+    width: var(--size);
+    height: calc(var(--size) * 1.1547);
+    background: var(--bg-subtle);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-sizing: border-box;
+    border-left: var(--b-width) var(--b-style) var(--b-color);
+    border-right: var(--b-width) var(--b-style) var(--b-color);
+    will-change: transform;
+    transform: translate3d(0, calc(var(--scroll-y) * var(--speed, 0)), 0);
+  }
+
+  .hex::before,
+  .hex::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--b-width) * -1);
+    right: calc(var(--b-width) * -1);
+    box-sizing: border-box;
+    border-left: var(--b-width) var(--b-style) var(--b-color);
+    border-right: var(--b-width) var(--b-style) var(--b-color);
+  }
+
+  .hex::before {
+    transform: rotate(60deg);
+  }
+
+  .hex::after {
+    transform: rotate(120deg);
+  }
+
+  .floating-logos {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+  }
+
+  :root:not(.dark) .dark-logo {
+    display: none;
+  }
+
+  :root.dark .light-logo {
+    display: none;
+  }
+
+  .logo-parallax {
+    position: absolute;
+    will-change: transform;
+    transform: translate3d(0, calc(var(--scroll-y) * var(--speed, 0)), 0);
+    pointer-events: auto;
+  }
+
+  .logo-wrapper {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    animation: floatLogo 6s ease-in-out infinite;
+  }
+
+  .tech-logo {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  @keyframes floatLogo {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-16px) rotate(3deg);
+    }
+  }
+
+  .hero-center-wrapper {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+    transform: translate3d(0, calc(var(--scroll-y) * 0.5), 0);
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+    color: var(--text);
+    text-align: center;
+    margin: 0;
+    padding: 40px 60px;
+  }
+
+  .hero-text::before {
+    content: "";
+    position: absolute;
+    inset: -100px;
+    z-index: -1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 40%,
+      transparent 80%
+    );
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hex,
+    .logo-parallax,
+    .hero-center-wrapper {
+      transform: none !important;
+    }
+
+    .logo-wrapper {
+      animation: none !important;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .logo-wrapper {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: var(--bg-subtle);
+    }
+
+    .hero-text::before {
+      display: none;
+    }
+  }
+</style>

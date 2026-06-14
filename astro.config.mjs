@@ -1,12 +1,21 @@
-// @ts-check
 import netlify from "@astrojs/netlify";
+import node from "@astrojs/node";
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://trueberryless.org",
-  adapter: netlify(),
-  experimental: {
-    svgo: true,
+  output: "static",
+  adapter:
+    process.env.ADAPTER_TYPE === "netlify"
+      ? netlify()
+      : node({ mode: "standalone" }),
+  integrations: [sitemap()],
+  prefetch: {
+    defaultStrategy: "hover",
+    prefetchAll: true,
+  },
+  image: {
+    domains: ["cdn.bsky.app", "npmx.social"],
   },
 });

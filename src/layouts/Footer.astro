@@ -1,0 +1,215 @@
+---
+import { Bluesky, Github } from "simple-icons-astro";
+
+const legal = {
+  copyright: "© 2026 Felix Schneider",
+  licenseLabel: "CC BY-SA 4.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+};
+
+const textLinks = [
+  { label: "Blog", url: "/blog" },
+  { label: "Books", url: "/books" },
+  { label: "Events", url: "/events" },
+  { label: "Projects", url: "/projects" },
+];
+
+const socialLinks = [
+  {
+    name: "Bluesky",
+    url: "https://bsky.app/profile/trueberryless.org",
+    iconComponent: Bluesky,
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/trueberryless",
+    iconComponent: Github,
+  },
+];
+---
+
+<footer>
+  <div class="footer-container">
+    <nav aria-label="Footer Navigation">
+      <ul class="nav-groups">
+        <li>
+          <ul class="text-links">
+            {
+              textLinks.map((link) => (
+                <li>
+                  <a href={link.url}>{link.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
+        <li>
+          <ul class="icon-links">
+            {
+              socialLinks.map((social) => {
+                const Icon = social.iconComponent;
+                return (
+                  <li>
+                    <a href={social.url} aria-label={social.name}>
+                      <Icon size={20} />
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="legal">
+      <span>{legal.copyright}</span>
+      <span>
+        Content:
+        <a href={legal.licenseUrl} target="_blank" rel="noopener noreferrer">
+          {legal.licenseLabel}
+        </a>
+      </span>
+      <span class="powered-by">
+        Powered by <a
+          href="https://atproto.com/"
+          target="_blank"
+          rel="noopener noreferrer">ATproto</a
+        >, <a
+          href="https://astro.build/"
+          target="_blank"
+          rel="noopener noreferrer">Astro</a
+        > and <a
+          href="https://www.netlify.com/"
+          target="_blank"
+          rel="noopener noreferrer">Netlify</a
+        >
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const updateMaxScroll = () => {
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
+    document.documentElement.style.setProperty(
+      "--max-scroll",
+      `${maxScroll}px`
+    );
+  };
+  window.addEventListener("scroll", updateMaxScroll);
+  window.addEventListener("resize", updateMaxScroll);
+  updateMaxScroll();
+</script>
+
+<style>
+  footer {
+    width: 100%;
+    border-top: 1px solid var(--border);
+    background: var(--bg-subtle);
+    padding: 64px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      padding: 32px 24px;
+    }
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    will-change: transform;
+    transform: translate3d(
+      0,
+      calc((var(--max-scroll, 0px) - var(--scroll-y, 0px)) * -0.35),
+      0
+    );
+  }
+
+  .nav-groups {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+
+  @media (max-width: 480px) {
+    .nav-groups {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .text-links,
+  .icon-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .text-links a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .icon-links a {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .text-links a:hover,
+  .icon-links a:hover {
+    color: var(--text);
+  }
+
+  .icon-links a:hover {
+    transform: translateY(-2px);
+  }
+
+  .icon-links :global(svg) {
+    fill: currentColor;
+  }
+
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .legal a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .legal a:hover {
+    color: var(--text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-container {
+      transform: none !important;
+    }
+  }
+</style>

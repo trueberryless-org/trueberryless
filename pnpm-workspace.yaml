@@ -2,6 +2,7 @@ allowBuilds:
   "@parcel/watcher": false
   "@tailwindcss/oxide": false
   canvas: false
+  core-js: false
   esbuild: false
-  sharp: false
+  sharp: true
   unrs-resolver: false

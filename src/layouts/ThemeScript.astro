@@ -1,0 +1,20 @@
+<script is:inline>
+  const setDarkMode = () => {
+    const theme = localStorage.getItem("theme");
+    const specialThemes = ["celestial"];
+
+    document.documentElement.classList.remove("dark", ...specialThemes);
+
+    if (theme && theme !== "light") {
+      document.documentElement.classList.add(theme);
+    } else if (
+      !theme &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      document.documentElement.classList.add("dark");
+    }
+  };
+
+  setDarkMode();
+  document.addEventListener("astro:after-swap", setDarkMode);
+</script>
