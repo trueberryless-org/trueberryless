@@ -47,6 +47,48 @@
   --glow-pr: oklch(0.65 0.2 300);
 }
 
+:root.celestial {
+  --bg: linear-gradient(135deg, oklch(0.12 0.05 280), oklch(0.04 0.02 295));
+  --bg-subtle: linear-gradient(
+    135deg,
+    oklch(0.15 0.06 280),
+    oklch(0.06 0.03 295)
+  );
+  --card-bg: linear-gradient(
+    135deg,
+    oklch(0.2 0.08 290 / 0.3),
+    oklch(0.12 0.05 300 / 0.2)
+  );
+  --badge-bg: linear-gradient(
+    135deg,
+    oklch(0.3 0.1 300 / 0.4),
+    oklch(0.2 0.08 310 / 0.3)
+  );
+  --text: oklch(0.96 0.01 315);
+  --text-muted: oklch(0.82 0.03 315);
+  --border: oklch(0.3 0.06 315 / 0.25);
+  --blob-1: oklch(0.3 0.14 330 / 0.4);
+  --blob-2: oklch(0.25 0.12 290 / 0.4);
+  --blob-3: oklch(0.28 0.13 315 / 0.4);
+  --header-bg: linear-gradient(
+    135deg,
+    oklch(0.12 0.05 280 / 0.7),
+    oklch(0.06 0.03 295 / 0.7)
+  );
+  --header-bg-solid: linear-gradient(
+    135deg,
+    oklch(0.12 0.05 280),
+    oklch(0.06 0.03 295)
+  );
+  --header-shadow: oklch(0.02 0.01 295 / 0.5);
+  --book-pages: oklch(0.94 0.02 315);
+  --book-pages-darker: oklch(0.86 0.03 315);
+  --book-cover-bg: var(--card-bg);
+  --book-back: oklch(0.15 0.04 315);
+  --glow-star: oklch(0.88 0.12 330);
+  --glow-pr: oklch(0.75 0.14 310);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -59,7 +101,7 @@ body {
 }
 
 body {
-  background-color: var(--bg-subtle);
+  background: var(--bg-subtle);
   color: var(--text);
   font-family:
     "Datatype",
@@ -71,8 +113,15 @@ body {
 }
 
 main {
-  background-color: var(--bg);
+  background: var(--bg);
   padding-top: 100px;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 a {

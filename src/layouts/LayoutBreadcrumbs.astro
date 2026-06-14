@@ -20,28 +20,20 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <Header />
-    <div class="main-container">
-      <main>
+    <main>
+      <div class="content-wrapper breadcrumbs-layout">
         <Breadcrumbs />
         <slot />
-      </main>
-    </div>
+      </div>
+    </main>
     <Footer />
     <ScrollTracker />
   </body>
 </html>
 
 <style>
-  .main-container {
-    width: 100%;
-    background-color: var(--bg);
-  }
-
-  main {
+  .breadcrumbs-layout {
     position: relative;
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 120px 24px 80px 24px;
+    padding-bottom: 80px;
   }
 </style>

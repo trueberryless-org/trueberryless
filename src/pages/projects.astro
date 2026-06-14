@@ -4,6 +4,13 @@ import Section from "@/components/utils/Section.astro";
 import Card from "@/components/projects/Card.astro";
 import { getOwnProjects, getContributedProjects } from "@/lib/github";
 
+export const prerender = false;
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=0, s-maxage=604800, stale-while-revalidate=31536000"
+);
+
 const contributedProjects = await getContributedProjects();
 const ownProjects = await getOwnProjects();
 ---
@@ -40,8 +47,6 @@ const ownProjects = await getOwnProjects();
 
 <style>
   .projects-wrapper {
-    max-width: var(--max-width);
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 24px;

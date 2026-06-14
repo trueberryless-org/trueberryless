@@ -3,6 +3,8 @@ import LayoutBreadcrumbs from "@/layouts/LayoutBreadcrumbs.astro";
 import YearGroup from "@/components/blog/YearGroup.astro";
 import { getGroupedPosts } from "@/lib/blog";
 
+export const prerender = false;
+
 Astro.response.headers.set(
   "Cache-Control",
   "public, max-age=3600, must-revalidate"

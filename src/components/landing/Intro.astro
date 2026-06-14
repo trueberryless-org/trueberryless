@@ -1,59 +1,26 @@
 ---
-import Badge from "@/components/utils/Badge.astro";
-
-import astroLight from "@/assets/logos/light/astro.png";
-import blueskyLight from "@/assets/logos/light/bluesky.png";
-import npmxLight from "@/assets/logos/light/npmx.png";
-import starlightLight from "@/assets/logos/light/starlight.png";
-import allContributorsLight from "@/assets/logos/light/all-contributors.png";
-
-import astroDark from "@/assets/logos/dark/astro.png";
-import npmxDark from "@/assets/logos/dark/npmx.png";
-import starlightDark from "@/assets/logos/dark/starlight.png";
+import IntroBadge from "@/components/utils/IntroBadge.astro";
 ---
 
 <section class="intro-block">
-  <p>Hey there!</p>
+  <p>Hey there.</p>
   <p>
-    I am a developer who loves building open source in my free time. I currently
-    help maintain
-    <span class="light-only"
-      ><Badge href="https://npmx.dev" icon={npmxLight} text="npmx.dev" /></span
-    >
-    <span class="dark-only"
-      ><Badge href="https://npmx.dev" icon={npmxDark} text="npmx.dev" /></span
-    >
-    and
-    <Badge
-      href="https://allcontributors.org"
-      icon={allContributorsLight}
-      text="All Contributors"
-    />. I also love to create <span class="light-only"
-      ><Badge href="https://astro.build" icon={astroLight} text="Astro" /></span
-    ><span class="dark-only"
-      ><Badge href="https://astro.build" icon={astroDark} text="Astro" /></span
-    > websites and work on its documentation framework,
-    <span class="light-only"
-      ><Badge
-        href="https://starlight.astro.build"
-        icon={starlightLight}
-        text="Starlight"
-      /></span
-    >
-    <span class="dark-only"
-      ><Badge
-        href="https://starlight.astro.build"
-        icon={starlightDark}
-        text="Starlight"
-      /></span
-    >.
+    I'm a developer who builds open source in my free time. I help maintain
+    <IntroBadge name="npmx" />
+    as well as the
+    <IntroBadge name="all-contributors" />
+    ecosystem. I also build sites with the
+    <IntroBadge name="astro" />
+    web framework, and focus most of my contributions on its
+    <IntroBadge name="starlight" />
+    documentation tool.
   </p>
   <p>
-    When I'm not coding, you can usually find me hanging out on <Badge
-      href="https://bsky.app/profile/yourprofile"
-      icon={blueskyLight}
-      text="Bluesky"
-    />.
+    Outside of coding, I'm usually hanging out on the
+    <IntroBadge name="bluesky" />
+    platform. You can find my professional history over on my
+    <IntroBadge name="sifa" />
+    profile page.
   </p>
 </section>
 

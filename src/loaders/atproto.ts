@@ -20,7 +20,7 @@ const transformData = (
 ) => {
   const transformed = { ...data };
   for (const [key, map] of Object.entries(mappers)) {
-    if (data[key] && map[data[key]]) {
+    if (key in data && data[key] in map) {
       transformed[key] = map[data[key]];
     }
   }

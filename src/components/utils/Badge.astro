@@ -29,7 +29,7 @@ const { href, text, icon, alt = "Badge icon" } = Astro.props;
     vertical-align: middle;
     transform: translateY(-0.1em);
 
-    background-color: var(--badge-bg);
+    background: var(--badge-bg);
     backdrop-filter: blur(8px);
     border-radius: 4px;
 
@@ -40,7 +40,7 @@ const { href, text, icon, alt = "Badge icon" } = Astro.props;
   }
 
   .badge:hover {
-    background-color: var(--bg);
+    background: var(--bg);
   }
 
   .badge :global(img),

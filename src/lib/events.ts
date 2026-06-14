@@ -84,21 +84,7 @@ export const getProcessedEvents = async () => {
 
   if (!rsvpsResult) return [];
 
-  let rawRsvps: any[] = [];
-  if ("data" in rsvpsResult && rsvpsResult.data) {
-    rawRsvps = Array.isArray(rsvpsResult.data)
-      ? rsvpsResult.data
-      : Object.values(rsvpsResult.data);
-  } else if (
-    "entries" in rsvpsResult &&
-    Array.isArray((rsvpsResult as any).entries)
-  ) {
-    rawRsvps = (rsvpsResult as any).entries;
-  } else if (!("error" in rsvpsResult)) {
-    rawRsvps = Array.isArray(rsvpsResult)
-      ? rsvpsResult
-      : Object.values(rsvpsResult);
-  }
+  const rawRsvps = rsvpsResult?.entries || [];
 
   const uniqueUris = [
     ...new Set(

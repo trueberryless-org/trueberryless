@@ -1,32 +1,40 @@
 import { Octokit } from "octokit";
 
+if (!import.meta.env.GITHUB_TOKEN) {
+  throw new Error("GITHUB_TOKEN environment variable is required");
+}
+
 const octokit = new Octokit({
   auth: import.meta.env.GITHUB_TOKEN,
 });
 
-const SHOWCASE_PROJECTS = [
-  "withastro",
-  "npmx-dev",
-  "all-contributors",
-  "withstudiocms",
-  "catppuccin",
-  "rose-pine",
-  "bombshell-dev",
-  "emdash-cms",
-  "zen-browser",
-  "colibri-social",
-];
+const SHOWCASE_PROJECTS: Record<string, string> = {
+  withastro: "Build fast websites, faster",
+  "npmx-dev": "A fast, modern browser for the npm registry",
+  "all-contributors":
+    "Recognize all contributors, not just the ones who push code",
+  withstudiocms: "The Astro-native CMS for all your needs",
+  catppuccin: "Soothing pastel theme for the high-spirited",
+  "rose-pine":
+    "All natural pine, faux fur and a bit of soho vibes for the classy minimalist",
+  "bombshell-dev": "Modern and powerful CLI tooling",
+  "emdash-cms": "A fast and lightweight CMS for Astro",
+  "zen-browser": "Stay focused, browse faster",
+  "colibri-social": "Open source chat platform built on the AT protocol",
+};
 
 export async function getOwnProjects() {
   try {
-    const userRepos = await octokit.paginate(octokit.rest.repos.listForUser, {
-      username: "trueberryless",
-      per_page: 100,
-    });
-    const orgRepos = await octokit.paginate(octokit.rest.repos.listForOrg, {
-      org: "trueberryless-org",
-      per_page: 100,
-    });
+    const [userRepos, orgRepos] = await Promise.all([
+      octokit.paginate(octokit.rest.repos.listForUser, {
+        username: "trueberryless",
+        per_page: 100,
+      }),
+      octokit.paginate(octokit.rest.repos.listForOrg, {
+        org: "trueberryless-org",
+        per_page: 100,
+      }),
+    ]);
 
     const allRepos = [...userRepos, ...orgRepos];
 
@@ -84,7 +92,8 @@ export async function getContributedProjects() {
 
     const allContributed = Object.values(repoCounts);
 
-    const showcaseSet = new Set(SHOWCASE_PROJECTS);
+    const showcaseKeys = Object.keys(SHOWCASE_PROJECTS);
+    const showcaseSet = new Set(showcaseKeys);
     const showcaseRepos = allContributed.filter((repo) => {
       const owner = repo.name.split("/")[0];
       return showcaseSet.has(owner);
@@ -126,7 +135,7 @@ export async function getContributedProjects() {
           }
 
           let url = `https://github.com/${group.owner}`;
-          let description = "";
+          let description = SHOWCASE_PROJECTS[group.owner] || "";
           let name = group.owner;
 
           try {
@@ -139,7 +148,9 @@ export async function getContributedProjects() {
                 ? userData.blog
                 : `https://${userData.blog}`;
             }
-            description = userData.bio || "";
+            if (!description) {
+              description = userData.bio || "";
+            }
             name = userData.name || group.owner;
           } catch {}
 
@@ -155,7 +166,7 @@ export async function getContributedProjects() {
           return {
             owner: group.owner,
             name: group.owner,
-            description: "",
+            description: SHOWCASE_PROJECTS[group.owner] || "",
             url: `https://github.com/${group.owner}`,
             stars: 0,
             contributions: group.contributions,
@@ -165,8 +176,7 @@ export async function getContributedProjects() {
     );
 
     return enrichedOrgs.sort(
-      (a, b) =>
-        SHOWCASE_PROJECTS.indexOf(a.owner) - SHOWCASE_PROJECTS.indexOf(b.owner)
+      (a, b) => showcaseKeys.indexOf(a.owner) - showcaseKeys.indexOf(b.owner)
     );
   } catch {
     return [];

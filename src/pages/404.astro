@@ -24,7 +24,7 @@ import LayoutMinimal from "@/layouts/LayoutMinimal.astro";
       </div>
     </div>
 
-    <div class="content-wrapper">
+    <div class="content-wrapper-404">
       <h1 class="error-code">404</h1>
       <p class="error-text">Page not found</p>
       <a href="/" class="back-link">Return to Home</a>
@@ -49,7 +49,7 @@ import LayoutMinimal from "@/layouts/LayoutMinimal.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-subtle);
+    background: var(--bg-subtle);
   }
 
   .hexagon-space {
@@ -68,7 +68,7 @@ import LayoutMinimal from "@/layouts/LayoutMinimal.astro";
     position: absolute;
     width: var(--size);
     height: calc(var(--size) * 1.1547);
-    background-color: var(--bg-subtle);
+    background: var(--bg-subtle);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     box-sizing: border-box;
     border-left: var(--b-width) var(--b-style) var(--b-color);
@@ -96,7 +96,7 @@ import LayoutMinimal from "@/layouts/LayoutMinimal.astro";
     transform: rotate(120deg);
   }
 
-  .content-wrapper {
+  .content-wrapper-404 {
     position: relative;
     z-index: 20;
     display: flex;
@@ -167,7 +167,7 @@ import LayoutMinimal from "@/layouts/LayoutMinimal.astro";
   }
 
   .back-link:hover {
-    background-color: var(--card-bg);
+    background: var(--card-bg);
     transform: translateY(-2px);
     border-color: var(--border);
   }

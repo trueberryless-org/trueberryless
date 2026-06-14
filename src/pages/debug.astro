@@ -2,6 +2,8 @@
 import { getLiveCollection } from "astro:content";
 import BaseHead from "@/layouts/BaseHead.astro";
 
+export const prerender = false;
+
 const { entries: posts, error: postsError } = await getLiveCollection("posts");
 const { entries: publications, error: publicationsError } =
   await getLiveCollection("publications");

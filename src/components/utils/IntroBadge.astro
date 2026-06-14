@@ -1,0 +1,70 @@
+---
+import Badge from "@/components/utils/Badge.astro";
+
+import astroLight from "@/assets/logos/light/astro.png";
+import blueskyLight from "@/assets/logos/light/bluesky.png";
+import npmxLight from "@/assets/logos/light/npmx.png";
+import starlightLight from "@/assets/logos/light/starlight.png";
+import allContributorsLight from "@/assets/logos/light/all-contributors.png";
+import sifaLight from "@/assets/logos/light/sifa.png";
+
+import astroDark from "@/assets/logos/dark/astro.png";
+import blueskyDark from "@/assets/logos/dark/bluesky.png";
+import npmxDark from "@/assets/logos/dark/npmx.png";
+import starlightDark from "@/assets/logos/dark/starlight.png";
+import allContributorsDark from "@/assets/logos/dark/all-contributors.png";
+import sifaDark from "@/assets/logos/dark/sifa.png";
+
+const badges = {
+  astro: {
+    href: "https://astro.build",
+    text: "Astro",
+    light: astroLight,
+    dark: astroDark,
+  },
+  bluesky: {
+    href: "https://bsky.app/profile/yourprofile",
+    text: "Bluesky",
+    light: blueskyLight,
+    dark: blueskyDark,
+  },
+  npmx: {
+    href: "https://npmx.dev",
+    text: "npmx.dev",
+    light: npmxLight,
+    dark: npmxDark,
+  },
+  starlight: {
+    href: "https://starlight.astro.build",
+    text: "Starlight",
+    light: starlightLight,
+    dark: starlightDark,
+  },
+  "all-contributors": {
+    href: "https://allcontributors.org",
+    text: "All Contributors",
+    light: allContributorsLight,
+    dark: allContributorsDark,
+  },
+  sifa: {
+    href: "https://sifa.id/p/trueberryless.org",
+    text: "Sifa",
+    light: sifaLight,
+    dark: sifaDark,
+  },
+};
+
+export interface Props {
+  name: keyof typeof badges;
+}
+
+const { name } = Astro.props;
+const badge = badges[name];
+---
+
+<span class="light-only">
+  <Badge href={badge.href} icon={badge.light} text={badge.text} />
+</span>
+<span class="dark-only">
+  <Badge href={badge.href} icon={badge.dark} text={badge.text} />
+</span>

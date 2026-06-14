@@ -3,6 +3,8 @@ import LayoutBreadcrumbs from "@/layouts/LayoutBreadcrumbs.astro";
 import EventCard from "@/components/events/EventCard.astro";
 import { getProcessedEvents } from "@/lib/events";
 
+export const prerender = false;
+
 const allEvents = await getProcessedEvents();
 
 const upcoming = allEvents.filter((e) => !e.isPast);
@@ -34,8 +36,6 @@ const past = allEvents.filter((e) => e.isPast);
 <style>
   .events-page {
     width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
     box-sizing: border-box;
   }
 

@@ -21,7 +21,7 @@ const upcomingEvents = allEvents
               href={event.atmoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style="display: contents; text-decoration: none; color: inherit;"
+              class="event-link"
             >
               <div class="item-left">
                 <span class="item-main">
@@ -36,3 +36,14 @@ const upcomingEvents = allEvents
     </Section>
   )
 }
+
+<style>
+  .event-link {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
