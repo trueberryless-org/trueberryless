@@ -1,11 +1,16 @@
 import { Octokit } from "octokit";
 
+import { measuredFetch } from "./fetch";
+
 if (!import.meta.env.GITHUB_TOKEN) {
   throw new Error("GITHUB_TOKEN environment variable is required");
 }
 
 const octokit = new Octokit({
   auth: import.meta.env.GITHUB_TOKEN,
+  request: {
+    fetch: measuredFetch,
+  },
 });
 
 const SHOWCASE_PROJECTS: Record<string, string> = {

@@ -1,6 +1,7 @@
 import { getLiveCollection } from "astro:content";
 
-export const actorDid = "did:plc:pbjvqaziagcyv2vqodldn5op";
+import { actorDid, bskyPublicApi } from "./const";
+import { measuredFetch } from "./fetch";
 
 export interface BlueskyPost {
   id: string;
@@ -42,8 +43,8 @@ export async function getBlueskyPosts(
       try {
         const queryParams = new URLSearchParams();
         chunk.forEach((uri: string) => queryParams.append("uris", uri));
-        const response = await fetch(
-          `https://public.api.bsky.app/xrpc/app.bsky.feed.getPosts?${queryParams.toString()}`
+        const response = await measuredFetch(
+          `${bskyPublicApi}/xrpc/app.bsky.feed.getPosts?${queryParams.toString()}`
         );
         if (response.ok) {
           const data = await response.json();

@@ -1,7 +1,6 @@
 import { getLiveCollection } from "astro:content";
 
-const actorDid = "did:plc:pbjvqaziagcyv2vqodldn5op";
-const pdsEndpoint = "https://npmx.social";
+import { actorDid, pdsEndpoint } from "./const";
 
 export interface BookItem {
   id: string;

@@ -1,8 +1,11 @@
 import { getLiveCollection } from "astro:content";
 
-const slingshotEndpoint = "https://slingshot.microcosm.blue";
-const bskyPublicApi = "https://public.api.bsky.app";
-const constellationEndpoint = "https://constellation.microcosm.blue";
+import {
+  bskyPublicApi,
+  constellationEndpoint,
+  slingshotEndpoint,
+} from "./const";
+import { measuredFetch } from "./fetch";
 
 const defaultFetchOptions = {
   headers: {
@@ -21,7 +24,7 @@ async function fetchRecord(uri: string): Promise<any | null> {
       url.searchParams.set("repo", repo);
       url.searchParams.set("collection", collection);
       url.searchParams.set("rkey", rkey);
-      const res = await fetch(url, defaultFetchOptions);
+      const res = await measuredFetch(url, defaultFetchOptions);
       if (res.ok) {
         const data = await res.json();
         return data.value ?? null;
@@ -33,7 +36,7 @@ async function fetchRecord(uri: string): Promise<any | null> {
 
 async function fetchProfile(did: string): Promise<any | null> {
   try {
-    const res = await fetch(
+    const res = await measuredFetch(
       `${bskyPublicApi}/xrpc/app.bsky.actor.getProfile?actor=${did}`,
       defaultFetchOptions
     );
@@ -54,7 +57,7 @@ async function fetchBacklinks(subjectUri: string): Promise<string[]> {
       "community.lexicon.calendar.rsvp:subject.uri"
     );
 
-    const res = await fetch(url.toString(), defaultFetchOptions);
+    const res = await measuredFetch(url.toString(), defaultFetchOptions);
 
     if (res.ok) {
       const data = await res.json();
@@ -228,7 +231,7 @@ export const getTopPosts = async (
   lookback: number = 50
 ) => {
   try {
-    const res = await fetch(
+    const res = await measuredFetch(
       `${bskyPublicApi}/xrpc/app.bsky.feed.getAuthorFeed?actor=${handle}&limit=${lookback}`,
       defaultFetchOptions
     );

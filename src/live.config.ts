@@ -1,3 +1,4 @@
+import { actorDid, pdsEndpoint, slingshotEndpoint } from "@/lib/const";
 import { defineLiveCollection } from "astro:content";
 
 import type { Main as BookRecord } from "../src/lexicons/buzz/bookhive/book";
@@ -5,10 +6,6 @@ import type { Main as DocumentRecord } from "../src/lexicons/site/standard/docum
 import type { Main as PublicationRecord } from "../src/lexicons/site/standard/publication";
 import { atprotoLoader } from "./loaders/atproto";
 import { BookStatusMap } from "./loaders/enums";
-
-const actorDid = "did:plc:pbjvqaziagcyv2vqodldn5op";
-const pdsEndpoint = "https://npmx.social";
-const slingshotEndpoint = "https://slingshot.microcosm.blue";
 
 const baseConfig = { pdsEndpoint, slingshotEndpoint, actorDid };
 

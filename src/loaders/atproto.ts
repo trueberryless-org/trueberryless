@@ -1,3 +1,4 @@
+import { measuredFetch } from "@/lib/fetch";
 import type { LiveLoader } from "astro/loaders";
 
 interface AtprotoConfig<M> {
@@ -48,11 +49,7 @@ export function atprotoLoader<
         url.searchParams.set("limit", String(batchSize));
         if (cursor) url.searchParams.set("cursor", cursor);
 
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-        const response = await fetch(url, { signal: controller.signal });
-        clearTimeout(timeoutId);
+        const response = await measuredFetch(url);
         if (!response.ok)
           throw new Error(`List failed: ${response.statusText}`);
 
@@ -92,11 +89,7 @@ export function atprotoLoader<
       url.searchParams.set("collection", config.collection);
       url.searchParams.set("rkey", rkey);
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-      const response = await fetch(url, { signal: controller.signal });
-      clearTimeout(timeoutId);
+      const response = await measuredFetch(url);
       if (!response.ok) throw new Error(`Fetch failed: ${response.statusText}`);
 
       const data = await response.json();

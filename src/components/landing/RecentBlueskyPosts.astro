@@ -1,9 +1,10 @@
 ---
-import { getBlueskyPosts, actorDid } from "@/lib/bluesky";
+import { getBlueskyPosts } from "@/lib/bluesky";
 import { Heart } from "@lucide/astro";
 import Section from "@/components/utils/Section.astro";
 import List from "@/components/utils/List.astro";
 import ActionLink from "@/components/utils/ActionLink.astro";
+import { actorDid } from "@/lib/const";
 
 interface Props {
   fetchLimit?: number;
