@@ -53,6 +53,11 @@
   padding: 0;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--bg-subtle);
   color: var(--text);
@@ -61,7 +66,6 @@ body {
     system-ui,
     -apple-system,
     sans-serif;
-  overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

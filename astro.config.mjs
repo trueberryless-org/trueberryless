@@ -16,6 +16,6 @@ export default defineConfig({
     prefetchAll: true,
   },
   image: {
-    domains: ["cdn.bsky.app"],
+    domains: ["cdn.bsky.app", "npmx.social"],
   },
 });
