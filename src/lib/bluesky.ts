@@ -19,11 +19,11 @@ export async function getBlueskyPosts(
   const result = await getLiveCollection("blueskyPosts");
   const allPosts = result?.entries || [];
 
-  const sortedByDate = [...allPosts].sort(
-    (a: any, b: any) =>
-      new Date(b.data.createdAt).getTime() -
-      new Date(a.data.createdAt).getTime()
-  );
+  const sortedByDate = [...allPosts].sort((a: any, b: any) => {
+    const timeA = new Date(a.data.createdAt).getTime() || 0;
+    const timeB = new Date(b.data.createdAt).getTime() || 0;
+    return timeB - timeA;
+  });
 
   const postsToFetch = sortedByDate.slice(0, fetchLimit);
   const uris = postsToFetch.map((post: any) => post.id);
@@ -57,7 +57,8 @@ export async function getBlueskyPosts(
   );
 
   const postsWithLikes = postsToFetch.map((post: any) => {
-    const rkey = post.id.split("/").pop() as string;
+    const parts = post.id.split("/");
+    const rkey = parts.length > 0 ? parts[parts.length - 1] : post.id;
     return {
       id: post.id,
       rkey,

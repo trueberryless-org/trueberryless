@@ -27,7 +27,6 @@ const filteredPosts = await getBlueskyPosts(fetchLimit, displayLimit);
 
       <List>
         {filteredPosts.map((post) => {
-          const rkey = post.rkey;
           const postUrl = post.postUrl;
           const text = post.text;
           const likes = post.likes;

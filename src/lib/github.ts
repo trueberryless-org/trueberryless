@@ -63,7 +63,8 @@ export async function getOwnProjects() {
         stars: repo.stargazers_count,
         language: repo.language,
       }));
-  } catch {
+  } catch (error) {
+    console.error("[GitHub] getOwnProjects failed", error);
     return [];
   }
 }
@@ -129,7 +130,7 @@ export async function getContributedProjects() {
         try {
           let totalStars = 0;
 
-          for (const repoName of group.repos) {
+          for (const repoName of new Set(group.repos)) {
             try {
               const { data: repoData } = await octokit.rest.repos.get({
                 owner: group.owner,
@@ -183,7 +184,8 @@ export async function getContributedProjects() {
     return enrichedOrgs.sort(
       (a, b) => showcaseKeys.indexOf(a.owner) - showcaseKeys.indexOf(b.owner)
     );
-  } catch {
+  } catch (error) {
+    console.error("[GitHub] getContributedProjects failed", error);
     return [];
   }
 }

@@ -2,7 +2,9 @@ import { getLiveCollection } from "astro:content";
 
 export function processPost(post: any) {
   const formatDate = (dateString: string) => {
+    if (!dateString) return "N/A";
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "N/A";
     const month = date
       .toLocaleString("en-US", { month: "short" })
       .toUpperCase();

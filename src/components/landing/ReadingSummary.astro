@@ -8,7 +8,7 @@ const summary = await getReadingSummary();
 ---
 
 {
-  summary && (
+  summary && summary.latest && Array.isArray(summary.favorites) && (
     <Section title="Reading Summary">
       <ActionLink slot="header-actions" href="/books" text="View all" />
 

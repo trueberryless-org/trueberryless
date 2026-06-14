@@ -31,18 +31,19 @@ export async function getLibraryBooks(): Promise<BookItem[]> {
     return [];
   }
 
+  type BookEntry = (typeof allBooks)[number];
   const filteredBooks = allBooks
-    .filter((book: any) => {
+    .filter((book: BookEntry) => {
       const status = book.data.status;
       return status === "Finished";
     })
-    .sort((a: any, b: any) => {
+    .sort((a: BookEntry, b: BookEntry) => {
       const dateA = a.data.finishedAt || a.data.startedAt || a.data.createdAt;
       const dateB = b.data.finishedAt || b.data.startedAt || b.data.createdAt;
       return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
 
-  const booksWithPages = filteredBooks.map((book: any) => {
+  const processedBooks = filteredBooks.map((book: BookEntry): BookItem => {
     let pages = book.data.bookProgress?.totalPages;
 
     if (!pages) {
@@ -55,9 +56,13 @@ export async function getLibraryBooks(): Promise<BookItem[]> {
     }
 
     let coverUrl = null;
-    if (book.data.cover?.ref?.$link) {
-      coverUrl = `${pdsEndpoint}/xrpc/com.atproto.sync.getBlob?did=${actorDid}&cid=${book.data.cover.ref.$link}`;
+    const cover = book.data.cover as any;
+    if (cover?.ref?.$link) {
+      coverUrl = `${pdsEndpoint}/xrpc/com.atproto.sync.getBlob?did=${actorDid}&cid=${cover.ref.$link}`;
     }
+
+    const calculatedThickness = 8 + pages * 0.04;
+    const thickness = Math.max(10, Math.min(60, calculatedThickness));
 
     return {
       id: book.id,
@@ -66,28 +71,15 @@ export async function getLibraryBooks(): Promise<BookItem[]> {
       authors: book.data.authors,
       coverUrl,
       rotation: (Math.random() * 8 - 4).toFixed(2),
-      pages,
-    };
-  });
-
-  if (booksWithPages.length === 0) {
-    return [];
-  }
-
-  return booksWithPages.map((book) => {
-    const calculatedThickness = 8 + book.pages * 0.04;
-    const thickness = Math.max(10, Math.min(60, calculatedThickness));
-
-    return {
-      id: book.id,
-      hiveId: book.hiveId,
-      title: book.title,
-      authors: book.authors,
-      coverUrl: book.coverUrl,
-      rotation: book.rotation,
       thickness: Math.round(thickness),
     };
   });
+
+  if (processedBooks.length === 0) {
+    return [];
+  }
+
+  return processedBooks;
 }
 
 export async function getReadingSummary(): Promise<ReadingSummary | null> {
@@ -97,7 +89,9 @@ export async function getReadingSummary(): Promise<ReadingSummary | null> {
     return null;
   }
 
-  const sortedByDate = [...books].sort((a: any, b: any) => {
+  type BookEntry = (typeof books)[number];
+
+  const sortedByDate = [...books].sort((a: BookEntry, b: BookEntry) => {
     const dateA = new Date(
       a.data.finishedAt || a.data.startedAt || 0
     ).getTime();
@@ -110,11 +104,13 @@ export async function getReadingSummary(): Promise<ReadingSummary | null> {
   const latest = sortedByDate[0];
 
   const favorites = [...books]
-    .filter((b: any) => typeof b.data.stars === "number")
-    .sort((a: any, b: any) => (b.data.stars ?? 0) - (a.data.stars ?? 0))
-    .filter((b: any) => b.data.hiveId !== latest.data.hiveId)
+    .filter((b: BookEntry) => typeof b.data.stars === "number")
+    .sort(
+      (a: BookEntry, b: BookEntry) => (b.data.stars ?? 0) - (a.data.stars ?? 0)
+    )
+    .filter((b: BookEntry) => b.data.hiveId !== latest.data.hiveId)
     .slice(0, 3)
-    .map((b: any) => ({
+    .map((b: BookEntry) => ({
       title: b.data.title as string,
       hiveId: b.data.hiveId as string,
       stars: b.data.stars as number,

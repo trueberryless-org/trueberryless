@@ -114,6 +114,7 @@ const pathname = Astro.url.pathname;
 
   let currentTheme = localStorage.getItem("theme") || "light";
   let specialThemesUnlocked =
+    SPECIAL_THEMES.length > 0 &&
     localStorage.getItem("specialThemesUnlocked") === "true";
   let clickCount = 0;
   let lastClickTime = 0;
@@ -219,16 +220,23 @@ const pathname = Astro.url.pathname;
 
     if (!specialThemesUnlocked) {
       if (clickCount >= 7) {
-        specialThemesUnlocked = true;
-        localStorage.setItem("specialThemesUnlocked", "true");
-        showToast("Special themes unlocked!");
-        currentTheme = SPECIAL_THEMES[0];
-        setTheme(currentTheme);
-        localStorage.setItem("theme", currentTheme);
-        return;
+        if (SPECIAL_THEMES.length === 0) {
+          showToast("No special themes configured yet.");
+          clickCount = 0;
+        } else {
+          specialThemesUnlocked = true;
+          localStorage.setItem("specialThemesUnlocked", "true");
+          showToast("Special themes unlocked!");
+          currentTheme = SPECIAL_THEMES[0];
+          setTheme(currentTheme);
+          localStorage.setItem("theme", currentTheme);
+          return;
+        }
       } else if (clickCount >= 3) {
-        const remaining = 7 - clickCount;
-        showToast(`${remaining} more clicks...`);
+        if (SPECIAL_THEMES.length > 0) {
+          const remaining = 7 - clickCount;
+          showToast(`${remaining} more clicks...`);
+        }
       }
     }
 

@@ -1,4 +1,5 @@
 ---
+import { actorDid } from "@/lib/const";
 import Badge from "@/components/utils/Badge.astro";
 
 import astroLight from "@/assets/logos/light/astro.png";
@@ -23,7 +24,7 @@ const badges = {
     dark: astroDark,
   },
   bluesky: {
-    href: "https://bsky.app/profile/yourprofile",
+    href: `https://bsky.app/profile/${actorDid}`,
     text: "Bluesky",
     light: blueskyLight,
     dark: blueskyDark,

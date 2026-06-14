@@ -6,8 +6,12 @@ export async function measuredFetch(
   const timeoutId = setTimeout(() => controller.abort(), 30000);
 
   const fetchOptions = { ...options };
-  if (fetchOptions.signal) {
-    fetchOptions.signal.addEventListener("abort", () => controller.abort());
+  const upstreamSignal = fetchOptions.signal;
+  const abortFromUpstream = () => controller.abort();
+  if (upstreamSignal?.aborted) {
+    controller.abort();
+  } else if (upstreamSignal) {
+    upstreamSignal.addEventListener("abort", abortFromUpstream, { once: true });
   }
   fetchOptions.signal = controller.signal;
 
@@ -28,5 +32,6 @@ export async function measuredFetch(
     throw error;
   } finally {
     clearTimeout(timeoutId);
+    upstreamSignal?.removeEventListener("abort", abortFromUpstream);
   }
 }

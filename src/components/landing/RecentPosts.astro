@@ -28,7 +28,7 @@ const filteredPosts = allPosts
                 href={postUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style="display: contents; text-decoration: none; color: inherit;"
+                class="post-link"
               >
                 <div class="item-left">
                   <span class="item-main">{title}</span>
@@ -42,3 +42,14 @@ const filteredPosts = allPosts
     </Section>
   )
 }
+
+<style>
+  .post-link {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
