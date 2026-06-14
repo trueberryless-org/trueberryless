@@ -1,17 +1,19 @@
 <script is:inline>
   const setDarkMode = () => {
-    const theme = localStorage.getItem("theme");
-    const specialThemes = ["celestial"];
+    let theme = localStorage.getItem("theme");
+    const specialThemes = [];
+
+    if (!theme) {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      localStorage.setItem("theme", theme);
+    }
 
     document.documentElement.classList.remove("dark", ...specialThemes);
 
     if (theme && theme !== "light") {
       document.documentElement.classList.add(theme);
-    } else if (
-      !theme &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      document.documentElement.classList.add("dark");
     }
   };
 
