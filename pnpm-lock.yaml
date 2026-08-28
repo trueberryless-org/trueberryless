@@ -18,10 +18,10 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3
       '@atproto/lex':
-        specifier: ^0.3.4
+        specifier: ^0.3.5
         version: 0.3.7
       '@lucide/astro':
-        specifier: ^1.29.0
+        specifier: ^1.30.0
         version: 1.33.0(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.6.1)(yaml@2.8.1))
       astro:
         specifier: ^7.2.0

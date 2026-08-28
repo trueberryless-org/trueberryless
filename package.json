@@ -22,8 +22,8 @@
     "@astrojs/netlify": "^8.2.0",
     "@astrojs/node": "^11.1.0",
     "@astrojs/sitemap": "^3.7.3",
-    "@atproto/lex": "^0.3.4",
-    "@lucide/astro": "^1.29.0",
+    "@atproto/lex": "^0.3.5",
+    "@lucide/astro": "^1.30.0",
     "astro": "^7.2.0",
     "sharp": "^0.35.3",
     "simple-icons-astro": "^16.1.0"
