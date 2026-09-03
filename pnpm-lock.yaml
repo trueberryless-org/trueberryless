@@ -12,19 +12,19 @@ importers:
         specifier: ^8.2.1
         version: 8.2.4(@types/node@24.13.2)(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.6.1)(yaml@2.8.1))(jiti@2.6.1)(yaml@2.8.1)
       '@astrojs/node':
-        specifier: ^11.1.1
+        specifier: ^11.1.2
         version: 11.1.4(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.6.1)(yaml@2.8.1))
       '@astrojs/sitemap':
         specifier: ^3.7.3
         version: 3.7.3
       '@atproto/lex':
-        specifier: ^0.3.5
+        specifier: ^0.3.6
         version: 0.3.7
       '@lucide/astro':
         specifier: ^1.31.0
         version: 1.33.0(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.6.1)(yaml@2.8.1))
       astro:
-        specifier: ^7.2.1
+        specifier: ^7.2.2
         version: 7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.6.1)(yaml@2.8.1)
       sharp:
         specifier: ^0.35.3
