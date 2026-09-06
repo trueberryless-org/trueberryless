@@ -25,6 +25,8 @@
   --book-back: oklch(0.86 0.02 80);
   --glow-star: oklch(0.78 0.16 85);
   --glow-pr: oklch(0.6 0.2 300);
+  --accent: oklch(0.68 0.16 150);
+  --accent-glow: oklch(0.68 0.16 150 / 0.45);
   --text-gradient: linear-gradient(
     180deg,
     oklch(0.4362 0.0666 73.15) 0%,
@@ -55,6 +57,8 @@
   --book-back: oklch(0.6 0.005 250);
   --glow-star: oklch(0.85 0.15 90);
   --glow-pr: oklch(0.65 0.2 300);
+  --accent: oklch(0.75 0.17 150);
+  --accent-glow: oklch(0.75 0.17 150 / 0.5);
   --text-gradient: linear-gradient(
     180deg,
     oklch(1 0.003 240) 0%,
@@ -105,6 +109,8 @@
   --book-back: oklch(0.15 0.04 315);
   --glow-star: oklch(0.88 0.12 330);
   --glow-pr: oklch(0.75 0.14 310);
+  --accent: oklch(0.8 0.13 160);
+  --accent-glow: oklch(0.8 0.13 160 / 0.5);
   --text-gradient: linear-gradient(
     135deg,
     oklch(0.96 0.01 315) 0%,

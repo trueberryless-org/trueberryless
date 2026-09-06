@@ -1,0 +1,126 @@
+---
+import Section from "@/components/utils/Section.astro";
+import Fallback from "@/components/utils/Fallback.astro";
+import Timeline from "@/components/resume/Timeline.astro";
+import PositionCard from "@/components/resume/PositionCard.astro";
+import EducationCard from "@/components/resume/EducationCard.astro";
+import HonorCard from "@/components/resume/HonorCard.astro";
+import SkillChips from "@/components/resume/SkillChips.astro";
+import {
+  BriefcaseBusiness,
+  GraduationCap,
+  Trophy,
+  Wrench,
+} from "@lucide/astro";
+import { fetchResume } from "@/lib/data";
+import { applyCache, degradedCache, longLivedCache } from "@/lib/cache";
+
+const resume = await fetchResume().catch(() => null);
+applyCache(Astro.response, resume ? longLivedCache : degradedCache);
+const hasData = Boolean(
+  resume &&
+  (resume.positions.length > 0 ||
+    resume.education.length > 0 ||
+    resume.honors.length > 0 ||
+    resume.skills.length > 0)
+);
+---
+
+{
+  hasData ? (
+    <>
+      {resume!.positions.length > 0 && (
+        <Section title="Experience">
+          <BriefcaseBusiness
+            slot="leading"
+            class="section-icon"
+            width={18}
+            height={18}
+          />
+          <div class="timeline-stack">
+            {resume!.positions.map((p) => (
+              <Timeline
+                start={p.startLabel}
+                end={p.endLabel}
+                isCurrent={p.isCurrent}
+              >
+                <PositionCard position={p} />
+              </Timeline>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {resume!.education.length > 0 && (
+        <Section title="Education">
+          <GraduationCap
+            slot="leading"
+            class="section-icon"
+            width={18}
+            height={18}
+          />
+          <div class="timeline-stack">
+            {resume!.education.map((e) => (
+              <Timeline
+                start={e.startLabel}
+                end={e.endLabel}
+                isCurrent={e.isCurrent}
+              >
+                <EducationCard education={e} />
+              </Timeline>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {resume!.honors.length > 0 && (
+        <Section title="Awards & Honors">
+          <Trophy slot="leading" class="section-icon" width={18} height={18} />
+          <div class="honor-grid">
+            {resume!.honors.map((h) => (
+              <HonorCard honor={h} />
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {resume!.skills.length > 0 && (
+        <Section title="Skills">
+          <Wrench slot="leading" class="section-icon" width={18} height={18} />
+          <SkillChips skills={resume!.skills} />
+        </Section>
+      )}
+    </>
+  ) : (
+    <Fallback
+      description="My professional history lives on Sifa, an open profile network on ATproto, and isn't reachable right now."
+      fallbackHref="https://sifa.id/p/felixs.dev"
+      fallbackLabel="See my Sifa profile"
+    />
+  )
+}
+
+<style>
+  .section-icon {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .timeline-stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .honor-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .honor-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
