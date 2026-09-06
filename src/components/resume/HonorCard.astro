@@ -13,7 +13,6 @@ interface Props {
 const { honor } = Astro.props;
 
 const desc = honor.description?.trim() ?? "";
-// A bare http(s) URL in the description becomes a real external link.
 const isUrl = /^https?:\/\/\S+$/i.test(desc);
 ---
 

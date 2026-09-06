@@ -676,7 +676,6 @@ export interface ResumeData {
   skills: ResumeSkill[];
 }
 
-/** Pretty-print a YYYY-MM, YYYY or ISO datetime as e.g. "Oct 2025". */
 function formatMonth(value: string | null | undefined): string | null {
   if (!value) return null;
   if (/^\d{4}-\d{2}$/.test(value)) {
@@ -696,7 +695,6 @@ function formatMonth(value: string | null | undefined): string | null {
     : value;
 }
 
-/** Best-effort parse of a partial/full date for chronological sorting. */
 function dateTimestamp(value: string | null | undefined): number {
   if (!value) return 0;
   if (/^\d{4}-\d{2}$/.test(value)) {
@@ -708,7 +706,6 @@ function dateTimestamp(value: string | null | undefined): number {
   return Number.isFinite(ts) ? ts : 0;
 }
 
-/** Turn "id.sifa.defs#partTime" into "Part time". */
 function fragmentLabel(ref: string | null | undefined): string | null {
   if (!ref) return null;
   const frag = ref.includes("#") ? ref.split("#").pop() : ref;
