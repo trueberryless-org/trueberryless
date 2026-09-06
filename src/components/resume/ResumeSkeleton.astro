@@ -1,0 +1,117 @@
+---
+const sections = [
+  { lines: 2, meta: true },
+  { lines: 3, meta: true },
+  { lines: 2, meta: false },
+];
+const chipRows = [6, 8, 5];
+---
+
+<div class="skeleton-resume">
+  {
+    sections.map((section, sIndex) => (
+      <section class="skeleton-section">
+        <div class="skeleton-section-title" />
+        {Array.from({ length: section.lines }).map(() => (
+          <div class="skeleton-card">
+            <div class="skeleton-line title" />
+            <div class="skeleton-line sub" />
+            {section.meta && (
+              <div class="skeleton-chips">
+                <div class="skeleton-chip" />
+                <div class="skeleton-chip" />
+              </div>
+            )}
+          </div>
+        ))}
+      </section>
+    ))
+  }
+
+  <section class="skeleton-section">
+    <div class="skeleton-section-title"></div>
+    {
+      chipRows.map((count) => (
+        <div class="skeleton-chip-row">
+          {Array.from({ length: count }).map(() => (
+            <div class="skeleton-chip" />
+          ))}
+        </div>
+      ))
+    }
+  </section>
+</div>
+
+<style>
+  .skeleton-resume {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .skeleton-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .skeleton-section-title {
+    height: 24px;
+    width: 40%;
+    background: var(--border);
+    border-radius: 4px;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  .skeleton-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .skeleton-line {
+    height: 18px;
+    background: var(--border);
+    border-radius: 4px;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  .skeleton-line.title {
+    width: 55%;
+    height: 22px;
+  }
+
+  .skeleton-line.sub {
+    width: 35%;
+    height: 14px;
+  }
+
+  .skeleton-chips,
+  .skeleton-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .skeleton-chip {
+    width: 70px;
+    height: 18px;
+    background: var(--border);
+    border-radius: var(--radius-pill);
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+</style>

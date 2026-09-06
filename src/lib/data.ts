@@ -629,6 +629,210 @@ export async function fetchBluesky(): Promise<BlueskyPost[] | null> {
   });
 }
 
+export interface ResumeSkill {
+  id: string;
+  name: string;
+  category: string | null;
+}
+
+export interface ResumePosition {
+  id: string;
+  title: string;
+  company: string;
+  location: string | null;
+  jobType: string | null;
+  workplaceType: string | null;
+  description: string | null;
+  startLabel: string;
+  endLabel: string | null;
+  isCurrent: boolean;
+  skills: string[];
+}
+
+export interface ResumeEducation {
+  id: string;
+  institution: string;
+  degree: string | null;
+  fieldOfStudy: string | null;
+  grade: string | null;
+  description: string | null;
+  startLabel: string;
+  endLabel: string | null;
+  isCurrent: boolean;
+}
+
+export interface ResumeHonor {
+  id: string;
+  title: string;
+  issuer: string | null;
+  awardedAt: string | null;
+  description: string | null;
+}
+
+export interface ResumeData {
+  positions: ResumePosition[];
+  education: ResumeEducation[];
+  honors: ResumeHonor[];
+  skills: ResumeSkill[];
+}
+
+function formatMonth(value: string | null | undefined): string | null {
+  if (!value) return null;
+  if (/^\d{4}-\d{2}$/.test(value)) {
+    const [y, m] = value.split("-").map(Number);
+    return new Date(y, m - 1, 1).toLocaleString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
+  }
+  if (/^\d{4}$/.test(value)) return value;
+  const ts = Date.parse(value);
+  return Number.isFinite(ts)
+    ? new Date(ts).toLocaleString("en-US", {
+        month: "short",
+        year: "numeric",
+      })
+    : value;
+}
+
+function dateTimestamp(value: string | null | undefined): number {
+  if (!value) return 0;
+  if (/^\d{4}-\d{2}$/.test(value)) {
+    const [y, m] = value.split("-").map(Number);
+    return new Date(y, m - 1, 1).getTime();
+  }
+  if (/^\d{4}$/.test(value)) return new Date(Number(value), 0, 1).getTime();
+  const ts = Date.parse(value);
+  return Number.isFinite(ts) ? ts : 0;
+}
+
+function fragmentLabel(ref: string | null | undefined): string | null {
+  if (!ref) return null;
+  const frag = ref.includes("#") ? ref.split("#").pop() : ref;
+  const spaced = frag.replace(/([a-z])([A-Z])/g, "$1 $2");
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
+
+const COUNTRY_NAMES: Record<string, string> = {
+  AT: "Austria",
+  CH: "Switzerland",
+  DE: "Germany",
+  GB: "United Kingdom",
+  NL: "Netherlands",
+  US: "United States",
+};
+
+function formatLocation(loc: any): string | null {
+  if (!loc || typeof loc !== "object") return null;
+  const country =
+    typeof loc.country === "string" && loc.country.length === 2
+      ? COUNTRY_NAMES[loc.country] || loc.country
+      : loc.country;
+  const parts = [loc.locality, loc.region]
+    .filter(Boolean)
+    .filter((p, i, arr) => arr.indexOf(p) === i);
+  if (country) parts.push(country);
+  return parts.length > 0 ? parts.join(", ") : null;
+}
+
+const byStartDesc = (a: { startLabel: string }, b: { startLabel: string }) =>
+  dateTimestamp(b.startLabel) - dateTimestamp(a.startLabel);
+
+export async function fetchResume(): Promise<ResumeData | null> {
+  const [positionsRaw, educationRaw, honorsRaw, skillsRaw] = await Promise.all([
+    fetchATproto("id.sifa.profile.position"),
+    fetchATproto("id.sifa.profile.education"),
+    fetchATproto("id.sifa.profile.honor"),
+    fetchATproto("id.sifa.profile.skill"),
+  ]);
+
+  if (
+    positionsRaw.length === 0 &&
+    educationRaw.length === 0 &&
+    honorsRaw.length === 0 &&
+    skillsRaw.length === 0
+  ) {
+    return null;
+  }
+
+  const skills: ResumeSkill[] = skillsRaw
+    .map((s: any) => {
+      const rawCategory = s.data?.category;
+      return {
+        id: s.id,
+        name: s.data?.name,
+        category:
+          typeof rawCategory === "string" ? fragmentLabel(rawCategory) : null,
+      };
+    })
+    .filter((s) => Boolean(s.name));
+  const skillNames = new Map(skills.map((s) => [s.id, s.name]));
+
+  const positions: ResumePosition[] = positionsRaw
+    .map((r: any) => {
+      const d = r.data ?? {};
+      const startLabel = formatMonth(d.startedAt);
+      const end = d.endedAt;
+      const isCurrent = !end && Boolean(startLabel);
+      const skillRefs = Array.isArray(d.skills) ? d.skills : [];
+      return {
+        id: r.id,
+        title: d.title,
+        company: d.company,
+        location: formatLocation(d.location),
+        jobType: fragmentLabel(d.employmentType),
+        workplaceType: fragmentLabel(d.workplaceType),
+        description: d.description,
+        startLabel: startLabel ?? "—",
+        endLabel: isCurrent ? "Present" : formatMonth(end),
+        isCurrent,
+        skills: skillRefs
+          .map((s: any) => (typeof s === "string" ? s : s?.uri))
+          .map((uri: string) => skillNames.get(uri) as string)
+          .filter(Boolean),
+      };
+    })
+    .filter((p) => Boolean(p.title))
+    .sort(byStartDesc);
+
+  const education: ResumeEducation[] = educationRaw
+    .map((r: any) => {
+      const d = r.data ?? {};
+      const startLabel = formatMonth(d.startedAt);
+      const end = d.endedAt;
+      const isCurrent = !end && Boolean(startLabel);
+      return {
+        id: r.id,
+        institution: d.institution,
+        degree: d.degree,
+        fieldOfStudy: d.fieldOfStudy,
+        grade: d.grade,
+        description: d.description,
+        startLabel: startLabel ?? "—",
+        endLabel: isCurrent ? "Present" : formatMonth(end),
+        isCurrent,
+      };
+    })
+    .filter((e) => Boolean(e.institution))
+    .sort(byStartDesc);
+
+  const honors: ResumeHonor[] = honorsRaw
+    .map((r: any) => {
+      const d = r.data ?? {};
+      return {
+        id: r.id,
+        title: d.title,
+        issuer: d.issuer,
+        awardedAt: formatMonth(d.awardedAt),
+        description: d.description,
+      };
+    })
+    .filter((h) => Boolean(h.title))
+    .sort((a, b) => dateTimestamp(a.awardedAt) - dateTimestamp(b.awardedAt));
+
+  return { positions, education, honors, skills };
+}
+
 export interface ReadingSummary {
   latest: { title: string; hiveId: string; startedAt?: string };
   favorites: { title: string; hiveId: string; stars: number }[];

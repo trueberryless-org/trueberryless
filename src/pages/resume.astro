@@ -1,0 +1,24 @@
+---
+import LayoutPage from "@/layouts/LayoutPage.astro";
+import ResumeContent from "@/components/resume/ResumeContent.astro";
+import ResumeSkeleton from "@/components/resume/ResumeSkeleton.astro";
+import PageHeader from "@/components/utils/PageHeader.astro";
+
+export const prerender = true;
+---
+
+<LayoutPage title="Resume | Felix Schneider">
+  <PageHeader title="Resume">
+    <Fragment slot="description">
+      Some education, experience, and skills loaded from my <a
+        href="https://sifa.id/p/felixs.dev"
+        target="_blank"
+        rel="noopener noreferrer">Sifa</a
+      > profile.
+    </Fragment>
+  </PageHeader>
+
+  <ResumeContent server:defer>
+    <ResumeSkeleton slot="fallback" />
+  </ResumeContent>
+</LayoutPage>
