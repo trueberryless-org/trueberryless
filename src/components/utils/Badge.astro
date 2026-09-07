@@ -12,7 +12,6 @@ interface Props {
 
 const { href, text, icon, alt = "Badge icon", name } = Astro.props;
 
-const isExternal = /^(https?:)?\/\//i.test(href) || href.startsWith("mailto:");
 const badgeClass = ["badge", name ? `badge-${name}` : null]
   .filter(Boolean)
   .join(" ");
@@ -21,7 +20,6 @@ const badgeClass = ["badge", name ? `badge-${name}` : null]
 <a
   href={href}
   class={badgeClass}
-  {...isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
 >
   {icon && <Image src={icon} alt={alt} width={128} />}
   <span>{text}</span>
