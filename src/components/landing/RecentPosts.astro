@@ -31,12 +31,7 @@ const items =
           const { title, postUrl } = processPost(post);
           return (
             <li class="list-item clickable">
-              <a
-                href={postUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="post-link"
-              >
+              <a href={postUrl} class="post-link">
                 <div class="item-left">
                   <span class="item-main">{title}</span>
                 </div>

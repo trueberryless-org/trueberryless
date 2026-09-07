@@ -21,8 +21,6 @@ const summary = books ? buildReadingSummary(books) : null;
           {summary.latest.hiveId ? (
             <a
               href={`https://bookhive.buzz/books/${summary.latest.hiveId}`}
-              target="_blank"
-              rel="noopener noreferrer"
               class="book-link"
             >
               <span class="item-main">{summary.latest.title}</span>
@@ -57,8 +55,6 @@ const summary = books ? buildReadingSummary(books) : null;
               {book.hiveId ? (
                 <a
                   href={`https://bookhive.buzz/books/${book.hiveId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   class="book-link"
                 >
                   <span class="item-main">{book.title}</span>

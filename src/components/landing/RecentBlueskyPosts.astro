@@ -40,12 +40,7 @@ const items =
       <List>
         {items.map((post) => (
           <li class="list-item clickable">
-            <a
-              href={post.postUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bsky-link"
-            >
+            <a href={post.postUrl} class="bsky-link">
               <span class="bsky-item-main">
                 <span class="bsky-text">{post.text}</span>
               </span>

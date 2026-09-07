@@ -26,12 +26,7 @@ const hasUpcoming = items.length > 0;
       <List>
         {items.map((event) => (
           <li class="list-item clickable">
-            <a
-              href={event.atmoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="event-link"
-            >
+            <a href={event.atmoUrl} class="event-link">
               <div class="item-left">
                 <span class="item-main">
                   {event.data.name || "Untitled Network Event"}

@@ -13,11 +13,7 @@ const isExternal =
   external ?? (/^(https?:)?\/\//i.test(href) || href.startsWith("mailto:"));
 ---
 
-<a
-  href={href}
-  class="action-link"
-  {...isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}}
->
+<a href={href} class="action-link">
   {text}
   {
     isExternal ? (
