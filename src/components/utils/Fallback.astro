@@ -11,10 +11,7 @@ const { description, fallbackHref, fallbackLabel } = Astro.props;
 <div class="fallback">
   <p class="fallback-title">Content unavailable</p>
   <p class="fallback-description">{description}</p>
-  <a
-    href={fallbackHref}
-    class="fallback-link"
-  >
+  <a href={fallbackHref} class="fallback-link">
     {fallbackLabel}
     <span class="arrow">→</span>
   </a>

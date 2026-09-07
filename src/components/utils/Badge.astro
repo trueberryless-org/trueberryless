@@ -17,10 +17,7 @@ const badgeClass = ["badge", name ? `badge-${name}` : null]
   .join(" ");
 ---
 
-<a
-  href={href}
-  class={badgeClass}
->
+<a href={href} class={badgeClass}>
   {icon && <Image src={icon} alt={alt} width={128} />}
   <span>{text}</span>
 </a>
